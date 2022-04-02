@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main() {
+	int a;
+	int b;
+	int c;
+	int n;
+	scanf_s("%d%d%d", &a, &b, &c);
+	n = 70 * a + 21 * b + 15 * c;
+	while(n>105) {
+		n -= 105;
+	}
+	if (n<100) {
+		printf_s("%d", n);
+	}
+	else {
+		printf_s("No answer");
+	}
+}

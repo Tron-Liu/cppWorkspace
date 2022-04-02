@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include<string.h>
+#define MAXN 101+10
+int main() {
+	int n;
+	char a[MAXN];
+	memset(a,)
+	
+}

@@ -1,3 +1,5 @@
+
+```java
 class State {
     // 图节点的 id
     int id;
@@ -63,3 +65,4 @@ int [] dijkstra(int start, List<Integer>[] graph) {
     }
     return distTo;
 }
+```

@@ -20,39 +20,39 @@ int main()
  
 void dfs(int i, int j) {
 	cout << i << " " << j << endl;
-	// µ½´ïÖÕµã 
+	// åˆ°è¾¾ç»ˆç‚¹ 
 	if (i == 4 && j == 4) {
 		cout << "True" << endl;
 		return ;	
 	}
 	 
-	// Ô½½ç
+	// è¶Šç•Œ
 	if (i < 0 || i >= 5 || j < 0 || j >= 5) {
 		return ;
 	}
 	
-	// ×ó
+	// å·¦
 	if (j-1 > 0 && !visited[i][j-1] && !map[i][j-1]) {
 		visited[i][j-1] = 1; 
 		dfs(i, j-1);
 		visited[i][j-1] = 0;
 	}
 	
-	// ÏÂ
+	// ä¸‹
 	if (i+1 < 5 && !visited[i+1][j] && !map[i+1][j]) {
 		visited[i+1][j] = 1;
 		dfs(i+1, j);
 		visited[i+1][j] = 0;
 	}
 	
-	// ÓÒ
+	// å³
 	if (j+1 < 5 && !visited[i][j+1] && !map[i][j+1]) {
 		visited[i][j+1] = 1;
 		dfs(i, j+1);
 		visited[i][j+1] = 0;
 	}
 	
-	// ÉÏ 
+	// ä¸Š 
 	if (i-1 > 0 && !visited[i-1][j] && !map[i-1][j]) {
 		visited[i-1][j] = 1;
 		dfs(i-1, j);

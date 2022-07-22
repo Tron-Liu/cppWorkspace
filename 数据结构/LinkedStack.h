@@ -3,19 +3,20 @@
 #include <malloc.h>
 
 typedef char ElemType;
-typedef struct linknode {
-	ElemType data;				//Êı¾İÓò
-	struct linknode *next;		//Ö¸ÕëÓò
-}LinkStNode;						//Á´Õ»½áµãÀàĞÍ
+typedef struct linknode
+{
+	ElemType data;		   //æ•°æ®åŸŸ
+	struct linknode *next; //æŒ‡é’ˆåŸŸ
+} LinkStNode;			   //é“¾æ ˆç»“ç‚¹ç±»å‹
 
-//³õÊ¼»¯Õ»
+//åˆå§‹åŒ–æ ˆ
 void InitStack(LinkStNode *&s)
 {
 	s = (LinkStNode *)malloc(sizeof(LinkStNode));
 	s->next = NULL;
 }
 
-//Ïú»ÙÕ»
+//é”€æ¯æ ˆ
 void DestroyStack(LinkStNode *&s)
 {
 	LinkStNode *pre = s, *p = s->next;
@@ -25,74 +26,75 @@ void DestroyStack(LinkStNode *&s)
 		pre = p;
 		p = pre->next;
 	}
-	free(pre);			//´ËÊ±preÖ¸ÏòÎ²½áµã£¬ÊÍ·ÅÆä¿Õ¼ä
+	free(pre); //æ­¤æ—¶preæŒ‡å‘å°¾ç»“ç‚¹ï¼Œé‡Šæ”¾å…¶ç©ºé—´
 }
 
-//ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
+//åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
 bool StackEmpty(LinkStNode *s)
 {
-	return(s->next == NULL);
+	return (s->next == NULL);
 }
 
-//½øÕ»
+//è¿›æ ˆ
 void Push(LinkStNode *&s, ElemType e)
 {
 	LinkStNode *p;
-	p = (LinkStNode *)malloc(sizeof(LinkStNode));		//ĞÂ½¨½áµã
-	p->data = e;															//´æ·ÅÔªËØe
-	p->next = s->next;													//½«p½áµã²åÈë×÷ÎªÊ×½áµã
+	p = (LinkStNode *)malloc(sizeof(LinkStNode)); //æ–°å»ºç»“ç‚¹
+	p->data = e;								  //å­˜æ”¾å…ƒç´ e
+	p->next = s->next;							  //å°†pç»“ç‚¹æ’å…¥ä½œä¸ºé¦–ç»“ç‚¹
 	s->next = p;
 }
 
-//³öÕ»
+//å‡ºæ ˆ
 bool Pop(LinkStNode *&s, ElemType &e)
 {
 	LinkStNode *p;
-	if (s->next == NULL)		//Õ»¿ÕµÄÇé¿ö
-		return false;					//·µ»Ø¼Ù
-	p = s->next;						//pÖ¸ÏòÊ×½áµã
-	e = p->data;					//ÌáÈ¡Ê×½áµãÖµ
-	s->next = p->next;			//É¾³ıÊ×½áµã
-	free(p);								//ÊÍ·Å±»É¾½áµãµÄ´æ´¢¿Õ¼ä
-	return true;						//·µ»ØÕæ
+	if (s->next == NULL) //æ ˆç©ºçš„æƒ…å†µ
+		return false;	 //è¿”å›å‡
+	p = s->next;		 // pæŒ‡å‘é¦–ç»“ç‚¹
+	e = p->data;		 //æå–é¦–ç»“ç‚¹å€¼
+	s->next = p->next;	 //åˆ é™¤é¦–ç»“ç‚¹
+	free(p);			 //é‡Šæ”¾è¢«åˆ ç»“ç‚¹çš„å­˜å‚¨ç©ºé—´
+	return true;		 //è¿”å›çœŸ
 }
 
-//È¡Õ»¶¥ÔªËØ
+//å–æ ˆé¡¶å…ƒç´ 
 bool GetTop(LinkStNode *s, ElemType &e)
 {
-	if (s->next == NULL)		//Õ»¿ÕµÄÇé¿ö
-		return false;					//·µ»Ø¼Ù
-	e = s->next->data;			//ÌáÈ¡Ê×½áµãÖµ
-	return true;						//·µ»ØÕæ
+	if (s->next == NULL) //æ ˆç©ºçš„æƒ…å†µ
+		return false;	 //è¿”å›å‡
+	e = s->next->data;	 //æå–é¦–ç»“ç‚¹å€¼
+	return true;		 //è¿”å›çœŸ
 }
 
-//Àı3.5  p86
+//ä¾‹3.5  p86
 bool Match(char exp[], int n)
 {
 	int i = 0;
 	char e;
 	bool match = true;
 	LinkStNode *st;
-	InitStack(st);								//³õÊ¼»¯Á´Õ»
-	while (i < n && match)				//É¨ÃèexpÖĞµÄËùÓĞ×Ö·û
+	InitStack(st);		   //åˆå§‹åŒ–é“¾æ ˆ
+	while (i < n && match) //æ‰«æexpä¸­çš„æ‰€æœ‰å­—ç¬¦
 	{
-		if (exp[i] == '(')					//µ±Ç°×Ö·ûÎª×óÀ¨ºÅ£¬½«Æä½øÕ»
+		if (exp[i] == '(') //å½“å‰å­—ç¬¦ä¸ºå·¦æ‹¬å·ï¼Œå°†å…¶è¿›æ ˆ
 			Push(st, exp[i]);
-		else if (exp[i] == ')')				//µ±Ç°×Ö·ûÎªÓÒÀ¨ºÅ
+		else if (exp[i] == ')') //å½“å‰å­—ç¬¦ä¸ºå³æ‹¬å·
 		{
-			if (GetTop(st, e) == true)	//³É¹¦È¡Õ»¶¥ÔªËØe
+			if (GetTop(st, e) == true) //æˆåŠŸå–æ ˆé¡¶å…ƒç´ e
 			{
-				if (e != '(')						//Õ»¶¥ÔªËØ²»Îª'('Ê±
-					match = false;			//±íÊ¾²»Æ¥Åä
-				else								//Õ»¶¥ÔªËØÎª'('Ê±
-					Pop(st, e);					//½«Õ»¶¥ÔªËØ³öÕ»
+				if (e != '(')	   //æ ˆé¡¶å…ƒç´ ä¸ä¸º'('æ—¶
+					match = false; //è¡¨ç¤ºä¸åŒ¹é…
+				else			   //æ ˆé¡¶å…ƒç´ ä¸º'('æ—¶
+					Pop(st, e);	   //å°†æ ˆé¡¶å…ƒç´ å‡ºæ ˆ
 			}
-			else match = false;			//ÎŞ·¨È¡Õ»¶¥ÔªËØÊ±±íÊ¾²»Æ¥Åä
+			else
+				match = false; //æ— æ³•å–æ ˆé¡¶å…ƒç´ æ—¶è¡¨ç¤ºä¸åŒ¹é…
 		}
-		i++;										//¼ÌĞø´¦ÀíÆäËûÔªËØ
+		i++; //ç»§ç»­å¤„ç†å…¶ä»–å…ƒç´ 
 	}
-	if (!StackEmpty(st))					//Õ»²»¿ÕÊ±±íÊ¾²»Æ¥Åä 
+	if (!StackEmpty(st)) //æ ˆä¸ç©ºæ—¶è¡¨ç¤ºä¸åŒ¹é…
 		match = false;
-	DestroyStack(st);						//Ïú»ÙÕ»
+	DestroyStack(st); //é”€æ¯æ ˆ
 	return match;
 }

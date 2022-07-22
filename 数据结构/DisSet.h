@@ -1,34 +1,40 @@
 #pragma once
-typedef struct node {
-	int data;			//½áµã¶ÔÓ¦ÈËµÄ±àºÅ
-	int rank;			//½áµã¶ÔÓ¦ÖÈ
-	int parent;		//½áµã¶ÔÓ¦Ë«Ç×ÏÂ±ê
-}UFSTree;				//²¢²é¼¯Ê÷µÄ½áµãÀàĞÍ
+typedef struct node
+{
+	int data;	//ç»“ç‚¹å¯¹åº”äººçš„ç¼–å·
+	int rank;	//ç»“ç‚¹å¯¹åº”ç§©
+	int parent; //ç»“ç‚¹å¯¹åº”åŒäº²ä¸‹æ ‡
+} UFSTree;		//å¹¶æŸ¥é›†æ ‘çš„ç»“ç‚¹ç±»å‹
 
-void MAKE_SET(UFSTree t[], int n) {		//³õÊ¼»¯²¢²é¼¯Ê÷
+void MAKE_SET(UFSTree t[], int n)
+{ //åˆå§‹åŒ–å¹¶æŸ¥é›†æ ‘
 	int i;
-	for (i = 1; i <= n; i++) {
-		t[i].data = i;				//Êı¾İÎª¸ÃÈËµÄ±àºÅ		
-		t[i].rank = 0;				//ÖÈ³õÊ¼»¯Îª 0
-		t[i].parent = i;			//Ë«Ç×³õÊ¼»¯Îª×Ô¼º	
+	for (i = 1; i <= n; i++)
+	{
+		t[i].data = i;	 //æ•°æ®ä¸ºè¯¥äººçš„ç¼–å·
+		t[i].rank = 0;	 //ç§©åˆå§‹åŒ–ä¸º 0
+		t[i].parent = i; //åŒäº²åˆå§‹åŒ–ä¸ºè‡ªå·±
 	}
 }
 
-int FIND_SET(UFSTree t[], int x) {				//ÔÚ x ËùÔÚµÄ×ÓÊ÷ÖĞ²éÕÒ¼¯ºÏ±àºÅ
-	if (x != t[x].parent)								//Ë«Ç×²»ÊÇ×Ô¼º
-		return (FIND_SET(t, t[x].parent));		//µİ¹éÔÚË«Ç×ÖĞÕÒ x
+int FIND_SET(UFSTree t[], int x)
+{										   //åœ¨ x æ‰€åœ¨çš„å­æ ‘ä¸­æŸ¥æ‰¾é›†åˆç¼–å·
+	if (x != t[x].parent)				   //åŒäº²ä¸æ˜¯è‡ªå·±
+		return (FIND_SET(t, t[x].parent)); //é€’å½’åœ¨åŒäº²ä¸­æ‰¾ x
 	else
-		return x;											//Ë«Ç×ÊÇ×Ô¼º£¬·µ»Ø x
+		return x; //åŒäº²æ˜¯è‡ªå·±ï¼Œè¿”å› x
 }
 
-void UNION(UFSTree t[], int x, int y) {		//½« x ºÍ y ËùÔÚµÄ×ÓÊ÷ºÏ²¢
-	x = FIND_SET(t, x);								//²éÕÒ x ËùÔÚ·ÖÀë¼¯ºÏÊ÷µÄ±àºÅ
-	y = FIND_SET(t, y);								//²éÕÒ y ËùÔÚ·ÖÀë¼¯ºÏÊ÷µÄ±àºÅ
-	if (t[x].rank > t[y].rank)							//y ½áµãµÄÖÈĞ¡ÓÚ x ½áµãµÄÖÈ
-		t[y].parent = x;									//½« y Á¬µ½ x ½áµãÉÏ£¬x×÷Îª y µÄË«Ç×½áµã
-	else {													//y ½áµãµÄÖÈ´óÓÚµÈÓÚ x ½áµãµÄÖÈ
-		t[x].parent = y;									//½« x Á¬µ½ y ½áµãÉÏ£¬y ×÷Îª x µÄË«Ç×½áµã
-		if (t[x].rank == t[y].rank)					//x ºÍ y ½áµãµÄÖÈÏàÍ¬
-			t[y].rank++;									//y ½áµãµÄÖÈÔö 1
+void UNION(UFSTree t[], int x, int y)
+{							   //å°† x å’Œ y æ‰€åœ¨çš„å­æ ‘åˆå¹¶
+	x = FIND_SET(t, x);		   //æŸ¥æ‰¾ x æ‰€åœ¨åˆ†ç¦»é›†åˆæ ‘çš„ç¼–å·
+	y = FIND_SET(t, y);		   //æŸ¥æ‰¾ y æ‰€åœ¨åˆ†ç¦»é›†åˆæ ‘çš„ç¼–å·
+	if (t[x].rank > t[y].rank) // y ç»“ç‚¹çš„ç§©å°äº x ç»“ç‚¹çš„ç§©
+		t[y].parent = x;	   //å°† y è¿åˆ° x ç»“ç‚¹ä¸Šï¼Œxä½œä¸º y çš„åŒäº²ç»“ç‚¹
+	else
+	{								// y ç»“ç‚¹çš„ç§©å¤§äºç­‰äº x ç»“ç‚¹çš„ç§©
+		t[x].parent = y;			//å°† x è¿åˆ° y ç»“ç‚¹ä¸Šï¼Œy ä½œä¸º x çš„åŒäº²ç»“ç‚¹
+		if (t[x].rank == t[y].rank) // x å’Œ y ç»“ç‚¹çš„ç§©ç›¸åŒ
+			t[y].rank++;			// y ç»“ç‚¹çš„ç§©å¢ 1
 	}
 }

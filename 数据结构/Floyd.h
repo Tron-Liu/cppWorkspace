@@ -1,45 +1,56 @@
 #pragma once
 #include "GraphType.h"
-void Floyd(MatGraph g) {
+void Floyd(MatGraph g)
+{
 	int A[MAXV][MAXV], path[MAXV][MAXV];
 	int i, j, k;
 	for (i = 0; i < g.n; i++)
-		for (j = 0; j < g.n; j++) {
+		for (j = 0; j < g.n; j++)
+		{
 			A[i][j] = g.edges[i][j];
 			if (i != j && g.edges[i][j] < INF)
-				path[i][j] = i;										//¶¥µã i µ½ j ÓĞ±ßÊ±
+				path[i][j] = i; //é¡¶ç‚¹ i åˆ° j æœ‰è¾¹æ—¶
 			else
-				path[i][j] = -1;									//¶¥µã i µ½ j Ã»ÓĞ±ßÊ±
+				path[i][j] = -1; //é¡¶ç‚¹ i åˆ° j æ²¡æœ‰è¾¹æ—¶
 		}
-	for (k = 0; k < g.n; k++) {							//ÒÀ´Î¿¼²éËùÓĞ¶¥µã
+	for (k = 0; k < g.n; k++)
+	{ //ä¾æ¬¡è€ƒæŸ¥æ‰€æœ‰é¡¶ç‚¹
 		for (i = 0; i < g.n; i++)
 			for (j = 0; j < g.n; j++)
-				if (A[i][j] > A[i][k] + A[k][j]) {
-					A[i][j] = A[i][k] + A[k][j];				//ĞŞ¸Ä×î¶ÌÂ·¾¶³¤¶È
-					path[i][j] = path[k][j];					//ĞŞ¸Ä×î¶ÌÂ·¾¶
+				if (A[i][j] > A[i][k] + A[k][j])
+				{
+					A[i][j] = A[i][k] + A[k][j]; //ä¿®æ”¹æœ€çŸ­è·¯å¾„é•¿åº¦
+					path[i][j] = path[k][j];	 //ä¿®æ”¹æœ€çŸ­è·¯å¾„
 				}
 	}
-	Dispath(g, A, path);										//Êä³ö×î¶ÌÂ·¾¶
+	Dispath(g, A, path); //è¾“å‡ºæœ€çŸ­è·¯å¾„
 }
 
-void Dispath(MatGraph g, int A[][MAXV], int path[][MAXV]) {
+void Dispath(MatGraph g, int A[][MAXV], int path[][MAXV])
+{
 	int i, j, k, s;
-	int apath[MAXV], d;								//´æ·ÅÒ»Ìõ×î¶ÌÂ·¾¶ÖĞ¼ä¶¥µã£¨·´Ïò£©¼°Æä¶¥µã¸öÊı
+	int apath[MAXV], d; //å­˜æ”¾ä¸€æ¡æœ€çŸ­è·¯å¾„ä¸­é—´é¡¶ç‚¹ï¼ˆåå‘ï¼‰åŠå…¶é¡¶ç‚¹ä¸ªæ•°
 	for (i = 0; i < g.n; i++)
-		for (j = 0; j < g.n; j++) {
-			if (A[i][j] != INF && i != j) {			//Èô¶¥µã i ºÍ j Ö®¼ä´æÔÚÂ·¾¶
-				printf("´Ó%dµ½%dµÄÂ·¾¶Îª£º", i, j);
+		for (j = 0; j < g.n; j++)
+		{
+			if (A[i][j] != INF && i != j)
+			{ //è‹¥é¡¶ç‚¹ i å’Œ j ä¹‹é—´å­˜åœ¨è·¯å¾„
+				printf("ä»%dåˆ°%dçš„è·¯å¾„ä¸ºï¼š", i, j);
 				k = path[i][j];
-				d = 0; apath[d] = j;					//Â·¾¶ÉÏÌí¼ÓÖÕµã
-				while (k != -1 && k != i) {		//Â·¾¶ÉÏÌí¼ÓÖĞ¼äµã
-					d++; apath[d] = k;
+				d = 0;
+				apath[d] = j; //è·¯å¾„ä¸Šæ·»åŠ ç»ˆç‚¹
+				while (k != -1 && k != i)
+				{ //è·¯å¾„ä¸Šæ·»åŠ ä¸­é—´ç‚¹
+					d++;
+					apath[d] = k;
 					k = path[i][k];
 				}
-				d++; apath[d] = i;					//Â·¾¶ÉÏÌí¼ÓÆğµã
-				printf("%d", apath[d]);				//Êä³öÆğµã
-				for (s = d - 1; s >= 0; s--)		//Êä³öÂ·¾¶ÉÏµÄÖĞ¼ä¶¥µã
+				d++;
+				apath[d] = i;				 //è·¯å¾„ä¸Šæ·»åŠ èµ·ç‚¹
+				printf("%d", apath[d]);		 //è¾“å‡ºèµ·ç‚¹
+				for (s = d - 1; s >= 0; s--) //è¾“å‡ºè·¯å¾„ä¸Šçš„ä¸­é—´é¡¶ç‚¹
 					printf(",%d", apath[s]);
-				printf("\tÂ·¾¶³¤¶ÈÎª£º%d\n", A[i][j]);
+				printf("\tè·¯å¾„é•¿åº¦ä¸ºï¼š%d\n", A[i][j]);
 			}
 		}
 }

@@ -3,19 +3,22 @@
 typedef char ElemType;
 
 #define MaxSize 100
-typedef struct {
-	ElemType data;				//´æ·Å½áµãµÄÖµ
-	int parent;						//´æ·ÅË«Ç×µÄÎ»ÖÃ
-}PTree[MaxSize];					//PTreeÎªË«Ç×´æ´¢½á¹¹ÀàĞÍ
+typedef struct
+{
+	ElemType data; //å­˜æ”¾ç»“ç‚¹çš„å€¼
+	int parent;	   //å­˜æ”¾åŒäº²çš„ä½ç½®
+} PTree[MaxSize];  // PTreeä¸ºåŒäº²å­˜å‚¨ç»“æ„ç±»å‹
 
 #define MaxSons 10
-typedef struct node{
-	ElemType data;							//½áµãµÄÖµ
-	struct node *sons[MaxSons];		//Ö¸Ïòº¢×Ó½áµã
-}TSonNode;										//º¢×ÓÁ´´æ´¢½á¹¹ÖĞµÄ½áµãÀàĞÍ
+typedef struct node
+{
+	ElemType data;				//ç»“ç‚¹çš„å€¼
+	struct node *sons[MaxSons]; //æŒ‡å‘å­©å­ç»“ç‚¹
+} TSonNode;						//å­©å­é“¾å­˜å‚¨ç»“æ„ä¸­çš„ç»“ç‚¹ç±»å‹
 
-typedef struct tnode {
-	ElemType data;				//½áµãµÄÖµ
-	struct tnode *hp;				//Ö¸ÏòĞÖµÜ
-	struct tnode *vp;				//Ö¸Ïòº¢×Ó½áµã
-}TSBNode;							//º¢×ÓĞÖµÜÁ´´æ´¢½á¹¹ÖĞµÄ½áµãÀàĞÍ
+typedef struct tnode
+{
+	ElemType data;	  //ç»“ç‚¹çš„å€¼
+	struct tnode *hp; //æŒ‡å‘å…„å¼Ÿ
+	struct tnode *vp; //æŒ‡å‘å­©å­ç»“ç‚¹
+} TSBNode;			  //å­©å­å…„å¼Ÿé“¾å­˜å‚¨ç»“æ„ä¸­çš„ç»“ç‚¹ç±»å‹

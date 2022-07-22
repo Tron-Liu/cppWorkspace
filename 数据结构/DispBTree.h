@@ -1,14 +1,18 @@
 #pragma once
 #include "BTree.h"
-void DispBTree(BTNode *b) {
-	if (b != NULL) {
+void DispBTree(BTNode *b)
+{
+	if (b != NULL)
+	{
 		printf("%c", b->data);
-		if (b->lchild != NULL || b->rchild != NULL) {
-			printf("(");												//сп╨╒вс╫А╣Цй╠╡ейДЁЖ "("
-			DispBTree(b->lchild);							//╣щ╧И╢╕юМвСвсйВ
-			if (b->rchild != NULL) printf(",");			//спср╨╒вс╫А╣Цй╠╡ейДЁЖ ","
-			DispBTree(b->rchild);							//╣щ╧И╢╕юМсрвсйВ
-			printf(")");												//сп╨╒вс╫А╣Цй╠╡ейДЁЖ ")"
+		if (b->lchild != NULL || b->rchild != NULL)
+		{
+			printf("(");		  //Ф°┴Е╜╘Е╜░Г╩⌠Г┌╧Ф≈╤Ф┴█Х╬⌠Е┤╨ "("
+			DispBTree(b->lchild); //И─▓Е╫▓Е╓└Г░├Е╥╕Е╜░Ф═▒
+			if (b->rchild != NULL)
+				printf(",");	  //Ф°┴Е▐ЁЕ╜╘Е╜░Г╩⌠Г┌╧Ф≈╤Ф┴█Х╬⌠Е┤╨ ","
+			DispBTree(b->rchild); //И─▓Е╫▓Е╓└Г░├Е▐ЁЕ╜░Ф═▒
+			printf(")");		  //Ф°┴Е╜╘Е╜░Г╩⌠Г┌╧Ф≈╤Ф┴█Х╬⌠Е┤╨ ")"
 		}
 	}
 }

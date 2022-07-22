@@ -1,26 +1,30 @@
 #pragma once
 #include "DLinkNode.h"
 
-/*É¾³ı½áµã*/
+/*åˆ é™¤ç»“ç‚¹*/
 bool ListDelete(DLinkNode *&L, int i, ElemType &e)
 {
 	int j = 0;
-	DLinkNode *p = L, *q;							//pÖ¸ÏòÍ·½áµã£¬jÉèÖÃÎª 0 
-	if (i <= 0) return false;							//i´íÎó·µ»Ø false
-	while (j < i - 1 && p != NULL) {			//²éÕÒµÚ i-1¸ö½áµã 
+	DLinkNode *p = L, *q; // pæŒ‡å‘å¤´ç»“ç‚¹ï¼Œjè®¾ç½®ä¸º 0
+	if (i <= 0)
+		return false; // ié”™è¯¯è¿”å› false
+	while (j < i - 1 && p != NULL)
+	{ //æŸ¥æ‰¾ç¬¬ i-1ä¸ªç»“ç‚¹
 		j++;
 		p = p->next;
 	}
-	if (p == NULL) return false;					//Î´ÕÒµ½µÚ i-1¸ö½áµã·µ»Ø false 
-	else {													//ÕÒµ½µÚ i-1¸ö½áµã (ÓÉ pÖ¸ÏòËü£© 
-		q = p->next;									// qÖ¸ÏòµÚ i¸ö½áµã 
+	if (p == NULL)
+		return false; //æœªæ‰¾åˆ°ç¬¬ i-1ä¸ªç»“ç‚¹è¿”å› false
+	else
+	{				 //æ‰¾åˆ°ç¬¬ i-1ä¸ªç»“ç‚¹ (ç”± pæŒ‡å‘å®ƒï¼‰
+		q = p->next; // qæŒ‡å‘ç¬¬ iä¸ªç»“ç‚¹
 		if (q == NULL)
-			return false;									//µ±²»´æÔÚµÚ i¸ö½áµãÊ±·µ»Ø false								
+			return false; //å½“ä¸å­˜åœ¨ç¬¬ iä¸ªç»“ç‚¹æ—¶è¿”å› false
 		e = q->data;
-		p->next = q->next;							//´ÓË«Á´±íÖĞÉ¾³ı½áµã p 
-		if (p->next != NULL)						//Èô p½áµã´æÔÚºó¼Ì½áµã£¬ĞŞ¸ÄÆäÇ°ÇıÖ¸Õë 
+		p->next = q->next;	 //ä»åŒé“¾è¡¨ä¸­åˆ é™¤ç»“ç‚¹ p
+		if (p->next != NULL) //è‹¥ pç»“ç‚¹å­˜åœ¨åç»§ç»“ç‚¹ï¼Œä¿®æ”¹å…¶å‰é©±æŒ‡é’ˆ
 			p->next->prior = p;
-		free(q);												//ÊÍ·Å q½áµã 
+		free(q); //é‡Šæ”¾ qç»“ç‚¹
 		return true;
 	}
 }

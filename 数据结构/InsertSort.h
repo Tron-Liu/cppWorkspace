@@ -1,17 +1,21 @@
 #include "RecType.h"
 
-void InsertSort(RecType R[], int n) {		//¶ÔR[0..n-1]°´µİÔöÓĞĞò½øĞĞÖ±½Ó²åÈëÅÅĞò
+void InsertSort(RecType R[], int n)
+{ //å¯¹R[0..n-1]æŒ‰é€’å¢æœ‰åºè¿›è¡Œç›´æ¥æ’å…¥æ’åº
 	int i, j;
 	RecType tmp;
-	for (i = 1; i < n; i++) {
-		if (R[i].key < R[i - 1].key) {				//·´ĞòÊ±
+	for (i = 1; i < n; i++)
+	{
+		if (R[i].key < R[i - 1].key)
+		{ //ååºæ—¶
 			tmp = R[i];
 			j = i - 1;
-			do {												//ÕÒR[i]µÄ²åÈëÎ»ÖÃ
-				R[j + 1] = R[j];							//½«¹Ø¼ü×Ö´óÓÚR[i].keyµÄ¼ÇÂ¼ºóÒÆ
+			do
+			{					 //æ‰¾R[i]çš„æ’å…¥ä½ç½®
+				R[j + 1] = R[j]; //å°†å…³é”®å­—å¤§äºR[i].keyçš„è®°å½•åç§»
 				j--;
 			} while (j >= 0 && R[j].key > tmp.key);
-			R[j + 1] = tmp;								//ÔÚ j+1´¦²åÈëR[i]
+			R[j + 1] = tmp; //åœ¨ j+1å¤„æ’å…¥R[i]
 		}
 	}
 }

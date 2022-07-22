@@ -1,7 +1,8 @@
 #pragma once
 #include "Sqlist.h"
 
-//ÇóÏßÐÔ±íµÄ³¤¶È
-int ListLength(Sqlist *L) {
+//æ±‚çº¿æ€§è¡¨çš„é•¿åº¦
+int ListLength(Sqlist *L)
+{
 	return (L->length);
 }

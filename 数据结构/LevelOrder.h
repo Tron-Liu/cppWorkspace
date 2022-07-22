@@ -4,64 +4,66 @@
 #include <malloc.h>
 #include "BTree.h"
 
-typedef  BTNode* elemType;
+typedef BTNode *elemType;
 
 typedef struct
 {
 	elemType data[MaxSize];
 	int front, rear;
-}SqQueue;
+} SqQueue;
 
-//³õÊ¼»¯¶ÓÁÐ
+//åˆå§‹åŒ–é˜Ÿåˆ—
 void InitQueue(SqQueue *&q)
 {
 	q = (SqQueue *)malloc(sizeof(SqQueue));
 	q->front = q->rear = -1;
 }
 
-//Ïú»Ù¶ÓÁÐ
+//é”€æ¯é˜Ÿåˆ—
 void DestroyQueue(SqQueue *&q)
 {
 	free(q);
 }
 
-//ÅÐ¶Ï¶ÓÁÐÊÇ·ñÎª¿Õ
+//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
 bool QueueEmpty(SqQueue *q)
 {
-	return(q->front == q->rear);
+	return (q->front == q->rear);
 }
 
-//½ø¶ÓÁÐ
+//è¿›é˜Ÿåˆ—
 bool enQueue(SqQueue *&q, elemType e)
 {
-	if (q->rear == MaxSize - 1)			//¶ÓÂúÉÏÒç³ö
-		return false;								//·µ»Ø¼Ù
-	q->rear++;									//¶ÓÎ²Ôö1
-	q->data[q->rear] = e;					//rearÎ»ÖÃ²åÈëÔªËØe
-	return true;									//·µ»ØÕæ
+	if (q->rear == MaxSize - 1) //é˜Ÿæ»¡ä¸Šæº¢å‡º
+		return false;			//è¿”å›žå‡
+	q->rear++;					//é˜Ÿå°¾å¢ž1
+	q->data[q->rear] = e;		// rearä½ç½®æ’å…¥å…ƒç´ e
+	return true;				//è¿”å›žçœŸ
 }
 
-//³ö¶ÓÁÐ
+//å‡ºé˜Ÿåˆ—
 bool deQueue(SqQueue *&q, elemType &e)
 {
-	if (q->front == q->rear)				//¶Ó¿ÕÏÂÒç³ö
+	if (q->front == q->rear) //é˜Ÿç©ºä¸‹æº¢å‡º
 		return false;
 	q->front++;
 	e = q->data[q->front];
 	return true;
 }
 
-void LevelOrder(BTNode * b) {
+void LevelOrder(BTNode *b)
+{
 	BTNode *p;
-	SqQueue * qu;								//¶¨Òå»·ÐÎ¶ÓÁÐÖ¸Õë
-	InitQueue(qu);								//³õÊ¼»¯¶ÓÁÐ
-	enQueue(qu, b);							//¸ù½ÚµãÖ¸Õë½øÈë¶ÓÁÐ
-	while (!QueueEmpty(qu)) {			//¶Ó²»Îª¿ÕÑ­»·
-		deQueue(qu, p);						//³ö¶Ó½áµã p
-		printf("%c", p->data);				//·ÃÎÊ½áµã p
-		if (p->lchild != NULL)				//ÓÐ×óº¢×ÓÊ±½«Æä½ø¶Ó
+	SqQueue *qu;	//å®šä¹‰çŽ¯å½¢é˜Ÿåˆ—æŒ‡é’ˆ
+	InitQueue(qu);	//åˆå§‹åŒ–é˜Ÿåˆ—
+	enQueue(qu, b); //æ ¹èŠ‚ç‚¹æŒ‡é’ˆè¿›å…¥é˜Ÿåˆ—
+	while (!QueueEmpty(qu))
+	{						   //é˜Ÿä¸ä¸ºç©ºå¾ªçŽ¯
+		deQueue(qu, p);		   //å‡ºé˜Ÿç»“ç‚¹ p
+		printf("%c", p->data); //è®¿é—®ç»“ç‚¹ p
+		if (p->lchild != NULL) //æœ‰å·¦å­©å­æ—¶å°†å…¶è¿›é˜Ÿ
 			enQueue(qu, p->lchild);
-		if (p->rchild != NULL)				//ÓÐÓÒº¢×ÓÊ±½«Æä½ø¶Ó
+		if (p->rchild != NULL) //æœ‰å³å­©å­æ—¶å°†å…¶è¿›é˜Ÿ
 			enQueue(qu, p->rchild);
 	}
 }

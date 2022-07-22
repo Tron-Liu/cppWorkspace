@@ -1,9 +1,9 @@
 #include "Swap.h"
 
-typedef int KeyType;		//¶¨Òå¹Ø¼ü×ÖÀàĞÍÎªint
+typedef int KeyType; //å®šä¹‰å…³é”®å­—ç±»å‹ä¸ºint
 typedef int InfoType;
-typedef struct					//ÔªËØÀàĞÍ
+typedef struct //å…ƒç´ ç±»å‹
 {
-	KeyType key;				//¹Ø¼ü×ÖÏî
-	InfoType data;				//ÆäËûÊı¾İÏî£¬ÀàĞÍÎªInfoType
-}RecType;							//ÅÅĞòÔªËØµÄÀàĞÍ
+	KeyType key;   //å…³é”®å­—é¡¹
+	InfoType data; //å…¶ä»–æ•°æ®é¡¹ï¼Œç±»å‹ä¸ºInfoType
+} RecType;		   //æ’åºå…ƒç´ çš„ç±»å‹

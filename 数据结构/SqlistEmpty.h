@@ -1,7 +1,8 @@
 #pragma once
 #include "Sqlist.h"
 
-//ÅÐ¶ÏÏßÐÔ±íÊÇ·ñÊÇ¿Õ±í
-bool ListEmpty(Sqlist *&L) {
+//åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦æ˜¯ç©ºè¡¨
+bool ListEmpty(Sqlist *&L)
+{
 	return (L->length == 0);
 }

@@ -1,16 +1,19 @@
 #pragma once
 #include "Sqlist.h"
-//²åÈëÊı¾İÔªËØ,ÔÚÎ»ÖÃiÉÏ²åÈëe
-bool ListInsert(Sqlist *&L, int i, ElemType e) {
+//æ’å…¥æ•°æ®å…ƒç´ ,åœ¨ä½ç½®iä¸Šæ’å…¥e
+bool ListInsert(Sqlist *&L, int i, ElemType e)
+{
 	int j;
-	if (i<1 || i>L->length + 1) {				//²ÎÊıi´íÎóÊ±·µ»Øfalse
+	if (i < 1 || i > L->length + 1)
+	{ //å‚æ•°ié”™è¯¯æ—¶è¿”å›false
 		return false;
 	}
-	i--;													//½«Ë³Ğò±íÂß¼­ĞòºÅ×ª»»ÎªÎïÀíĞòºÅ
-	for (j = L->length; j > i; j--) {			//½«data[i]¼°Ö®ºóµÄÔªËØÍùºóÒÆÒ»¸öÎ»ÖÃ
+	i--; //å°†é¡ºåºè¡¨é€»è¾‘åºå·è½¬æ¢ä¸ºç‰©ç†åºå·
+	for (j = L->length; j > i; j--)
+	{ //å°†data[i]åŠä¹‹åçš„å…ƒç´ å¾€åç§»ä¸€ä¸ªä½ç½®
 		L->data[j] = L->data[j - 1];
 	}
-	L->data[i] = e;									//²åÈëÔªËØe
+	L->data[i] = e; //æ’å…¥å…ƒç´ e
 	L->length++;
 	return true;
 }

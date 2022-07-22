@@ -3,51 +3,53 @@
 #include <malloc.h>
 #define MaxSize 60
 
-typedef struct {
-	int i, j;				//·½¿éµÄÎ»ÖÃ
-	int pre;				//±¾Â·¾¶ÖÐÉÏÒ»¸ö·½¿éÔÚ¶ÓÁÐÖÐµÄÏÂ±ê
-}Box;						//·½¿éÀàÐÍ
+typedef struct
+{
+	int i, j; //æ–¹å—çš„ä½ç½®
+	int pre;  //æœ¬è·¯å¾„ä¸­ä¸Šä¸€ä¸ªæ–¹å—åœ¨é˜Ÿåˆ—ä¸­çš„ä¸‹æ ‡
+} Box;		  //æ–¹å—ç±»åž‹
 
 typedef Box ElemType;
 
-typedef struct {
+typedef struct
+{
 	Box data[MaxSize];
-	int front, rear;				//¶ÓÍ·Ö¸ÕëºÍ¶ÓÎ²Ö¸Õë
-}QuType;							//Ë³Ðò¶ÓÀàÐÍ
+	int front, rear; //é˜Ÿå¤´æŒ‡é’ˆå’Œé˜Ÿå°¾æŒ‡é’ˆ
+} QuType;			 //é¡ºåºé˜Ÿç±»åž‹
 
-//³õÊ¼»¯¶ÓÁÐ
+//åˆå§‹åŒ–é˜Ÿåˆ—
 void InitQueue(QuType *&q)
 {
 	q = (QuType *)malloc(sizeof(QuType));
 	q->front = q->rear = -1;
 }
 
-//Ïú»Ù¶ÓÁÐ
+//é”€æ¯é˜Ÿåˆ—
 void DestroyQueue(QuType *&q)
 {
 	free(q);
 }
 
-//ÅÐ¶Ï¶ÓÁÐÊÇ·ñÎª¿Õ
+//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
 bool QueueEmpty(QuType *q)
 {
-	return(q->front == q->rear);
+	return (q->front == q->rear);
 }
 
-//½ø¶ÓÁÐ
+//è¿›é˜Ÿåˆ—
 bool enQueue(QuType *&q, ElemType e)
 {
-	if (q->rear == MaxSize - 1)			//¶ÓÂúÉÏÒç³ö
-		return false;								//·µ»Ø¼Ù
-	q->rear++;									//¶ÓÎ²Ôö1
-	q->data[q->rear] = e;					//rearÎ»ÖÃ²åÈëÔªËØe
-	return true;									//·µ»ØÕæ
+	if (q->rear == MaxSize - 1) //é˜Ÿæ»¡ä¸Šæº¢å‡º
+		return false;			//è¿”å›žå‡
+	q->rear++;					//é˜Ÿå°¾å¢ž1
+	q->data[q->rear] = e;		// rearä½ç½®æ’å…¥å…ƒç´ e
+	return true;				//è¿”å›žçœŸ
 }
 
-//³ö¶ÓÁÐ
+//å‡ºé˜Ÿåˆ—
 bool deQueue(QuType *&q, ElemType &e)
 {
-	if (q->front == q->rear)				//¶Ó¿ÕÏÂÒç³ö
+	if (q->front == q->rear) //é˜Ÿç©ºä¸‹æº¢å‡º
 		return false;
 	q->front++;
 	e = q->data[q->front];

@@ -1,9 +1,11 @@
 #pragma once
 #include "Sqlist.h"
 
-//Êä³öÏßĞÔ±í³¤¶È
-void DispList(Sqlist *L) {
-	for (int i = 0; i < L->length; i++) {		//É¨ÃèË³Ğò±íÊä³ö¸÷ÔªËØÖµ
+//è¾“å‡ºçº¿æ€§è¡¨é•¿åº¦
+void DispList(Sqlist *L)
+{
+	for (int i = 0; i < L->length; i++)
+	{ //æ‰«æé¡ºåºè¡¨è¾“å‡ºå„å…ƒç´ å€¼
 		printf("%c ", L->data[i]);
 	}
 	printf("\n");

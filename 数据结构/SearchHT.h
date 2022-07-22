@@ -1,15 +1,17 @@
 #include "HashType.h"
 
-//ÔÚ¹şÏ£±íÖĞ²éÕÒ¹Ø¼ü×Ö k
-void SearchHT(HashTable ha[], int m, int p, KeyType k) {
+//åœ¨å“ˆå¸Œè¡¨ä¸­æŸ¥æ‰¾å…³é”®å­— k
+void SearchHT(HashTable ha[], int m, int p, KeyType k)
+{
 	int i = 1, adr;
-	adr = k % p;															//¼ÆËã¹şÏ£º¯ÊıÖµ
-	while (ha[adr].key != NULLKEY && ha[adr].key != k) {
-		i++;																	//ÀÛ¼Æ¹Ø¼ü×ÖµÄ±È½Ï´ÎÊı
-		adr = (adr + 1) % m;										//ÏßĞÔÌ½²â
+	adr = k % p; //è®¡ç®—å“ˆå¸Œå‡½æ•°å€¼
+	while (ha[adr].key != NULLKEY && ha[adr].key != k)
+	{
+		i++;				 //ç´¯è®¡å…³é”®å­—çš„æ¯”è¾ƒæ¬¡æ•°
+		adr = (adr + 1) % m; //çº¿æ€§æ¢æµ‹
 	}
-	if (ha[adr].key == k)												//²éÕÒ³É¹¦
-		printf("³É¹¦£º¹Ø¼ü×Ö%d,±È½Ï%d´Î\n", k, i);
-	else																		//²éÕÒÊ§°Ü
-		printf("Ê§°Ü£º¹Ø¼ü×Ö%d,±È½Ï%d´Î\n", k, i);
+	if (ha[adr].key == k) //æŸ¥æ‰¾æˆåŠŸ
+		printf("æˆåŠŸï¼šå…³é”®å­—%d,æ¯”è¾ƒ%dæ¬¡\n", k, i);
+	else //æŸ¥æ‰¾å¤±è´¥
+		printf("å¤±è´¥ï¼šå…³é”®å­—%d,æ¯”è¾ƒ%dæ¬¡\n", k, i);
 }

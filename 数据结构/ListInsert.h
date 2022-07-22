@@ -1,21 +1,25 @@
 #pragma once
 #include "LinkNode.h"
 
-/*²åÈëÊı¾İÔªËØ*/
+/*æ’å…¥æ•°æ®å…ƒç´ */
 bool ListInsert(LinkNode *&L, int i, ElemType e)
 {
 	int j = 0;
-	LinkNode *p = L, *s;							//pÖ¸ÏòÍ·½áµã£¬jÖÃÎª0 ¼´Í·½áµãµÄĞòºÅÎª 1
-	if (i <= 0) return false;							//i´íÎó·µ»Ø false 
-	while (j < i - 1 && p != NULL) {			//²éÕÒµÚ i-1¸ö½áµã p 
+	LinkNode *p = L, *s; // pæŒ‡å‘å¤´ç»“ç‚¹ï¼Œjç½®ä¸º0 å³å¤´ç»“ç‚¹çš„åºå·ä¸º 1
+	if (i <= 0)
+		return false; // ié”™è¯¯è¿”å› false
+	while (j < i - 1 && p != NULL)
+	{ //æŸ¥æ‰¾ç¬¬ i-1ä¸ªç»“ç‚¹ p
 		j++;
 		p = p->next;
 	}
-	if (p == NULL) return false;					//Î´ÕÒµ½µÚ i-1¸ö½áµã£¬·µ»Øfalse 
-	else {													//ÕÒµ½µÚ i-1¸ö½áµã p£¬²åÈëĞÂ½áµã²¢·µ»Ø true
+	if (p == NULL)
+		return false; //æœªæ‰¾åˆ°ç¬¬ i-1ä¸ªç»“ç‚¹ï¼Œè¿”å›false
+	else
+	{ //æ‰¾åˆ°ç¬¬ i-1ä¸ªç»“ç‚¹ pï¼Œæ’å…¥æ–°ç»“ç‚¹å¹¶è¿”å› true
 		s = (LinkNode *)malloc(sizeof(LinkNode));
-		s->data = e;										//´´½¨ĞÂ½áµãs£¬Æä dataÓòÖÃÎª e 
-		s->next = p->next;							//½«½áµã²åÈëµ½ pÖ®ºó 
+		s->data = e;	   //åˆ›å»ºæ–°ç»“ç‚¹sï¼Œå…¶ dataåŸŸç½®ä¸º e
+		s->next = p->next; //å°†ç»“ç‚¹æ’å…¥åˆ° pä¹‹å
 		p->next = s;
 		return true;
 	}

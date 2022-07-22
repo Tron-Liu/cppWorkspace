@@ -8,74 +8,74 @@ typedef struct
 {
 	ElemType1 data[MaxSize];
 	int top;
-}SqStack1;
+} SqStack1;
 
-//³õÊ¼»¯Õ»
+//åˆå§‹åŒ–æ ˆ
 void InitStack1(SqStack1 *&s)
 {
-	s = (SqStack1 *)malloc(sizeof(SqStack1));  //·ÖÅäÒ»¸öË³ĞòÕ»¿Õ¼ä£¬Ê×µØÖ·´æ·ÅÔÚsÖĞ
-	s->top = -1;												//Õ»¶¥Ö¸ÕëÖÃÎª-1
+	s = (SqStack1 *)malloc(sizeof(SqStack1)); //åˆ†é…ä¸€ä¸ªé¡ºåºæ ˆç©ºé—´ï¼Œé¦–åœ°å€å­˜æ”¾åœ¨sä¸­
+	s->top = -1;							  //æ ˆé¡¶æŒ‡é’ˆç½®ä¸º-1
 }
 
-//Ïú»ÙÕ»
+//é”€æ¯æ ˆ
 void DestroyStack1(SqStack1 *&s)
 {
 	free(s);
 }
 
-//ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
+//åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
 bool StackEmpty1(SqStack1 *s)
 {
 	return (s->top == -1);
 }
 
-//½øÕ»
+//è¿›æ ˆ
 bool Push1(SqStack1 *&s, ElemType1 e)
 {
-	if (s->top == MaxSize - 1)				//Õ»ÂúµÄÇé¿ö£¬¼´ÉÏÕ»ÉÏÒç
+	if (s->top == MaxSize - 1) //æ ˆæ»¡çš„æƒ…å†µï¼Œå³ä¸Šæ ˆä¸Šæº¢
 		return false;
-	s->top++;										//Õ»¶¥Ö¸ÕëÔö1
-	s->data[s->top] = e;						//ÔªËØe·ÅÔÚÕ»¶¥Ö¸Õë´¦
+	s->top++;			 //æ ˆé¡¶æŒ‡é’ˆå¢1
+	s->data[s->top] = e; //å…ƒç´ eæ”¾åœ¨æ ˆé¡¶æŒ‡é’ˆå¤„
 	return true;
 }
 
-//³öÕ»
+//å‡ºæ ˆ
 bool Pop1(SqStack1 *&s, ElemType1 &e)
 {
-	if (s->top == -1)									//Õ»Îª¿ÕµÄÇé¿ö£¬¼´Õ»ÏÂÒç³ö
+	if (s->top == -1) //æ ˆä¸ºç©ºçš„æƒ…å†µï¼Œå³æ ˆä¸‹æº¢å‡º
 		return false;
-	e = s->data[s->top];							//È¡Õ»¶¥ÔªËØ
-	s->top--;												//Õ»¶¥Ö¸Õë¼õ1
+	e = s->data[s->top]; //å–æ ˆé¡¶å…ƒç´ 
+	s->top--;			 //æ ˆé¡¶æŒ‡é’ˆå‡1
 	return true;
 }
 
-//È¡Õ»¶¥ÔªËØ
+//å–æ ˆé¡¶å…ƒç´ 
 bool GetTop1(SqStack1 *s, ElemType1 &e)
 {
-	if (s->top == -1)									//Õ»Îª¿ÕµÄÇé¿ö£¬¼´Õ»ÏÂÒç³ö
+	if (s->top == -1) //æ ˆä¸ºç©ºçš„æƒ…å†µï¼Œå³æ ˆä¸‹æº¢å‡º
 		return false;
-	e = s->data[s->top];							//È¡Õ»¶¥ÔªËØ
+	e = s->data[s->top]; //å–æ ˆé¡¶å…ƒç´ 
 	return true;
 }
 
-//Àı3.4  p82
-bool symmetry(ElemType1 str[])		//ÅĞ¶ÏstrÊÇ·ñÎª¶Ô³Æ´®
+//ä¾‹3.4  p82
+bool symmetry(ElemType1 str[]) //åˆ¤æ–­stræ˜¯å¦ä¸ºå¯¹ç§°ä¸²
 {
 	int i;
 	ElemType1 e;
-	SqStack1 *st;									//¶¨ÒåË³ĞòÕ»Ö¸Õë
-	InitStack1(st);									//³õÊ¼»¯
-	for (i = 0; str[i] != '\0'; i++)			//½«strµÄËùÓĞÔªËØ½øÕ»
+	SqStack1 *st;					 //å®šä¹‰é¡ºåºæ ˆæŒ‡é’ˆ
+	InitStack1(st);					 //åˆå§‹åŒ–
+	for (i = 0; str[i] != '\0'; i++) //å°†strçš„æ‰€æœ‰å…ƒç´ è¿›æ ˆ
 		Push1(st, str[i]);
-	for (i = 0; str[i] != '\0'; i++)			//´¦ÀístrµÄËùÓĞ×Ö·û
+	for (i = 0; str[i] != '\0'; i++) //å¤„ç†strçš„æ‰€æœ‰å­—ç¬¦
 	{
-		Pop1(st, e);									//ÍËÕ»ÔªËØe
-		if (str[i] != e)								//ÈôeÓëµ±Ç°´®×Ö·û²»Í¬±íÊ¾²»ÊÇ¶Ô³Æ´®
+		Pop1(st, e);	 //é€€æ ˆå…ƒç´ e
+		if (str[i] != e) //è‹¥eä¸å½“å‰ä¸²å­—ç¬¦ä¸åŒè¡¨ç¤ºä¸æ˜¯å¯¹ç§°ä¸²
 		{
-			DestroyStack1(st);					//Ïú»ÙÕ»
-			return false;							//·µ»Ø¼Ù
+			DestroyStack1(st); //é”€æ¯æ ˆ
+			return false;	   //è¿”å›å‡
 		}
 	}
-	DestroyStack1(st);							//Ïú»ÙÕ»
-	return true;									//·µ»ØÕæ
+	DestroyStack1(st); //é”€æ¯æ ˆ
+	return true;	   //è¿”å›çœŸ
 }

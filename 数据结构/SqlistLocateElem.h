@@ -1,12 +1,16 @@
 #pragma once
 #include "Sqlist.h"
 
-//°´ÔªËØÖµ²éÕÒ
-int LocateElem(Sqlist *L, ElemType e) {
+//æŒ‰å…ƒç´ å€¼æŸ¥æ‰¾
+int LocateElem(Sqlist *L, ElemType e)
+{
 	int i = 0;
-	while (i < L->length && L->data[i] != e) {		//²éÕÒÔªËØ e
+	while (i < L->length && L->data[i] != e)
+	{ //æŸ¥æ‰¾å…ƒç´  e
 		i++;
 	}
-	if (i >= L->length) return 0;								//Î´ÕÒµ½Ê±·µ»Ø 0
-	else return i + 1;												//ÕÒµ½ºó·µ»ØÆäÂß¼­ĞòºÅ
+	if (i >= L->length)
+		return 0; //æœªæ‰¾åˆ°æ—¶è¿”å› 0
+	else
+		return i + 1; //æ‰¾åˆ°åè¿”å›å…¶é€»è¾‘åºå·
 }

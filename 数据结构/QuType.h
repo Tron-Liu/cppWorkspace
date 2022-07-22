@@ -4,86 +4,95 @@
 #include "BTree.h"
 #define MaxSize 10
 
-typedef struct snode {
-	BTNode * pt;					//╢Ф╥е╣╠г╟╫А╣Цж╦уК
-	int parent;						//╢Ф╥ек╚гв╫А╣Цтз╤сапжп╣дн╩жц
-}NodeType;							//╥г╩╥пн╤сапт╙кьюЮпм
+typedef struct snode
+{
+	BTNode *pt; //Е╜≤Ф■╬Е╫⌠Е┴█Г╩⌠Г┌╧Ф▄┤И▓┬
+	int parent; //Е╜≤Ф■╬Е▐▄Д╨╡Г╩⌠Г┌╧Е°╗И≤÷Е┬≈Д╦╜Г └Д╫█Г╫╝
+} NodeType;		//И²·Г▌╞Е╫╒И≤÷Е┬≈Е┘┐Г╢═Г╠╩Е·▀
 
-typedef  NodeType ElemType;
+typedef NodeType ElemType;
 
-typedef struct {
-	ElemType data[MaxSize];		//╢Ф╥е╤сапт╙кь
-	int front, rear;						//╤см╥ж╦уК╨м╤сн╡ж╦уК
-}QuType;									//кЁпР╤сюЮпм
+typedef struct
+{
+	ElemType data[MaxSize]; //Е╜≤Ф■╬И≤÷Е┬≈Е┘┐Г╢═
+	int front, rear;		//И≤÷Е╓╢Ф▄┤И▓┬Е▓▄И≤÷Е╟╬Ф▄┤И▓┬
+} QuType;					//И║╨Е╨▐И≤÷Г╠╩Е·▀
 
-//ЁУй╪╩╞╤сап
+//Е┬²Е╖▀Е▄√И≤÷Е┬≈
 void InitQueue(QuType *&q)
 {
 	q = (QuType *)malloc(sizeof(QuType));
 	q->front = q->rear = -1;
 }
 
-//оЗ╩ы╤сап
+//И■─Ф╞│И≤÷Е┬≈
 void DestroyQueue(QuType *&q)
 {
 	free(q);
 }
 
-//еп╤о╤сапйг╥Ян╙©у
+//Е┬╓Ф√╜И≤÷Е┬≈Ф≤╞Е░╕Д╦╨Г╘╨
 bool QueueEmpty(QuType *q)
 {
-	return(q->front == q->rear);
+	return (q->front == q->rear);
 }
 
-//╫Ь╤сап
+//Х©⌡И≤÷Е┬≈
 bool enQueue(QuType *&q, ElemType e)
 {
-	if (q->rear == MaxSize - 1)			//╤сбЗиорГЁЖ
-		return false;								//╥╣╩ь╪ы
-	q->rear++;									//╤сн╡тЖ1
-	q->data[q->rear] = e;					//rearн╩жц╡ЕхКт╙кьe
-	return true;									//╥╣╩ьуФ
+	if (q->rear == MaxSize - 1) //И≤÷Ф╩║Д╦┼Ф╨╒Е┤╨
+		return false;			//Х©■Е⌡·Е│┤
+	q->rear++;					//И≤÷Е╟╬Е╒·1
+	q->data[q->rear] = e;		// rearД╫█Г╫╝Ф▐▓Е┘╔Е┘┐Г╢═e
+	return true;				//Х©■Е⌡·Г°÷
 }
 
-//ЁЖ╤сап
+//Е┤╨И≤÷Е┬≈
 bool deQueue(QuType *&q, ElemType &e)
 {
-	if (q->front == q->rear)				//╤с©уобрГЁЖ
+	if (q->front == q->rear) //И≤÷Г╘╨Д╦▀Ф╨╒Е┤╨
 		return false;
 	q->front++;
 	e = q->data[q->front];
 	return true;
 }
 
-//юЩ7.18 ╡исц╡Ц╢н╠ИюЗ╥╫╥╗иХ╪ф юЩ7.17 ╣дкЦ╥╗
-void AllPath2(BTNode * b) {
+//Д╬▀7.18 И┤┤Г■╗Е╠┌Ф╛║И│█Е▌├Ф√╧ФЁ∙Х╝╬Х╝║ Д╬▀7.17 Г └Г╝≈ФЁ∙
+void AllPath2(BTNode *b)
+{
 	int k;
 	BTNode *p;
 	NodeType qelem;
-	QuType *qu;											//╤╗рЕ╥г╩╥пн╤сапж╦уК
-	InitQueue(qu);											//ЁУй╪╩╞╤сап
-	qelem.pt = b; qelem.parent = -1;			//╢╢╫╗╦Ы╫з╣Ц╤тс╕╣д╤сапт╙кь
-	enQueue(qu, qelem);								//╦Ы╫А╣Ц╫Ь╤с
-	while (!QueueEmpty(qu)) {						//╤с╡╩©уя╜╩╥
-		deQueue(qu, qelem);							//ЁЖ╤ст╙кьqelemё╛кЭтз╤сжп╣доб╠Йн╙ qu->front
-		p = qelem.pt;										//х║т╙кь qelem ╤тс╕╣д╫А╣Ц
-		if (p->lchild == NULL && p->rchild == NULL) {		//╫А╣Ц p н╙р╤вс╫А╣Ц
-			k = qu->front;									//йДЁЖ╫А╣Ц p ╣╫╦Ы╫з╣Ц╣дб╥╬╤╣ддФпРап
-			while (qu->data[k].parent != -1) {
+	QuType *qu;	   //Е╝ Д╧┴И²·Г▌╞Е╫╒И≤÷Е┬≈Ф▄┤И▓┬
+	InitQueue(qu); //Е┬²Е╖▀Е▄√И≤÷Е┬≈
+	qelem.pt = b;
+	qelem.parent = -1;	//Е┬⌡Е╩╨Ф═╧Х┼┌Г┌╧Е╞╧Е╨■Г └И≤÷Е┬≈Е┘┐Г╢═
+	enQueue(qu, qelem); //Ф═╧Г╩⌠Г┌╧Х©⌡И≤÷
+	while (!QueueEmpty(qu))
+	{						//И≤÷Д╦█Г╘╨Е╬╙Г▌╞
+		deQueue(qu, qelem); //Е┤╨И≤÷Е┘┐Г╢═qelemО╪▄Е╝┐Е°╗И≤÷Д╦╜Г └Д╦▀Ф═┤Д╦╨ qu->front
+		p = qelem.pt;		//Е▐√Е┘┐Г╢═ qelem Е╞╧Е╨■Г └Г╩⌠Г┌╧
+		if (p->lchild == NULL && p->rchild == NULL)
+		{				   //Г╩⌠Г┌╧ p Д╦╨Е▐╤Е╜░Г╩⌠Г┌╧
+			k = qu->front; //Х╬⌠Е┤╨Г╩⌠Г┌╧ p Е┬╟Ф═╧Х┼┌Г┌╧Г └Х╥╞Е╬└Г └И─├Е╨▐Е┬≈
+			while (qu->data[k].parent != -1)
+			{
 				printf("%c->", qu->data[k].pt->data);
 				k = qu->data[k].parent;
 			}
 			printf("%c\n", qu->data[k].pt->data);
 		}
-		if (p->lchild != NULL) {						//╫А╣Ц p спвС╨╒вс
-			qelem.pt = p->lchild;						//╢╢╫╗╫А╣Ц p ╣двС╨╒вс╤тс╕╣д╤сапт╙кь
-			qelem.parent = qu->front;				//╫А╣Ц p ╣двС╨╒вс╣дк╚гвн╩жцн╙ qu->front
-			enQueue(qu, qelem);						//╫А╣Ц p ╣двС╨╒вс╫Ь╤с
+		if (p->lchild != NULL)
+		{							  //Г╩⌠Г┌╧ p Ф°┴Е╥╕Е╜╘Е╜░
+			qelem.pt = p->lchild;	  //Е┬⌡Е╩╨Г╩⌠Г┌╧ p Г └Е╥╕Е╜╘Е╜░Е╞╧Е╨■Г └И≤÷Е┬≈Е┘┐Г╢═
+			qelem.parent = qu->front; //Г╩⌠Г┌╧ p Г └Е╥╕Е╜╘Е╜░Г └Е▐▄Д╨╡Д╫█Г╫╝Д╦╨ qu->front
+			enQueue(qu, qelem);		  //Г╩⌠Г┌╧ p Г └Е╥╕Е╜╘Е╜░Х©⌡И≤÷
 		}
-		if (p->rchild != NULL) {						//╫А╣Ц p спср╨╒вс
-			qelem.pt = p->rchild;						//╢╢╫╗╫А╣Ц p ╣дср╨╒вс╤тс╕╣д╤сапт╙кь
-			qelem.parent = qu->front;				//╫А╣Ц p ╣дср╨╒вс╣дк╚гвн╩жцн╙ qu->front
-			enQueue(qu, qelem);						//╫А╣Ц p ╣дср╨╒вс╫Ь╤с
+		if (p->rchild != NULL)
+		{							  //Г╩⌠Г┌╧ p Ф°┴Е▐ЁЕ╜╘Е╜░
+			qelem.pt = p->rchild;	  //Е┬⌡Е╩╨Г╩⌠Г┌╧ p Г └Е▐ЁЕ╜╘Е╜░Е╞╧Е╨■Г └И≤÷Е┬≈Е┘┐Г╢═
+			qelem.parent = qu->front; //Г╩⌠Г┌╧ p Г └Е▐ЁЕ╜╘Е╜░Г └Е▐▄Д╨╡Д╫█Г╫╝Д╦╨ qu->front
+			enQueue(qu, qelem);		  //Г╩⌠Г┌╧ p Г └Е▐ЁЕ╜╘Е╜░Х©⌡И≤÷
 		}
 	}
 }

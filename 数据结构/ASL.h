@@ -1,19 +1,23 @@
 #include "HashType.h"
 
-void ASL(HashTable ha[], int n, int m, int p) {				//ÇóÆ½¾ù²éÕÒ³¤¶È
+void ASL(HashTable ha[], int n, int m, int p)
+{ //æ±‚å¹³å‡æŸ¥æ‰¾é•¿åº¦
 	int i, j;
 	int succ = 0, unsucc = 0, s;
 	for (i = 0; i < m; i++)
 		if (ha[i].key != NULLKEY)
-			succ += ha[i].count;											//ÀÛ¼Æ³É¹¦Ê±µÄ×Ü¹Ø¼ü×Ö±È½Ï´ÎÊı
-	printf("³É¹¦Çé¿öÏÂ ASL£¨%d£©=%g\n", n, succ*1.0 / n);
-	for (i = 0; i < p; i++) {
-		s = 1; j = i;
-		while (ha[i].key != NULLKEY) {
+			succ += ha[i].count; //ç´¯è®¡æˆåŠŸæ—¶çš„æ€»å…³é”®å­—æ¯”è¾ƒæ¬¡æ•°
+	printf("æˆåŠŸæƒ…å†µä¸‹ ASL (%d) =%g\n", n, succ * 1.0 / n);
+	for (i = 0; i < p; i++)
+	{
+		s = 1;
+		j = i;
+		while (ha[i].key != NULLKEY)
+		{
 			s++;
 			j = (j + 1) % m;
 		}
-		unsucc += s;														//ÀÛ¼Æ²»³É¹¦Ê±µÄ×Ü¹Ø¼ü×Ö±È½Ï´ÎÊı
+		unsucc += s; //ç´¯è®¡ä¸æˆåŠŸæ—¶çš„æ€»å…³é”®å­—æ¯”è¾ƒæ¬¡æ•°
 	}
-	printf("²»³É¹¦Çé¿öÏÂ ASL£¨%d£©= %g\n", n, unsucc*1.0 / p);
+	printf("ä¸æˆåŠŸæƒ…å†µä¸‹ ASL (%d) = %g\n", n, unsucc * 1.0 / p);
 }

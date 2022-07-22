@@ -1,30 +1,34 @@
-//Àı 8.8 ¼ÙÉèÍ¼ G ²ÉÓÃÁÚ½Ó±í´æ´¢£¬Éè¼ÆÒ»¸öËã·¨¡£ÇóÍ¼ÖĞÍ¨¹ıÄ³¶¥µã k µÄËùÓĞ¼òµ¥»ØÂ·£¨Èô´æÔÚ£©
-//²¢Êä³öÓĞÏòÍ¼µÄÁÚ½Ó±íºÍÍ¨¹ı¶¥µã 0 µÄËùÓĞ»ØÂ·
+//ä¾‹ 8.8 å‡è®¾å›¾ G é‡‡ç”¨é‚»æ¥è¡¨å­˜å‚¨ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•ã€‚æ±‚å›¾ä¸­é€šè¿‡æŸé¡¶ç‚¹ k çš„æ‰€æœ‰ç®€å•å›è·¯ï¼ˆè‹¥å­˜åœ¨ï¼‰
+//å¹¶è¾“å‡ºæœ‰å‘å›¾çš„é‚»æ¥è¡¨å’Œé€šè¿‡é¡¶ç‚¹ 0 çš„æ‰€æœ‰å›è·¯
 #include "Adj.h"
 int visited[MAXV];
-void DFSPath(AdjGraph *G, int u, int v, int path[], int d) {
+void DFSPath(AdjGraph *G, int u, int v, int path[], int d)
+{
 	int w, i;
 	ArcNode *p;
-	d++;											//Â·¾¶³¤¶È d Ôö 1
-	path[d] = u;								//¶¥µã u ¼ÓÈëµ½Â·¾¶ÖĞ
+	d++;		 //è·¯å¾„é•¿åº¦ d å¢ 1
+	path[d] = u; //é¡¶ç‚¹ u åŠ å…¥åˆ°è·¯å¾„ä¸­
 	visited[u] = 1;
-	p = G->adjlist[u].firstarc;			//p Ö¸Ïò¶¥µã u µÄµÚÒ»¸öÁÚ½Óµã
-	while (p != NULL) {
-		w = p->adjvex;					//w Îª¶¥µã u µÄÁÚ½Óµã
-		if (w == v && d > 0) {			//ÕÒµ½Ò»¸ö»ØÂ·£¬ÔòÊä³öÖ®
+	p = G->adjlist[u].firstarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+	while (p != NULL)
+	{
+		w = p->adjvex; // w ä¸ºé¡¶ç‚¹ u çš„é‚»æ¥ç‚¹
+		if (w == v && d > 0)
+		{ //æ‰¾åˆ°ä¸€ä¸ªå›è·¯ï¼Œåˆ™è¾“å‡ºä¹‹
 			printf(" ");
 			for (i = 0; i <= d; i++)
 				printf(" %d", path[i]);
 			printf(" %d \n", v);
 		}
-		if (visited[w] == 0)				//Èô w ¶¥µãÎ´±»·ÃÎÊ£¬µİ¹é·ÃÎÊËü
+		if (visited[w] == 0) //è‹¥ w é¡¶ç‚¹æœªè¢«è®¿é—®ï¼Œé€’å½’è®¿é—®å®ƒ
 			DFSPath(G, w, v, path, d);
-		p = p->nextarc;					//p Ö¸Ïò¶¥µã u µÄÏÂÒ»¸öÁÚ½Óµã
+		p = p->nextarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 	}
-	visited[u] = 0;							//»Ö¸´»·¾³£¬Ê¹¸Ã¶¥µã¿ÉÖØĞÂÊ¹ÓÃ
+	visited[u] = 0; //æ¢å¤ç¯å¢ƒï¼Œä½¿è¯¥é¡¶ç‚¹å¯é‡æ–°ä½¿ç”¨
 }
 
-void FindCyclePath(AdjGraph*G, int k) {		//Êä³ö¾­¹ı¶¥µã k µÄËùÓĞ»ØÂ·
+void FindCyclePath(AdjGraph *G, int k)
+{ //è¾“å‡ºç»è¿‡é¡¶ç‚¹ k çš„æ‰€æœ‰å›è·¯
 	int path[MAXV];
 	DFSPath(G, k, k, path, -1);
 }
@@ -33,14 +37,15 @@ int main()
 {
 	int n = 5, e = 7;
 	int A[MAXV][MAXV] = {
-		{0,1,1,0,0},{0,0,1,0,0},{0,0,0,1,1},{0,0,0,0,1},{1,0,0,0,0} };
+		{0, 1, 1, 0, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 1}, {0, 0, 0, 0, 1}, {1, 0, 0, 0, 0}};
 	AdjGraph *G;
 	CreateAdj(G, A, n, e);
 	for (int i = 0; i < n; i++)
 		visited[0];
-	printf("Í¼ G £º\n"); DispAdj(G);
+	printf("å›¾ G ï¼š\n");
+	DispAdj(G);
 	int k = 0;
-	printf("Í¼ÖĞ¾­¹ı¶¥µã %d µÄËùÓĞ»ØÂ·£º\n", k);
+	printf("å›¾ä¸­ç»è¿‡é¡¶ç‚¹ %d çš„æ‰€æœ‰å›è·¯ï¼š\n", k);
 	FindCyclePath(G, k);
 	printf("\n");
 	DestroyAdj(G);

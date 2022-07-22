@@ -3,196 +3,215 @@
 /*
 	ADT String
 	{
-		Êı¾İ¶ÔÏó£º
-				D = { a[i] | 1<= i <= n, n>=0, a[i]ÎªcharÀàĞÍ }
-		Êı¾İ¹ØÏµ£º
-				R = { <a[i], a[i+1]> | a[i], a[i+1]ÊôÓÚD, i = 1, ... , n-1}
-		»ù±¾ÔËËã£º
-				StrAssign(&s, cstr):½«×Ö·û´®³£Á¿cstr¸³¸ø´®s£¬¼´Éú³ÉÆäÖµµÈÓÚcstrµÄ´®s¡£
-				DestroyStr(&s):Ïú»Ù´®£¬ÊÍ·ÅÎª´®s·ÖÅäµÄ´æ´¢¿Õ¼ä¡£
-				StrCopy(&s, t):´®¸´ÖÆ£¬½«´®t¸³¸ø´®s¡£
-				StrEqual(s, t):ÅĞ¶Ï´®ÊÇ·ñÏàµÈ£¬ÈôÁ½¸ö´®sÓëtÏàµÈÔò·µ»ØÕæ£»·ñÔò·µ»Ø¼Ù¡£
-				StrLength(s):Çó´®³¤£¬·µ»Ø´®sÖĞ×Ö·ûµÄ¸öÊı¡£
-				Concat(s, t):´®Á¬½Ó£¬·µ»ØÓÉÁ½¸ö´®sºÍtÁ¬½ÓÔÚÒ»ÆğĞÎ³ÉµÄĞÂ´®¡£
-				SubStr(s, i, j):Çó×Ó´®£¬·µ»Ø´®sÖĞ´ÓµÚi(1 <= i <= n)¸ö×Ö·û¿ªÊ¼µÄÓÉÁ¬Ğøj¸ö×Ö·û×é³ÉµÄ×Ó´®¡£
-				InsStr(s1, i, s2):×Ó´®²åÈë£¬½«´®s2²åÈëµ½´®s1µÄµÚi(1 <= i <= n+1)¸öÎ»ÖÃ£¬
-										²¢·µ»Ø²úÉúµÄĞÂ´®¡£
-				DelStr(s, i, j):×Ó´®É¾³ı£¬´Ó´®sÖĞÉ¾È¥´ÓµÚi(1 <= i <= n)¸ö×Ö·û¿ªÊ¼µÄ³¤¶ÈÎªjµÄ×Ó´®
-									²¢·µ»Ø²úÉúµÄĞÂ´®¡£
-				RepStr(s, i, j, t):×Ó´®Ìæ»»£¬ÔÚ´®sÖĞ½«µÚi(1 <= i <= n)¸ö×Ö·û¿ªÊ¼µÄj¸ö×Ö·û¹¹³ÉµÄ×Ó´®
-										ÓÃ´®t´úÌæ£¬²¢·µ»Ø²úÉúµÄĞÂ´®¡£
-				DispStr(s):´®Êä³ö£¬Êä³ö´®sµÄËùÓĞ×Ö·ûÖµ¡£
+		æ•°æ®å¯¹è±¡ï¼š
+				D = { a[i] | 1<= i <= n, n>=0, a[i]ä¸ºcharç±»å‹ }
+		æ•°æ®å…³ç³»ï¼š
+				R = { <a[i], a[i+1]> | a[i], a[i+1]å±äºD, i = 1, ... , n-1}
+		åŸºæœ¬è¿ç®—ï¼š
+				StrAssign(&s, cstr):å°†å­—ç¬¦ä¸²å¸¸é‡cstrèµ‹ç»™ä¸²sï¼Œå³ç”Ÿæˆå…¶å€¼ç­‰äºcstrçš„ä¸²sã€‚
+				DestroyStr(&s):é”€æ¯ä¸²ï¼Œé‡Šæ”¾ä¸ºä¸²såˆ†é…çš„å­˜å‚¨ç©ºé—´ã€‚
+				StrCopy(&s, t):ä¸²å¤åˆ¶ï¼Œå°†ä¸²tèµ‹ç»™ä¸²sã€‚
+				StrEqual(s, t):åˆ¤æ–­ä¸²æ˜¯å¦ç›¸ç­‰ï¼Œè‹¥ä¸¤ä¸ªä¸²sä¸tç›¸ç­‰åˆ™è¿”å›çœŸï¼›å¦åˆ™è¿”å›å‡ã€‚
+				StrLength(s):æ±‚ä¸²é•¿ï¼Œè¿”å›ä¸²sä¸­å­—ç¬¦çš„ä¸ªæ•°ã€‚
+				Concat(s, t):ä¸²è¿æ¥ï¼Œè¿”å›ç”±ä¸¤ä¸ªä¸²så’Œtè¿æ¥åœ¨ä¸€èµ·å½¢æˆçš„æ–°ä¸²ã€‚
+				SubStr(s, i, j):æ±‚å­ä¸²ï¼Œè¿”å›ä¸²sä¸­ä»ç¬¬i(1 <= i <= n)ä¸ªå­—ç¬¦å¼€å§‹çš„ç”±è¿ç»­jä¸ªå­—ç¬¦ç»„æˆçš„å­ä¸²ã€‚
+				InsStr(s1, i, s2):å­ä¸²æ’å…¥ï¼Œå°†ä¸²s2æ’å…¥åˆ°ä¸²s1çš„ç¬¬i(1 <= i <= n+1)ä¸ªä½ç½®ï¼Œ
+										å¹¶è¿”å›äº§ç”Ÿçš„æ–°ä¸²ã€‚
+				DelStr(s, i, j):å­ä¸²åˆ é™¤ï¼Œä»ä¸²sä¸­åˆ å»ä»ç¬¬i(1 <= i <= n)ä¸ªå­—ç¬¦å¼€å§‹çš„é•¿åº¦ä¸ºjçš„å­ä¸²
+									å¹¶è¿”å›äº§ç”Ÿçš„æ–°ä¸²ã€‚
+				RepStr(s, i, j, t):å­ä¸²æ›¿æ¢ï¼Œåœ¨ä¸²sä¸­å°†ç¬¬i(1 <= i <= n)ä¸ªå­—ç¬¦å¼€å§‹çš„jä¸ªå­—ç¬¦æ„æˆçš„å­ä¸²
+										ç”¨ä¸²tä»£æ›¿ï¼Œå¹¶è¿”å›äº§ç”Ÿçš„æ–°ä¸²ã€‚
+				DispStr(s):ä¸²è¾“å‡ºï¼Œè¾“å‡ºä¸²sçš„æ‰€æœ‰å­—ç¬¦å€¼ã€‚
 */
 #include <stdio.h>
 
 #define MaxSize 20
-typedef struct {
-	char data[MaxSize];		//´æ·Å´®×Ö·û
-	int length;					//´æ·Å´®³¤
-}SqString;							//Ë³Ğò´®ÀàĞÍ
+typedef struct
+{
+	char data[MaxSize]; //å­˜æ”¾ä¸²å­—ç¬¦
+	int length;			//å­˜æ”¾ä¸²é•¿
+} SqString;				//é¡ºåºä¸²ç±»å‹
 
-//Éú³É´®
-void StrAssign(SqString &s, char cstr[]) {		//sÎªÒıÓÃĞÍ²ÎÊı
+//ç”Ÿæˆä¸²
+void StrAssign(SqString &s, char cstr[])
+{ // sä¸ºå¼•ç”¨å‹å‚æ•°
 	int i;
 	for (i = 0; cstr[i] != '\0'; i++)
 		s.data[i] = cstr[i];
-	s.length = i;													//ÉèÖÃ´®sµÄ³¤¶È
+	s.length = i; //è®¾ç½®ä¸²sçš„é•¿åº¦
 }
 
-//Ïú»Ù´®
-void DestroyStr(SqString &s) {
-/*ÕâÀïµÄË³Ğò´®ÊÇÖ±½Ó²ÉÓÃË³Ğò´®±¾ÉíÀ´±íÊ¾£¬
-	ËüµÄ´æ´¢¿Õ¼äÓÉ²Ù×÷ÏµÍ³·ÖÅä£¬
-	ËùÒÔÕâÀïµÄÏú»ÙË³Ğò´®ÔËËã²»°üº¬ÈÎºÎ²Ù×÷¡£
-*/
+//é”€æ¯ä¸²
+void DestroyStr(SqString &s)
+{
+	/*è¿™é‡Œçš„é¡ºåºä¸²æ˜¯ç›´æ¥é‡‡ç”¨é¡ºåºä¸²æœ¬èº«æ¥è¡¨ç¤ºï¼Œ
+		å®ƒçš„å­˜å‚¨ç©ºé—´ç”±æ“ä½œç³»ç»Ÿåˆ†é…ï¼Œ
+		æ‰€ä»¥è¿™é‡Œçš„é”€æ¯é¡ºåºä¸²è¿ç®—ä¸åŒ…å«ä»»ä½•æ“ä½œã€‚
+	*/
 }
 
-//´®µÄ¸´ÖÆ
-void StrCopy(SqString &s, SqString t) {		//sÎªÒıÓÃĞÍ²ÎÊı
+//ä¸²çš„å¤åˆ¶
+void StrCopy(SqString &s, SqString t)
+{ // sä¸ºå¼•ç”¨å‹å‚æ•°
 	int i;
-	for (i = 0; i < t.length; i++)						//¸´ÖÆtµÄËùÓĞ×Ö·û
+	for (i = 0; i < t.length; i++) //å¤åˆ¶tçš„æ‰€æœ‰å­—ç¬¦
 		s.data[i] = t.data[i];
-	s.length = t.length;									//ÉèÖÃ´®sµÄ³¤¶È
+	s.length = t.length; //è®¾ç½®ä¸²sçš„é•¿åº¦
 }
 
-//ÅĞ¶Ï´®ÏàµÈ
-bool StrEqual(SqString s, SqString t) {
+//åˆ¤æ–­ä¸²ç›¸ç­‰
+bool StrEqual(SqString s, SqString t)
+{
 	bool same = true;
 	int i;
-	if (s.length != t.length)					//³¤¶È²»ÏàµÈÊ±·µ»Ø0
+	if (s.length != t.length) //é•¿åº¦ä¸ç›¸ç­‰æ—¶è¿”å›0
 		same = false;
 	else
-		for(i = 0; i < s.length; i++)
-			if (s.data[i] != t.data[i]) {		//ÓĞÒ»¸ö¶ÔÓ¦×Ö·û²»ÏàÍ¬Ê±·µ»Ø¼Ù
+		for (i = 0; i < s.length; i++)
+			if (s.data[i] != t.data[i])
+			{ //æœ‰ä¸€ä¸ªå¯¹åº”å­—ç¬¦ä¸ç›¸åŒæ—¶è¿”å›å‡
 				same = false;
 				break;
 			}
 	return same;
 }
 
-//Çó´®³¤
-int StrLength(SqString s) {
+//æ±‚ä¸²é•¿
+int StrLength(SqString s)
+{
 	return s.length;
 }
 
-//´®µÄÁ¬½Ó
-SqString Concat(SqString s, SqString t) {
+//ä¸²çš„è¿æ¥
+SqString Concat(SqString s, SqString t)
+{
 	SqString str;
 	int i;
 	str.length = s.length + t.length;
-	for (i = 0; i < s.length; i++)					//½«s.data[0 ... s.length-1]¸´ÖÆµ½str
+	for (i = 0; i < s.length; i++) //å°†s.data[0 ... s.length-1]å¤åˆ¶åˆ°str
 		str.data[i] = s.data[i];
-	for (i = 0; i < t.length; i++)					//½«t.data[0 ... s.length-1]¸´ÖÆµ½str
+	for (i = 0; i < t.length; i++) //å°†t.data[0 ... s.length-1]å¤åˆ¶åˆ°str
 		str.data[s.length + i] = t.data[i];
 	return str;
 }
 
-
-//Çó×Ó´®
-SqString SubStr(SqString s, int i, int j) {
+//æ±‚å­ä¸²
+SqString SubStr(SqString s, int i, int j)
+{
 	int k;
-	SqString str;										//¶¨Òå½á¹û´®
-	str.length = 0;									//ÉèÖÃstrÎª¿Õ´®
-	if (i <= 0 || i > s.length || j<0 || i + j - 1>s.length)
-		return str;										//²ÎÊı²»ÕıÈ·Ê±·µ»Ø¿Õ´®
-	for (k = i - 1; k < i + j - 1; k++)		//½«s.data[i ... i+j-1]¸´ÖÆµ½str
+	SqString str;	//å®šä¹‰ç»“æœä¸²
+	str.length = 0; //è®¾ç½®strä¸ºç©ºä¸²
+	if (i <= 0 || i > s.length || j < 0 || i + j - 1 > s.length)
+		return str;						//å‚æ•°ä¸æ­£ç¡®æ—¶è¿”å›ç©ºä¸²
+	for (k = i - 1; k < i + j - 1; k++) //å°†s.data[i ... i+j-1]å¤åˆ¶åˆ°str
 		str.data[k - i + 1] = s.data[k];
 	s.length = j;
 	return str;
 }
 
-//×Ó´®µÄ²åÈë
-SqString InsStr(SqString s1, int i, SqString s2) {
+//å­ä¸²çš„æ’å…¥
+SqString InsStr(SqString s1, int i, SqString s2)
+{
 	int j;
-	SqString str;												//¶¨Òå½á¹û´®
-	str.length = 0;											//ÉèÖÃstrÎª¿Õ´®
-	if (i <= 0 || i > s1.length + 1)					//(1<= i <= n+1)
-		return str;												//²ÎÊı´íÎó·µ»Ø¿Õ´®
-	for (j = 0; j < i - 1; j++)							//½«s1.data[0 ... i-2]¸´ÖÆµ½str
+	SqString str;					 //å®šä¹‰ç»“æœä¸²
+	str.length = 0;					 //è®¾ç½®strä¸ºç©ºä¸²
+	if (i <= 0 || i > s1.length + 1) //(1<= i <= n+1)
+		return str;					 //å‚æ•°é”™è¯¯è¿”å›ç©ºä¸²
+	for (j = 0; j < i - 1; j++)		 //å°†s1.data[0 ... i-2]å¤åˆ¶åˆ°str
 		str.data[j] = s1.data[j];
-	for (j = 0; j < s2.length; j++)					//½«s2.data[0 ... s2.length-1]¸´ÖÆµ½str
+	for (j = 0; j < s2.length; j++) //å°†s2.data[0 ... s2.length-1]å¤åˆ¶åˆ°str
 		str.data[i + j - 1] = s2.data[j];
-	for (j = i - 1; j < s1.length; j++)				//½«s1.data[i-1 ... s.length-1]¸´ÖÆµ½str
+	for (j = i - 1; j < s1.length; j++) //å°†s1.data[i-1 ... s.length-1]å¤åˆ¶åˆ°str
 		str.data[s2.length + j] = s1.data[j];
 	str.length = s1.length + s2.length;
 	return str;
 }
 
-//×Ó´®µÄÉ¾³ı
-SqString DelStr(SqString s, int i, int j) {
+//å­ä¸²çš„åˆ é™¤
+SqString DelStr(SqString s, int i, int j)
+{
 	int k;
-	SqString str;											//¶¨Òå½á¹û´®
-	str.length = 0;										//ÉèÖÃstrÎª¿Õ´®
+	SqString str;	//å®šä¹‰ç»“æœä¸²
+	str.length = 0; //è®¾ç½®strä¸ºç©ºä¸²
 	if (i <= 0 || i > s.length || i + j > s.length + 1)
-		return str;											//²ÎÊı²»ÕıÈ·ÊÇ·µ»Ø¿Õ´®
-	for (k = 0; k < i - 1; k++)						//½«s.data[0 ... i-2]¸´ÖÆµ½str
+		return str;				//å‚æ•°ä¸æ­£ç¡®æ˜¯è¿”å›ç©ºä¸²
+	for (k = 0; k < i - 1; k++) //å°†s.data[0 ... i-2]å¤åˆ¶åˆ°str
 		str.data[k] = s.data[k];
-	for (k = i + j - 1; k < s.length; k++ )	//½«s.data[i+j-1 ... s.length-1]¸´ÖÆµ½str
+	for (k = i + j - 1; k < s.length; k++) //å°†s.data[i+j-1 ... s.length-1]å¤åˆ¶åˆ°str
 		str.data[k - j] = s.data[k];
 	str.length = s.length - j;
 	return str;
 }
 
-//×Ó´®µÄÌæ»»
-SqString RepStr(SqString s, int i, int j, SqString t) {
+//å­ä¸²çš„æ›¿æ¢
+SqString RepStr(SqString s, int i, int j, SqString t)
+{
 	int k;
-	SqString str;											//¶¨Òå½á¹û´®
-	str.length = 0;										//ÉèÖÃstrÎª¿Õ´®
+	SqString str;	//å®šä¹‰ç»“æœä¸²
+	str.length = 0; //è®¾ç½®strä¸ºç©ºä¸²
 	if (i <= 0 || i > s.length || i + j - 1 > s.length)
-		return str;											//²ÎÊı²»ÕıÈ·Ê±·µ»Ø¿Õ´®
-	for (k = 0; k < i - 1; k++)						//½«s.data[0 ... i-2]¸´ÖÆµ½str
+		return str;				//å‚æ•°ä¸æ­£ç¡®æ—¶è¿”å›ç©ºä¸²
+	for (k = 0; k < i - 1; k++) //å°†s.data[0 ... i-2]å¤åˆ¶åˆ°str
 		str.data[k] = s.data[k];
-	for (k = 0; k < t.length; k++)				//½«t.data[0 ... t.length-1]¸´ÖÆµ½str
+	for (k = 0; k < t.length; k++) //å°†t.data[0 ... t.length-1]å¤åˆ¶åˆ°str
 		str.data[i + k - 1] = t.data[k];
-	for (k = i + j - 1; k < s.length; k++)		//½«s.data[i+j-1 ... s.length-1]¸´ÖÆµ½str
+	for (k = i + j - 1; k < s.length; k++) //å°†s.data[i+j-1 ... s.length-1]å¤åˆ¶åˆ°str
 		str.data[t.length + k - j] = s.data[k];
 	str.length = s.length - j + t.length;
 	return str;
 }
 
-//Êä³ö´®
-void DisStr(SqString s) {
+//è¾“å‡ºä¸²
+void DisStr(SqString s)
+{
 	int i;
-	if (s.length > 0) {
+	if (s.length > 0)
+	{
 		for (i = 0; i < s.length; i++)
 			printf("%c", s.data[i]);
 		printf("\n");
 	}
 }
 
-//ÀıÌâ
-int Strcmp(SqString s, SqString t) {
+//ä¾‹é¢˜
+int Strcmp(SqString s, SqString t)
+{
 	int i, comlen;
-	if (s.length < t.length)					//ÇósºÍtµÄ¹²Í¬³¤¶È
+	if (s.length < t.length) //æ±‚så’Œtçš„å…±åŒé•¿åº¦
 		comlen = s.length;
 	else
 		comlen = t.length;
-	for (i = 0; i < comlen - 1; i++) {	//ÔÚ¹²Í¬³¤¶ÈÄÚÖğ¸ö×Ö·û±È½Ï
+	for (i = 0; i < comlen - 1; i++)
+	{ //åœ¨å…±åŒé•¿åº¦å†…é€ä¸ªå­—ç¬¦æ¯”è¾ƒ
 		if (s.data[i] > t.data[i])
 			return 1;
 		else if (s.data[i] < t.data[i])
 			return -1;
 	}
-	if (s.length == t.length)				//s == t
+	if (s.length == t.length) // s == t
 		return 0;
-	else if (s.length > t.length)			//s > t
+	else if (s.length > t.length) // s > t
 		return 1;
-	else												//s < t
+	else // s < t
 		return -1;
 }
 
-//ÀıÌâ
-void LongestString(SqString s, int &index, int &maxlen) {
-	int length, i = 1, start;			//length±£´æ¾Ö²¿Æ½Ì¨µÄ³¤¶È
-	index = 0, maxlen = 1;			//index±£´æ×î³¤Æ½Ì¨ÔÚsÖĞµÄ¿ªÊ¼Î»ÖÃ£¬maxlen±£´æÆä³¤¶È
-	while (i < s.length) {
-		start = i - 1;						//²éÕÒ¾Ö²¿ÖØ¸´×Ó´®
+//ä¾‹é¢˜
+void LongestString(SqString s, int &index, int &maxlen)
+{
+	int length, i = 1, start; // lengthä¿å­˜å±€éƒ¨å¹³å°çš„é•¿åº¦
+	index = 0, maxlen = 1;	  // indexä¿å­˜æœ€é•¿å¹³å°åœ¨sä¸­çš„å¼€å§‹ä½ç½®ï¼Œmaxlenä¿å­˜å…¶é•¿åº¦
+	while (i < s.length)
+	{
+		start = i - 1; //æŸ¥æ‰¾å±€éƒ¨é‡å¤å­ä¸²
 		length = 1;
-		while (i < s.length && s.data[i] == s.data[i - 1]) {
+		while (i < s.length && s.data[i] == s.data[i - 1])
+		{
 			i++;
 			length++;
 		}
-		if (maxlen < length) {		//µ±Ç°Æ½Ì¨³¤¶È´ó£¬Ôò¸üĞÂmaxlen
+		if (maxlen < length)
+		{ //å½“å‰å¹³å°é•¿åº¦å¤§ï¼Œåˆ™æ›´æ–°maxlen
 			maxlen = length;
 			index = start;
 		}

@@ -1,19 +1,22 @@
 #pragma once
 #include "LinkNode.h"
 
-/*ÇóÏßĞÔ±íÖĞµÄÄ³¸öÊı¾İÔªËØÖµ*/
+/*æ±‚çº¿æ€§è¡¨ä¸­çš„æŸä¸ªæ•°æ®å…ƒç´ å€¼*/
 bool GetElem(LinkNode *L, int i, ElemType &e)
 {
 	int j = 0;
-	LinkNode *p = L;								//pÖ¸ÏòÍ·½áµã£¬jÖÃ 0£¨¼´Í·½áµãµÄĞòºÅÎª 0£© 
-	if (i <= 0) return false;						// i´íÎó·µ»Ø false 
-	while (j < i && p != NULL) {			//ÕÒµ½µÚ i¸ö½áµã p 
+	LinkNode *p = L; // pæŒ‡å‘å¤´ç»“ç‚¹ï¼Œjç½® 0ï¼ˆå³å¤´ç»“ç‚¹çš„åºå·ä¸º 0ï¼‰
+	if (i <= 0)
+		return false; // ié”™è¯¯è¿”å› false
+	while (j < i && p != NULL)
+	{ //æ‰¾åˆ°ç¬¬ iä¸ªç»“ç‚¹ p
 		j++;
 		p = p->next;
 	}
 	if (p == NULL)
-		return false;									//²»´æÔÚµÚ i¸öÊı¾İ½áµã£¬·µ»Ø false 
-	else {												//´æÔÚµÚ i¸öÊı¾İ½áµã£¬·µ»Ø true 
+		return false; //ä¸å­˜åœ¨ç¬¬ iä¸ªæ•°æ®ç»“ç‚¹ï¼Œè¿”å› false
+	else
+	{ //å­˜åœ¨ç¬¬ iä¸ªæ•°æ®ç»“ç‚¹ï¼Œè¿”å› true
 		e = p->data;
 		return true;
 	}

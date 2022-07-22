@@ -1,8 +1,9 @@
 #pragma once
 #include "Sqlist.h"
 
-//³õÊ¼»¯Ë³Ðò±í
-void InitList(Sqlist *&L) {
-	L = (Sqlist *)malloc(sizeof(Sqlist));		//·ÖÅä´æ·ÅÏßÐÔ±íµÄ¿Õ¼ä
-	L->length = 0;										//ÖÃ¿ÕÏßÐÔ±íµÄ³¤¶ÈÎª0
+//åˆå§‹åŒ–é¡ºåºè¡¨
+void InitList(Sqlist *&L)
+{
+	L = (Sqlist *)malloc(sizeof(Sqlist)); //åˆ†é…å­˜æ”¾çº¿æ€§è¡¨çš„ç©ºé—´
+	L->length = 0;						  //ç½®ç©ºçº¿æ€§è¡¨çš„é•¿åº¦ä¸º0
 }

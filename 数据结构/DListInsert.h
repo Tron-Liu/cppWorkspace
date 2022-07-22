@@ -1,22 +1,26 @@
 #pragma once
 #include "DLinkNode.h"
 
-/*²åÈë½áµã*/
+/*æ’å…¥ç»“ç‚¹*/
 bool ListInsert(DLinkNode *&L, int i, ElemType e)
 {
 	int j = 0;
-	DLinkNode *p = L, *s;								//pÖ¸ÏòÍ·½áµã£¬jÉèÖÃÎª 0 
-	if (i <= 0) return false;								//i´íÎó·µ»Ø false 
-	while (j < i - 1 && p != NULL) {				//²éÕÒµÚ i-1¸ö½áµã 
+	DLinkNode *p = L, *s; // pæŒ‡å‘å¤´ç»“ç‚¹ï¼Œjè®¾ç½®ä¸º 0
+	if (i <= 0)
+		return false; // ié”™è¯¯è¿”å› false
+	while (j < i - 1 && p != NULL)
+	{ //æŸ¥æ‰¾ç¬¬ i-1ä¸ªç»“ç‚¹
 		p = p->next;
 		j++;
 	}
-	if (p == NULL) return false;						//Î´ÕÒµ½µÚ i-1¸ö½áµã·µ»Ø false 
-	else {														//ÕÒµ½µÚ i-1¸ö½áµã p 
+	if (p == NULL)
+		return false; //æœªæ‰¾åˆ°ç¬¬ i-1ä¸ªç»“ç‚¹è¿”å› false
+	else
+	{ //æ‰¾åˆ°ç¬¬ i-1ä¸ªç»“ç‚¹ p
 		s = (DLinkNode *)malloc(sizeof(DLinkNode));
-		s->data = e;											//´´½¨ĞÂ½áµã s 
-		s->next = p->next;								//ÔÚ p½áµãÖ®ºó²åÈë s½áµã 
-		if (p->next != NULL)							//Èô p½áµã´æÔÚºó¼Ì½áµã£¬ĞŞ¸ÄÆäÇ°ÇıÖ¸Õë 
+		s->data = e;		 //åˆ›å»ºæ–°ç»“ç‚¹ s
+		s->next = p->next;	 //åœ¨ pç»“ç‚¹ä¹‹åæ’å…¥ sç»“ç‚¹
+		if (p->next != NULL) //è‹¥ pç»“ç‚¹å­˜åœ¨åç»§ç»“ç‚¹ï¼Œä¿®æ”¹å…¶å‰é©±æŒ‡é’ˆ
 			p->next->prior = s;
 		s->prior = p;
 		p->next = s;

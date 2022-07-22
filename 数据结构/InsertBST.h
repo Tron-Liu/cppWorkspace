@@ -1,18 +1,20 @@
 #pragma once
 #include "SearchType.h"
 
-//ÔÚ¶ş²æÅÅĞòÊ÷btÖĞ²åÈëÒ»¸ö¹Ø¼ü×ÖÎª k µÄ½áµã£¬Èô²åÈë³É¹¦·µ»ØÕæ£¬·ñÔò·µ»Ø¼Ù
-bool InsertBST(BSTNode *&bt, KeyType k) {
-	if (bt == NULL) {														//Ô­Ê÷Îª¿Õ£¬ĞÂ²åÈëµÄ½áµãÎª¸ù½áµã
+//åœ¨äºŒå‰æ’åºæ ‘btä¸­æ’å…¥ä¸€ä¸ªå…³é”®å­—ä¸º k çš„ç»“ç‚¹ï¼Œè‹¥æ’å…¥æˆåŠŸè¿”å›çœŸï¼Œå¦åˆ™è¿”å›å‡
+bool InsertBST(BSTNode *&bt, KeyType k)
+{
+	if (bt == NULL)
+	{ //åŸæ ‘ä¸ºç©ºï¼Œæ–°æ’å…¥çš„ç»“ç‚¹ä¸ºæ ¹ç»“ç‚¹
 		bt = (BSTNode *)malloc(sizeof(BSTNode));
 		bt->key = k;
 		bt->lchild = bt->rchild = NULL;
 		return true;
 	}
-	else if (k == bt->key)							//Ê÷ÖĞ´æÔÚÏàÍ¬¹Ø¼ü×ÖµÄ½áµã£¬·µ»Ø¼Ù
+	else if (k == bt->key) //æ ‘ä¸­å­˜åœ¨ç›¸åŒå…³é”®å­—çš„ç»“ç‚¹ï¼Œè¿”å›å‡
 		return false;
 	else if (k < bt->key)
-		return InsertBST(bt->lchild, k);		//²åÈëµ½×ó×ÓÊ÷ÖĞ
+		return InsertBST(bt->lchild, k); //æ’å…¥åˆ°å·¦å­æ ‘ä¸­
 	else
-		return InsertBST(bt->rchild, k);		//²åÈëµ½ÓÒ×ÓÊ÷ÖĞ
+		return InsertBST(bt->rchild, k); //æ’å…¥åˆ°å³å­æ ‘ä¸­
 }

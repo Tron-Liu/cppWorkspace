@@ -1,28 +1,31 @@
 #pragma once
 #include "HashType1.h"
 
-void InsertHT(HashTable ha[], int  &n, int p, KeyType k) {		//½«¹Ø¼ü×Ö k ²åÈëµ½¹şÏ£±íÖĞ
+void InsertHT(HashTable ha[], int &n, int p, KeyType k)
+{ //å°†å…³é”®å­— k æ’å…¥åˆ°å“ˆå¸Œè¡¨ä¸­
 	int adr;
-	adr = k % p;															//¼ÆËã¹şÏ£º¯ÊıÖµ
+	adr = k % p; //è®¡ç®—å“ˆå¸Œå‡½æ•°å€¼
 	NodeType *q;
 	q = (NodeType *)malloc(sizeof(NodeType));
-	q->key = k;															//´´½¨Ò»¸ö½áµã q£¬´æ·Å¹Ø¼ü×Ö k
+	q->key = k; //åˆ›å»ºä¸€ä¸ªç»“ç‚¹ qï¼Œå­˜æ”¾å…³é”®å­— k
 	q->next = NULL;
-	if (ha[adr].firstp == NULL)									//Èôµ¥Á´±í adr Îª¿Õ
+	if (ha[adr].firstp == NULL) //è‹¥å•é“¾è¡¨ adr ä¸ºç©º
 		ha[adr].firstp = q;
-	else {																	//Èôµ¥Á´±í adr ²»¿Õ
-		q->next = ha[adr].firstp;									//²ÉÓÃÍ·²å·¨²åÈëµ½ ha[adr] µÄµ¥Á´±íÖĞ
+	else
+	{							  //è‹¥å•é“¾è¡¨ adr ä¸ç©º
+		q->next = ha[adr].firstp; //é‡‡ç”¨å¤´æ’æ³•æ’å…¥åˆ° ha[adr] çš„å•é“¾è¡¨ä¸­
 		ha[adr].firstp = q;
 	}
-	n++;																		//¹şÏ£±í½áµãµÄ×Ü¸öÊı¼Ó1
+	n++; //å“ˆå¸Œè¡¨ç»“ç‚¹çš„æ€»ä¸ªæ•°åŠ 1
 }
 
-//ÓÉ¹Ø¼ü×ÖĞòÁĞ keys[0..n1-1]´´½¨¹şÏ£±í
-void CreateHT(HashTable ha[], int &n, int m, int p, KeyType keys[], int n1) {
+//ç”±å…³é”®å­—åºåˆ— keys[0..n1-1]åˆ›å»ºå“ˆå¸Œè¡¨
+void CreateHT(HashTable ha[], int &n, int m, int p, KeyType keys[], int n1)
+{
 	int i;
-	for (i = 0; i < m; i++)					//¹şÏ£±íÖÃ³õÖµ
+	for (i = 0; i < m; i++) //å“ˆå¸Œè¡¨ç½®åˆå€¼
 		ha[i].firstp = NULL;
 	n = 0;
 	for (i = 0; i < n1; i++)
-		InsertHT(ha, n, p, keys[i]);		//²åÈë n ¸ö¹Ø¼ü×Ö
+		InsertHT(ha, n, p, keys[i]); //æ’å…¥ n ä¸ªå…³é”®å­—
 }

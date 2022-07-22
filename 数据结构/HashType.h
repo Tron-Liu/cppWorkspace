@@ -1,12 +1,13 @@
 #pragma once
 #include <iostream>
 
-/*¹şÏ£±íµÄ½áµãÀàĞÍ*/
-#define NULLKEY -1			//¶¨Òå¿Õ¹Ø¼ü×ÖÖµ£¬¼´ÏĞÖÃµ¥ÔªµÄ¹Ø¼ü×ÖÉèÖÃÎªÌØÊâÖµ -1
-#define DELKEY -2				//¶¨Òå±»É¾¹Ø¼ü×ÖÖµ
+/*å“ˆå¸Œè¡¨çš„ç»“ç‚¹ç±»å‹*/
+#define NULLKEY -1 //å®šä¹‰ç©ºå…³é”®å­—å€¼ï¼Œå³é—²ç½®å•å…ƒçš„å…³é”®å­—è®¾ç½®ä¸ºç‰¹æ®Šå€¼ -1
+#define DELKEY -2  //å®šä¹‰è¢«åˆ å…³é”®å­—å€¼
 
-typedef int KeyType;			//¹Ø¼ü×ÖÀàĞÍ
-typedef struct {
-	KeyType key;					//¹Ø¼ü×ÖÓò
-	int count;							//Ì½²â´ÎÊıÓò
-}HashTable;							//¹şÏ£±íµ¥ÔªÀàĞÍ
+typedef int KeyType; //å…³é”®å­—ç±»å‹
+typedef struct
+{
+	KeyType key; //å…³é”®å­—åŸŸ
+	int count;	 //æ¢æµ‹æ¬¡æ•°åŸŸ
+} HashTable;	 //å“ˆå¸Œè¡¨å•å…ƒç±»å‹

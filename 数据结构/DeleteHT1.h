@@ -1,33 +1,37 @@
 #pragma once
 #include "HashType1.h"
 
-//É¾³ı¹şÏ£±íÖĞµÄ¹Ø¼ü×Ö k
-bool DeleteHT(HashTable ha[], int &n, int m, int p, KeyType k) {
+//åˆ é™¤å“ˆå¸Œè¡¨ä¸­çš„å…³é”®å­— k
+bool DeleteHT(HashTable ha[], int &n, int m, int p, KeyType k)
+{
 	int adr;
-	adr = k % p;									//¼ÆËã¹şÏ£º¯ÊıÖµ
+	adr = k % p; //è®¡ç®—å“ˆå¸Œå‡½æ•°å€¼
 	NodeType *q, *preq;
-	q = ha[adr].firstp;							// q Ö¸Ïò¶ÔÓ¦µ¥Á´±íµÄÊ×½áµã
+	q = ha[adr].firstp; // q æŒ‡å‘å¯¹åº”å•é“¾è¡¨çš„é¦–ç»“ç‚¹
 	if (q == NULL)
-		return false;								//¶ÔÓ¦µ¥Á´±íÎª¿Õ
-	if (q->key == k) {							//Ê×½áµãÎª k
-		ha[adr].firstp = q->next;			//É¾³ı½áµã q
+		return false; //å¯¹åº”å•é“¾è¡¨ä¸ºç©º
+	if (q->key == k)
+	{							  //é¦–ç»“ç‚¹ä¸º k
+		ha[adr].firstp = q->next; //åˆ é™¤ç»“ç‚¹ q
 		free(q);
-		n--;											//½áµã×Ü¸öÊı¼õ 1
-		return true;								//·µ»ØÕæ
+		n--;		 //ç»“ç‚¹æ€»ä¸ªæ•°å‡ 1
+		return true; //è¿”å›çœŸ
 	}
-	preq = q;										//Ê×½áµã²»Îª k Ê±
+	preq = q; //é¦–ç»“ç‚¹ä¸ä¸º k æ—¶
 	q = q->next;
-	while (q != NULL) {
-		if (q->key == k)						//²éÕÒ³É¹¦
-			break;									//ÍË³öÑ­»·
+	while (q != NULL)
+	{
+		if (q->key == k) //æŸ¥æ‰¾æˆåŠŸ
+			break;		 //é€€å‡ºå¾ªç¯
 		q = q->next;
 	}
-	if (q != NULL) {								//²éÕÒ³É¹¦
-		preq->next = q->next;			//É¾³ı½áµã q
+	if (q != NULL)
+	{						  //æŸ¥æ‰¾æˆåŠŸ
+		preq->next = q->next; //åˆ é™¤ç»“ç‚¹ q
 		free(q);
-		n--;											//½áµã×Ü¸öÊı¼õÒ»
-		return true;								//·µ»ØÕæ
+		n--;		 //ç»“ç‚¹æ€»ä¸ªæ•°å‡ä¸€
+		return true; //è¿”å›çœŸ
 	}
 	else
-		return false;								//Î´ÕÒµ½ k ·µ»Ø¼Ù
+		return false; //æœªæ‰¾åˆ° k è¿”å›å‡
 }

@@ -1,34 +1,39 @@
 #pragma once
-//Àı 8.2 ¶ÔÓÚ¾ßÓĞ n ¸ö¶¥µãµÄÍ¼ G
-//£¨1£©Éè¼ÆÒ»¸ö½«ÁÚ½Ó¾ØÕó×ª»»ÎªÁÚ½Ó±íµÄËã·¨
-//£¨2£©Éè¼ÆÒ»¸ö½«ÁÚ½Ó±í×ª»»ÎªÁÚ½Ó¾ØÕóµÄËã·¨
+//ä¾‹ 8.2 å¯¹äºå…·æœ‰ n ä¸ªé¡¶ç‚¹çš„å›¾ G
+//ï¼ˆ1ï¼‰è®¾è®¡ä¸€ä¸ªå°†é‚»æ¥çŸ©é˜µè½¬æ¢ä¸ºé‚»æ¥è¡¨çš„ç®—æ³•
+//ï¼ˆ2ï¼‰è®¾è®¡ä¸€ä¸ªå°†é‚»æ¥è¡¨è½¬æ¢ä¸ºé‚»æ¥çŸ©é˜µçš„ç®—æ³•
 #include "GraphType.h"
 
-void MatToList(MatGraph g, AdjGraph *&G) {			//½«ÁÚ½Ó¾ØÕó g ×ª»»³ÉÁÚ½Ó±í G
+void MatToList(MatGraph g, AdjGraph *&G)
+{ //å°†é‚»æ¥çŸ©é˜µ g è½¬æ¢æˆé‚»æ¥è¡¨ G
 	int i, j;
 	ArcNode *p;
 	G = (AdjGraph *)malloc(sizeof(AdjGraph));
-	for (i = 0; i < g.n; i++)												//½«ÁÚ½Ó±íÖĞËùÓĞÍ·½áµãµÄÖ¸ÕëÓòÖÃ³õÖµ
+	for (i = 0; i < g.n; i++) //å°†é‚»æ¥è¡¨ä¸­æ‰€æœ‰å¤´ç»“ç‚¹çš„æŒ‡é’ˆåŸŸç½®åˆå€¼
 		G->adjlist[i].firstarc = NULL;
-	for (i = 0; i < g.n; i++)														//¼ì²éÁÚ½Ó¾ØÕóÖĞµÄÃ¿¸öÔªËØ
+	for (i = 0; i < g.n; i++) //æ£€æŸ¥é‚»æ¥çŸ©é˜µä¸­çš„æ¯ä¸ªå…ƒç´ 
 		for (j = g.n - 1; j >= 0; j--)
-			if (g.edges[i][j] != 0 && g.edges[i][j] != INF) {			//´æÔÚÒ»Ìõ±ß
-				p = (ArcNode *)malloc(sizeof(ArcNode));			//´´½¨Ò»¸ö±ß½áµã p
+			if (g.edges[i][j] != 0 && g.edges[i][j] != INF)
+			{											//å­˜åœ¨ä¸€æ¡è¾¹
+				p = (ArcNode *)malloc(sizeof(ArcNode)); //åˆ›å»ºä¸€ä¸ªè¾¹ç»“ç‚¹ p
 				p->adjvex = j;
 				p->weight = g.edges[i][j];
-				p->nextarc = G->adjlist[i].firstarc;						//²ÉÓÃÍ·²å·¨²åÈë½áµã p
+				p->nextarc = G->adjlist[i].firstarc; //é‡‡ç”¨å¤´æ’æ³•æ’å…¥ç»“ç‚¹ p
 				G->adjlist[i].firstarc = p;
 			}
 	G->n = g.n;
 	G->e = g.e;
 }
 
-void ListToMat(AdjGraph *G, MatGraph &g) {		//½«ÁÚ½Ó±í G ×ª»»³ÉÁÚ½Ó¾ØÕó
+void ListToMat(AdjGraph *G, MatGraph &g)
+{ //å°†é‚»æ¥è¡¨ G è½¬æ¢æˆé‚»æ¥çŸ©é˜µ
 	int i;
 	ArcNode *p;
-	for (i = 0; i < G->n; i++) {									//É¨ÃèËùÓĞ¶®µÃµ¥Á´±í
-		p = G->adjlist[i].firstarc;									//p Ö¸ÏòµÚ i ¸öµ¥Á´±íµÄÍ·½áµã
-		while (p != NULL) {											//É¨ÃèµÚ i ¸öµ¥Á´±í
+	for (i = 0; i < G->n; i++)
+	{								//æ‰«ææ‰€æœ‰æ‡‚å¾—å•é“¾è¡¨
+		p = G->adjlist[i].firstarc; // p æŒ‡å‘ç¬¬ i ä¸ªå•é“¾è¡¨çš„å¤´ç»“ç‚¹
+		while (p != NULL)
+		{ //æ‰«æç¬¬ i ä¸ªå•é“¾è¡¨
 			g.edges[i][p->adjvex] = p->weight;
 			p = p->nextarc;
 		}

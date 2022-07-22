@@ -3,68 +3,81 @@
 #include <malloc.h>
 typedef char ElemType;
 
-typedef struct node {
-	ElemType data;				//½áµãÊý¾ÝÓò
-	int ltag, rtag;					//Ôö¼ÓµÄÏßË÷±ê¼Ç
-	struct node * lchild;			//×óº¢×Ó»òÏßË÷Ö¸Õë
-	struct node * rchild;			//ÓÒº¢×Ó»òÏßË÷Ö¸Õë
-}TBTNode;							//ÏßË÷¶þ²æÊ÷µÄ½áµãÀàÐÍ
+typedef struct node
+{
+	ElemType data;		 //ç»“ç‚¹æ•°æ®åŸŸ
+	int ltag, rtag;		 //å¢žåŠ çš„çº¿ç´¢æ ‡è®°
+	struct node *lchild; //å·¦å­©å­æˆ–çº¿ç´¢æŒ‡é’ˆ
+	struct node *rchild; //å³å­©å­æˆ–çº¿ç´¢æŒ‡é’ˆ
+} TBTNode;				 //çº¿ç´¢äºŒå‰æ ‘çš„ç»“ç‚¹ç±»åž‹
 
 /*
-	ltag=0:  ±íÊ¾ lchild Ö¸Ïò×óº¢×Ó½áµã
-	ltag=1:  ±íÊ¾ lchild Ö¸ÏòÇ°Çý½áµã
-	rtag=0:	  ±íÊ¾ rchild Ö¸ÏòÓÒº¢×Ó½áµã
-	rtag=1:	  ±íÊ¾ rchild Ö¸Ïòºó¼Ì½áµã
+	ltag=0:  è¡¨ç¤º lchild æŒ‡å‘å·¦å­©å­ç»“ç‚¹
+	ltag=1:  è¡¨ç¤º lchild æŒ‡å‘å‰é©±ç»“ç‚¹
+	rtag=0:	  è¡¨ç¤º rchild æŒ‡å‘å³å­©å­ç»“ç‚¹
+	rtag=1:	  è¡¨ç¤º rchild æŒ‡å‘åŽç»§ç»“ç‚¹
 */
 
-//ÔÚÕû¸öËã·¨ÖÐ p ×ÜÊÇÖ¸Ïòµ±Ç°±»ÏßË÷»¯µÄ½áµã£¬¶ø pre ×÷ÎªÈ«¾Ö±äÁ¿£¬Ö¸Ïò¸Õ·ÃÎÊ¹ýµÄ½áµã
-//½áµã pre ÊÇ½áµã p µÄÇ°Çý½áµã£¬½áµã p ÊÇ½áµã pre µÄÇ°Çý½áµã
+//åœ¨æ•´ä¸ªç®—æ³•ä¸­ p æ€»æ˜¯æŒ‡å‘å½“å‰è¢«çº¿ç´¢åŒ–çš„ç»“ç‚¹ï¼Œè€Œ pre ä½œä¸ºå…¨å±€å˜é‡ï¼ŒæŒ‡å‘åˆšè®¿é—®è¿‡çš„ç»“ç‚¹
+//ç»“ç‚¹ pre æ˜¯ç»“ç‚¹ p çš„å‰é©±ç»“ç‚¹ï¼Œç»“ç‚¹ p æ˜¯ç»“ç‚¹ pre çš„å‰é©±ç»“ç‚¹
 
-TBTNode *pre;									//È«¾Ö±äÁ¿
-void Thread(TBTNode *&p) {			//¶Ô¶þ²æÊ÷ p ½øÐÐÖÐÐòÏßË÷»¯
-	if (p != NULL) {
-		Thread(p->lchild);					//×ó×ÓÊ÷ÏßË÷»¯
-		if (p->lchild == NULL) {			//×ó×ÓÊ÷²»´æÔÚ£¬½øÐÐÇ°Çý½áµãÏßË÷»¯
-			p->lchild = pre;					//½¨Á¢µ±Ç°½áµãµÄÇ°Çý½áµãÏßË÷
+TBTNode *pre; //å…¨å±€å˜é‡
+void Thread(TBTNode *&p)
+{ //å¯¹äºŒå‰æ ‘ p è¿›è¡Œä¸­åºçº¿ç´¢åŒ–
+	if (p != NULL)
+	{
+		Thread(p->lchild); //å·¦å­æ ‘çº¿ç´¢åŒ–
+		if (p->lchild == NULL)
+		{					 //å·¦å­æ ‘ä¸å­˜åœ¨ï¼Œè¿›è¡Œå‰é©±ç»“ç‚¹çº¿ç´¢åŒ–
+			p->lchild = pre; //å»ºç«‹å½“å‰ç»“ç‚¹çš„å‰é©±ç»“ç‚¹çº¿ç´¢
 			p->ltag = 1;
 		}
-		else p->ltag = 0;						//p ½áµãµÄ×ó×ÓÊ÷ÒÑÏßË÷»¯
-		if (pre->rchild == NULL) {		//¶Ô pre µÄºó¼Ì½áµãÏßË÷»¯
-			p->rchild = p;						//½¨Á¢Ç°Çý½áµãµÄºó¼Ì½áµãÏßË÷
+		else
+			p->ltag = 0; // p ç»“ç‚¹çš„å·¦å­æ ‘å·²çº¿ç´¢åŒ–
+		if (pre->rchild == NULL)
+		{				   //å¯¹ pre çš„åŽç»§ç»“ç‚¹çº¿ç´¢åŒ–
+			p->rchild = p; //å»ºç«‹å‰é©±ç»“ç‚¹çš„åŽç»§ç»“ç‚¹çº¿ç´¢
 			pre->rtag = 1;
 		}
-		else p->rtag = 0;
+		else
+			p->rtag = 0;
 		pre = p;
-		Thread(p->rchild);					//ÓÒ×ÓÊ÷ÏßË÷»¯
+		Thread(p->rchild); //å³å­æ ‘çº¿ç´¢åŒ–
 	}
 }
 
-TBTNode * CreateThread(TBTNode *b) {						//ÖÐÐòÏßË÷»¯¶þ²æÊ÷
+TBTNode *CreateThread(TBTNode *b)
+{ //ä¸­åºçº¿ç´¢åŒ–äºŒå‰æ ‘
 	TBTNode *root;
-	root = (TBTNode *)malloc(sizeof(TBTNode));			//´´½¨Í·½áµã
+	root = (TBTNode *)malloc(sizeof(TBTNode)); //åˆ›å»ºå¤´ç»“ç‚¹
 	root->ltag = 0;
 	root->rtag = 1;
 	root->rchild = b;
-	if (b == NULL)															//¿Õ¶þ²æÊ÷
+	if (b == NULL) //ç©ºäºŒå‰æ ‘
 		root->lchild = root;
-	else {
+	else
+	{
 		root->lchild = b;
-		pre = root;								//pre ÊÇ½áµã p µÄÇ°Çý½áµã£¬¹©¼ÓÏßË÷ÓÃ
-		Thread(b);								//ÖÐÐò±éÀúÏßË÷»¯¶þ²æÊ÷
-		pre->rchild = root;					//×îºó´¦Àí£¬¼ÓÈëÖ¸ÏòÍ·½áµãµÄÏßË÷
+		pre = root;			// pre æ˜¯ç»“ç‚¹ p çš„å‰é©±ç»“ç‚¹ï¼Œä¾›åŠ çº¿ç´¢ç”¨
+		Thread(b);			//ä¸­åºéåŽ†çº¿ç´¢åŒ–äºŒå‰æ ‘
+		pre->rchild = root; //æœ€åŽå¤„ç†ï¼ŒåŠ å…¥æŒ‡å‘å¤´ç»“ç‚¹çš„çº¿ç´¢
 		pre->rtag = 1;
-		root->rchild = pre;					//Í·½áµãÓÒÏßË÷»¯
+		root->rchild = pre; //å¤´ç»“ç‚¹å³çº¿ç´¢åŒ–
 	}
 	return root;
 }
 
-//±éÀúÏßË÷»¯¶þ²æÊ÷
-void ThInOrder(TBTNode * tb) {
-	TBTNode *p = tb->lchild;									//p Ö¸Ïò¸ù½áµã
-	while (p != tb) {
-		while (p->ltag == 0) p = p->lchild;					//ÕÒ¿ªÊ¼½áµã
-		printf("%c", p->data);										//·ÃÎÊ¿ªÊ¼½áµã
-		while (p->rtag == 1 && p->rchild != tb) {
+//éåŽ†çº¿ç´¢åŒ–äºŒå‰æ ‘
+void ThInOrder(TBTNode *tb)
+{
+	TBTNode *p = tb->lchild; // p æŒ‡å‘æ ¹ç»“ç‚¹
+	while (p != tb)
+	{
+		while (p->ltag == 0)
+			p = p->lchild;	   //æ‰¾å¼€å§‹ç»“ç‚¹
+		printf("%c", p->data); //è®¿é—®å¼€å§‹ç»“ç‚¹
+		while (p->rtag == 1 && p->rchild != tb)
+		{
 			p = p->rchild;
 			printf("%c", p->data);
 		}

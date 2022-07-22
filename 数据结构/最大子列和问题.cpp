@@ -2,14 +2,17 @@ int MaxSubseqSum1(int A[], int N)
 {
 	int ThisSum, MaxSum = 0;
 	int i, j, k;
-	for(i=0; i<N; i++) {            //iÊÇ×ÓÁĞ×ó¶ËÎ»ÖÃ 
-		for(j=i; j<N; j++) {        //jÊÇ×ÓÁĞÓÒ¶ËÎ»ÖÃ 
+	for (i = 0; i < N; i++)
+	{ // iæ˜¯å­åˆ—å·¦ç«¯ä½ç½®
+		for (j = i; j < N; j++)
+		{ // jæ˜¯å­åˆ—å³ç«¯ä½ç½®
 			ThisSum = 0;
-			for(k=i; k<=j; k++) {   //ThisSumÊÇ´ÓA[i]µ½A[j]µÄ×ÓÁĞºÍ 
-				ThisSum += A[k]; 
+			for (k = i; k <= j; k++)
+			{ // ThisSumæ˜¯ä»A[i]åˆ°A[j]çš„å­åˆ—å’Œ
+				ThisSum += A[k];
 			}
-			if(ThisSum > MaxSum)    //Èç¹û¸ÕµÃµ½µÄÕâ¸ö×ÓÁĞºÍ¸ü´ó 
-				MaxSum = ThisSum;   //¸üĞÂ½á¹û 
+			if (ThisSum > MaxSum) //å¦‚æœåˆšå¾—åˆ°çš„è¿™ä¸ªå­åˆ—å’Œæ›´å¤§
+				MaxSum = ThisSum; //æ›´æ–°ç»“æœ
 		}
 	}
 	return MaxSum
@@ -19,28 +22,32 @@ int MaxSubseqSum2(int A[], int N)
 {
 	int ThisSum, MaxSum = 0;
 	int i, j;
-	for(i=0; i<N; i++) {         //iÊÇ×ÓÁĞ×ó¶Ë 
-		ThisSum = 0;             //ThisSumÊÇ´ÓA[i]µ½A[j]µÄ×ÓÁĞºÍ 
-		for(j=i;j<N;j++) {       //jÊÇ×ÓÁĞÓÒ¶Ë 
-			ThisSum += A[j];     //¶ÔÓÚÏàÍ¬µÄi£¬²»Í¬µÄj£¬Ö»ÒªÔÚj-1´ÎÑ­»·µÄ»ù´¡ÉÏÀÛ¼ÓÒ»Ïî¼´¿É 
-			if(ThisSum > MaxSum) //Èç¹û¸ÕµÃµ½µÄÕâ¸ö×ÓÁĞºÍ¸ü´ó 
-				MaxSum = ThisSum;//Ôò¸üĞÂ½á¹û 
+	for (i = 0; i < N; i++)
+	{				 // iæ˜¯å­åˆ—å·¦ç«¯
+		ThisSum = 0; // ThisSumæ˜¯ä»A[i]åˆ°A[j]çš„å­åˆ—å’Œ
+		for (j = i; j < N; j++)
+		{						  // jæ˜¯å­åˆ—å³ç«¯
+			ThisSum += A[j];	  //å¯¹äºç›¸åŒçš„iï¼Œä¸åŒçš„jï¼Œåªè¦åœ¨j-1æ¬¡å¾ªç¯çš„åŸºç¡€ä¸Šç´¯åŠ ä¸€é¡¹å³å¯
+			if (ThisSum > MaxSum) //å¦‚æœåˆšå¾—åˆ°çš„è¿™ä¸ªå­åˆ—å’Œæ›´å¤§
+				MaxSum = ThisSum; //åˆ™æ›´æ–°ç»“æœ
 		}
 	}
 	return MaxSum;
 }
 
-//ÔÚÏß´¦Àí
+//åœ¨çº¿å¤„ç†
 int MaxSubseqSum4(int A[], int N)
 {
 	int ThisSum, MaxSum;
 	int i;
 	ThisSum = MaxSum = 0;
-	for(i=0; i<N; i++) {
-		ThisSum += A[i];    //ÏòÓÒÀÛ¼Ó 
-		if(ThisSum > MaxSum) MaxSum = ThisSum; //·¢ÏÖ¸ü´óºÍÔò¸üĞÂµ±Ç°½á¹û 
-		else if(ThisSum < 0)  //Èç¹ûµ±Ç°×ÓÁĞºÍÎª¸º 
-			ThisSum = 0;      //Ôò²»¿ÉÄÜÊ¹ºóÃæµÄ²¿·ÖºÍÔö´ó£¬Å×Æú 
+	for (i = 0; i < N; i++)
+	{
+		ThisSum += A[i]; //å‘å³ç´¯åŠ 
+		if (ThisSum > MaxSum)
+			MaxSum = ThisSum; //å‘ç°æ›´å¤§å’Œåˆ™æ›´æ–°å½“å‰ç»“æœ
+		else if (ThisSum < 0) //å¦‚æœå½“å‰å­åˆ—å’Œä¸ºè´Ÿ
+			ThisSum = 0;	  //åˆ™ä¸å¯èƒ½ä½¿åé¢çš„éƒ¨åˆ†å’Œå¢å¤§ï¼ŒæŠ›å¼ƒ
 	}
 	return MaxSum;
 }

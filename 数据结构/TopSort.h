@@ -1,71 +1,81 @@
 #pragma once
 #include <stdio.h>
-//Í¼µÄÁÚ½Ó¾ØÕó´æ´¢·½·¨
-#define  MAXV 25			//×î´ó¶¥µã¸öÊı
-#define INF 32767				//¶¨ÒåÎª ÎŞÇî
+//å›¾çš„é‚»æ¥çŸ©é˜µå­˜å‚¨æ–¹æ³•
+#define MAXV 25	  //æœ€å¤§é¡¶ç‚¹ä¸ªæ•°
+#define INF 32767 //å®šä¹‰ä¸º æ— ç©·
 typedef int InfoType;
-typedef struct {
-	int no;								//¶¥µãµÄ±àºÅ
-	InfoType info;					//¶¥µãµÄÆäËûĞÅÏ¢
-}VertexType;							//¶¥µãµÄÀàĞÍ
+typedef struct
+{
+	int no;		   //é¡¶ç‚¹çš„ç¼–å·
+	InfoType info; //é¡¶ç‚¹çš„å…¶ä»–ä¿¡æ¯
+} VertexType;	   //é¡¶ç‚¹çš„ç±»å‹
 
-//Í¼µÄÁÚ½Ó±í´æ´¢·½·¨
-typedef struct ANode {
-	int adjvex;								//¸Ã±ßµÄÁÚ½Óµã±àºÅ
-	struct ANode *nextarc;			//Ö¸ÏòÏÂÒ»Ìõ±ßµÄÖ¸Õë
-	int weight;								//¸Ã±ßµÄÏà¹ØĞÅÏ¢£¬ÈçÈ¨Öµ£¨ÕâÀïÓÃÕûĞÍ±íÊ¾£©
-}ArcNode;									//±ß½áµãµÄÀàĞÍ
+//å›¾çš„é‚»æ¥è¡¨å­˜å‚¨æ–¹æ³•
+typedef struct ANode
+{
+	int adjvex;			   //è¯¥è¾¹çš„é‚»æ¥ç‚¹ç¼–å·
+	struct ANode *nextarc; //æŒ‡å‘ä¸‹ä¸€æ¡è¾¹çš„æŒ‡é’ˆ
+	int weight;			   //è¯¥è¾¹çš„ç›¸å…³ä¿¡æ¯ï¼Œå¦‚æƒå€¼ï¼ˆè¿™é‡Œç”¨æ•´å‹è¡¨ç¤ºï¼‰
+} ArcNode;				   //è¾¹ç»“ç‚¹çš„ç±»å‹
 
-typedef struct {
-	VertexType data;						//¶¥µãĞÅÏ¢
-	int count;									//Ôö¼ÓÊı¾İÓò£º´æ·Å¶¥µãÈë¶È
-	ArcNode *firstarc;					//Ö¸ÏòµÚÒ»¸öÁÚ½Óµã
-}VNode;										//Í·½áµãÀàĞÍ
+typedef struct
+{
+	VertexType data;   //é¡¶ç‚¹ä¿¡æ¯
+	int count;		   //å¢åŠ æ•°æ®åŸŸï¼šå­˜æ”¾é¡¶ç‚¹å…¥åº¦
+	ArcNode *firstarc; //æŒ‡å‘ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+} VNode;			   //å¤´ç»“ç‚¹ç±»å‹
 
-typedef struct {
-	VNode adjlist[MAXV];				//ÁÚ½Ó±íµÄÍ·½áµãÊı×é
-	int n, e;										//Í¼ÖĞµÄ¶¥µãÊı n ºÍ±ßÊı e
-}AdjGraph;									//ÍêÕûµÄÍ¼ÁÚ½Ó±íÀàĞÍ
-
+typedef struct
+{
+	VNode adjlist[MAXV]; //é‚»æ¥è¡¨çš„å¤´ç»“ç‚¹æ•°ç»„
+	int n, e;			 //å›¾ä¸­çš„é¡¶ç‚¹æ•° n å’Œè¾¹æ•° e
+} AdjGraph;				 //å®Œæ•´çš„å›¾é‚»æ¥è¡¨ç±»å‹
 
 /*
-	ÍØÆËÅÅĞò·½·¨ÈçÏÂ£º
-	£¨1£©´ÓÓĞÏòÍ¼ÖĞÑ¡ÔñÒ»¸öÃ»ÓĞÇ°Çı£¨¼´Èë¶ÈÎª 0 £©µÄ¶¥µã²¢ÇÒÊä³öËü
-	£¨2£©´ÓÍ¼ÖĞÉ¾È¥¸Ã¶¥µã£¬²¢ÇÒÉ¾È¥´Ó¸Ã¶¥µã·¢³öµÄÈ«²¿ÓĞÏò±ß
-	£¨3£©ÖØ¸´ÉÏÊöÁ½²½£¬Ö±µ½Ê£ÓàµÄÍ¼ÖĞ²»ÔÙ´æÔÚÃ»ÓĞÇ°ÇıµÄ¶¥µãÎªÖ¹
+	æ‹“æ‰‘æ’åºæ–¹æ³•å¦‚ä¸‹ï¼š
+	ï¼ˆ1ï¼‰ä»æœ‰å‘å›¾ä¸­é€‰æ‹©ä¸€ä¸ªæ²¡æœ‰å‰é©±ï¼ˆå³å…¥åº¦ä¸º 0 ï¼‰çš„é¡¶ç‚¹å¹¶ä¸”è¾“å‡ºå®ƒ
+	ï¼ˆ2ï¼‰ä»å›¾ä¸­åˆ å»è¯¥é¡¶ç‚¹ï¼Œå¹¶ä¸”åˆ å»ä»è¯¥é¡¶ç‚¹å‘å‡ºçš„å…¨éƒ¨æœ‰å‘è¾¹
+	ï¼ˆ3ï¼‰é‡å¤ä¸Šè¿°ä¸¤æ­¥ï¼Œç›´åˆ°å‰©ä½™çš„å›¾ä¸­ä¸å†å­˜åœ¨æ²¡æœ‰å‰é©±çš„é¡¶ç‚¹ä¸ºæ­¢
 */
 
-void TopSort(AdjGraph *G) {
+void TopSort(AdjGraph *G)
+{
 	int i, j;
-	int St[MAXV], top = -1;				//Õ» St µÄÖ¸ÕëÎª top
+	int St[MAXV], top = -1; //æ ˆ St çš„æŒ‡é’ˆä¸º top
 	ArcNode *p;
-	for (i = 0; i < G->n; i++)				//Èë¶ÈÖÃ³õÖµ 0
+	for (i = 0; i < G->n; i++) //å…¥åº¦ç½®åˆå€¼ 0
 		G->adjlist[i].count = 0;
-	for (i = 0; i < G->n; i++) {			//ÇóËùÓĞ¶¥µãµÄÈë¶È
+	for (i = 0; i < G->n; i++)
+	{ //æ±‚æ‰€æœ‰é¡¶ç‚¹çš„å…¥åº¦
 		p = G->adjlist[i].firstarc;
-		while (p != NULL) {
+		while (p != NULL)
+		{
 			G->adjlist[p->adjvex].count++;
 			p = p->nextarc;
 		}
 	}
-	for (i = 0; i < G->n; i++)				//½«Èë¶ÈÎª 0 µÄ¶¥µã½øÕ»
-		if (G->adjlist[i].count == 0) {
+	for (i = 0; i < G->n; i++) //å°†å…¥åº¦ä¸º 0 çš„é¡¶ç‚¹è¿›æ ˆ
+		if (G->adjlist[i].count == 0)
+		{
 			top++;
 			St[top] = i;
 		}
-	while (top > -1) {							//Õ»²»¿ÕÑ­»·
-		i = St[top];								//³öÕ»Ò»¸ö¶¥µã
+	while (top > -1)
+	{				 //æ ˆä¸ç©ºå¾ªç¯
+		i = St[top]; //å‡ºæ ˆä¸€ä¸ªé¡¶ç‚¹
 		top--;
-		printf("%d", i);							//Êä³ö¸Ã¶¥µã
-		p = G->adjlist[i].firstarc;			//ÕÒµÚÒ»¸öÁÚ½Óµã
-		while (p != NULL) {					//½«¶¥µã i µÄ³ö±ßÁÚ½ÓµãµÄÈë¶È¼õ 1
+		printf("%d", i);			//è¾“å‡ºè¯¥é¡¶ç‚¹
+		p = G->adjlist[i].firstarc; //æ‰¾ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+		while (p != NULL)
+		{ //å°†é¡¶ç‚¹ i çš„å‡ºè¾¹é‚»æ¥ç‚¹çš„å…¥åº¦å‡ 1
 			j = p->adjvex;
 			G->adjlist[j].count--;
-			if (G->adjlist[j].count == 0) {		//½«Èë¶ÈÎª 0 µÄÁÚ½Óµã½øÕ»
+			if (G->adjlist[j].count == 0)
+			{ //å°†å…¥åº¦ä¸º 0 çš„é‚»æ¥ç‚¹è¿›æ ˆ
 				top++;
 				St[top] = j;
 			}
-			p = p->nextarc;					//ÕÒÏÂÒ»¸öÁÚ½Óµã
+			p = p->nextarc; //æ‰¾ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 		}
 	}
 }

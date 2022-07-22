@@ -1,47 +1,56 @@
 #pragma once
 #include "GraphType.h"
 
-void CreateAdj(AdjGraph *&G, int A[MAXV][MAXV], int n, int e) {		//´´½¨Í¼µÄÁÚ½Ó±í
+void CreateAdj(AdjGraph *&G, int A[MAXV][MAXV], int n, int e)
+{ //åˆ›å»ºå›¾çš„é‚»æ¥è¡¨
 	int i, j;
 	ArcNode *p;
 	G = (AdjGraph *)malloc(sizeof(AdjGraph));
-	for (i = 0; i < n; i++)											//¸øÁÚ½Ó±íÖĞËùÓĞÍ·½áµãµÄÖ¸ÕëÓòÖÃ³õÖµ
+	for (i = 0; i < n; i++) //ç»™é‚»æ¥è¡¨ä¸­æ‰€æœ‰å¤´ç»“ç‚¹çš„æŒ‡é’ˆåŸŸç½®åˆå€¼
 		G->adjlist[i].firstarc = NULL;
-	for (i = 0; i < n; i++)													//¼ì²éÁÚ½Ó¾ØÕóÖĞµÄÃ¿¸öÔªËØ
+	for (i = 0; i < n; i++) //æ£€æŸ¥é‚»æ¥çŸ©é˜µä¸­çš„æ¯ä¸ªå…ƒç´ 
 		for (j = n - 1; j >= 0; j--)
-			if (A[i][j] != 0 && A[i][j] != INF) {							//´æÔÚÒ»Ìõ±ß
-				p = (ArcNode *)malloc(sizeof(ArcNode));		//´´½¨Ò»¸ö½áµã p
-				p->adjvex = j;													//´æ·ÅÁÚ½Óµã
-				p->weight = A[i][j];											//´æ·ÅÈ¨
-				p->nextarc = G->adjlist[i].firstarc;					//²ÉÓÃÍ·²å·¨²åÈë½áµã p
+			if (A[i][j] != 0 && A[i][j] != INF)
+			{											//å­˜åœ¨ä¸€æ¡è¾¹
+				p = (ArcNode *)malloc(sizeof(ArcNode)); //åˆ›å»ºä¸€ä¸ªç»“ç‚¹ p
+				p->adjvex = j;							//å­˜æ”¾é‚»æ¥ç‚¹
+				p->weight = A[i][j];					//å­˜æ”¾æƒ
+				p->nextarc = G->adjlist[i].firstarc;	//é‡‡ç”¨å¤´æ’æ³•æ’å…¥ç»“ç‚¹ p
 				G->adjlist[i].firstarc = p;
 			}
 	G->n = n;
 	G->e = e;
 }
 
-void DispAdj(AdjGraph *G) {		//Êä³öÁÚ½Ó±í
+void DispAdj(AdjGraph *G)
+{ //è¾“å‡ºé‚»æ¥è¡¨
 	int i;
 	ArcNode *p;
-	for (i = 0; i < G->n; i++) {
+	for (i = 0; i < G->n; i++)
+	{
 		p = G->adjlist[i].firstarc;
 		printf("%3d:", i);
-		while (p != NULL) {
+		while (p != NULL)
+		{
 			printf("%3d[%d]->", p->adjvex, p->weight);
-			p=p->nextarc;
+			p = p->nextarc;
 		}
 		printf("/\\\n");
 	}
 }
 
-void DestroyAdj(AdjGraph *&G) {		//Ïú»ÙÁÚ½Ó±í
+void DestroyAdj(AdjGraph *&G)
+{ //é”€æ¯é‚»æ¥è¡¨
 	int i;
 	ArcNode *pre, *p;
-	for (i = 0; i < G->n; i++) {				//É¨ÃèËùÓĞµ¥Á´±í
-		pre = G->adjlist[i].firstarc;			//pre Ö¸ÏòµÚ i ¸öµ¥Á´±íµÄÍ·½áµã
-		if (pre != NULL) {
+	for (i = 0; i < G->n; i++)
+	{								  //æ‰«ææ‰€æœ‰å•é“¾è¡¨
+		pre = G->adjlist[i].firstarc; // pre æŒ‡å‘ç¬¬ i ä¸ªå•é“¾è¡¨çš„å¤´ç»“ç‚¹
+		if (pre != NULL)
+		{
 			p = pre->nextarc;
-			while (p != NULL) {					//ÊÍ·ÅµÚ i ¸öµ¥Á´±íµÄËùÓĞ±ß½áµã
+			while (p != NULL)
+			{ //é‡Šæ”¾ç¬¬ i ä¸ªå•é“¾è¡¨çš„æ‰€æœ‰è¾¹ç»“ç‚¹
 				free(pre);
 				pre = p;
 				p = p->nextarc;
@@ -49,5 +58,5 @@ void DestroyAdj(AdjGraph *&G) {		//Ïú»ÙÁÚ½Ó±í
 			free(pre);
 		}
 	}
-	free(G);				//ÊÍ·ÅÍ·½áµãÊı×é
+	free(G); //é‡Šæ”¾å¤´ç»“ç‚¹æ•°ç»„
 }

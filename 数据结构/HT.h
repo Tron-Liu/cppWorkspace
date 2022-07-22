@@ -1,36 +1,42 @@
 #pragma once
-typedef struct {
-	char data;					//½áµãÖµ
-	double weight;		//È¨ÖØ
-	int parent;				//Ë«Ç×½áµã
-	int lchild;					//×óº¢×Ó½áµã
-	int rchild;					//ÓÒº¢×Ó½áµã
-}HTNode;
+typedef struct
+{
+	char data;	   //ç»“ç‚¹å€¼
+	double weight; //æƒé‡
+	int parent;	   //åŒäº²ç»“ç‚¹
+	int lchild;	   //å·¦å­©å­ç»“ç‚¹
+	int rchild;	   //å³å­©å­ç»“ç‚¹
+} HTNode;
 
-//¹¹Ôì¹ş·òÂüÊ÷
-void CreateHT(HTNode ht[], int n0) {
+//æ„é€ å“ˆå¤«æ›¼æ ‘
+void CreateHT(HTNode ht[], int n0)
+{
 	int i, k, lnode, rnode;
 	double min1, min2;
-	for (i = 0; i < 2 * n0 - 1; i++)				//ËùÓĞ½áµãµÄÏà¹ØÓòÖÃ³õÖµ -1
+	for (i = 0; i < 2 * n0 - 1; i++) //æ‰€æœ‰ç»“ç‚¹çš„ç›¸å…³åŸŸç½®åˆå€¼ -1
 		ht[i].parent = ht[i].lchild = ht[i].rchild = -1;
-	for (i = n0; i <= 2 * n0 - 2; i++) {			//¹¹Ôì¹ş·òÂüÊ÷µÄ n0-1 ¸ö·ÖÖ§½áµã
-		min1 = min2 = 32767;						//lnode ºÍ rnode Îª×îĞ¡È¨ÖØµÄÁ½¸ö½áµãÎ»ÖÃ
+	for (i = n0; i <= 2 * n0 - 2; i++)
+	{						 //æ„é€ å“ˆå¤«æ›¼æ ‘çš„ n0-1 ä¸ªåˆ†æ”¯ç»“ç‚¹
+		min1 = min2 = 32767; // lnode å’Œ rnode ä¸ºæœ€å°æƒé‡çš„ä¸¤ä¸ªç»“ç‚¹ä½ç½®
 		lnode = rnode = -1;
-		for(k=0;k<=i-1;k++)						//ÔÚ ht[0...i-1]ÖĞÕÒÈ¨Öµ×îĞ¡µÄÁ½¸ö½áµã
-			if (ht[k].parent == -1) {				//Ö»ÔÚÉĞÎ´¹¹Ôì¶ş²æÊ÷µÄ½áµãÖĞ²éÕÒ
-				if (ht[k].weight < min1) {
+		for (k = 0; k <= i - 1; k++) //åœ¨ ht[0...i-1]ä¸­æ‰¾æƒå€¼æœ€å°çš„ä¸¤ä¸ªç»“ç‚¹
+			if (ht[k].parent == -1)
+			{ //åªåœ¨å°šæœªæ„é€ äºŒå‰æ ‘çš„ç»“ç‚¹ä¸­æŸ¥æ‰¾
+				if (ht[k].weight < min1)
+				{
 					min2 = min1;
 					rnode = lnode;
 					min1 = ht[k].weight;
 					lnode = k;
 				}
-				else if (ht[k].weight < min2) {
+				else if (ht[k].weight < min2)
+				{
 					min2 = ht[k].weight;
 					rnode = k;
 				}
 			}
 		ht[i].weight = ht[lnode].weight + ht[rnode].weight;
-		ht[i].lchild = lnode;					//ht[i]×÷ÎªË«Ç×½áµã
+		ht[i].lchild = lnode; // ht[i]ä½œä¸ºåŒäº²ç»“ç‚¹
 		ht[i].rchild = rnode;
 		ht[lnode].parent = i;
 		ht[rnode].parent = i;
@@ -38,27 +44,32 @@ void CreateHT(HTNode ht[], int n0) {
 }
 
 #define N 10
-//´æ·ÅÃ¿¸ö½áµãµÄ¹ş·òÂü±àÂëµÄÀàĞÍ
-typedef struct {
-	char cd[N];			//´æ·Åµ±Ç°½áµãµÄ¹ş·òÂüÂë
-	int start;				//±íÊ¾ cd[start...n0]²¿·ÖÊÇ¹ş·òÂüÂë
-}HCode;
+//å­˜æ”¾æ¯ä¸ªç»“ç‚¹çš„å“ˆå¤«æ›¼ç¼–ç çš„ç±»å‹
+typedef struct
+{
+	char cd[N]; //å­˜æ”¾å½“å‰ç»“ç‚¹çš„å“ˆå¤«æ›¼ç 
+	int start;	//è¡¨ç¤º cd[start...n0]éƒ¨åˆ†æ˜¯å“ˆå¤«æ›¼ç 
+} HCode;
 
-void CreateHCode(HTNode ht[], HCode hcd[], int n0) {
+void CreateHCode(HTNode ht[], HCode hcd[], int n0)
+{
 	int i, f, c;
 	HCode hc;
-	for (i = 0; i < n0; i++) {				//¸ù¾İ¹ş·òÂüÊ÷Çó¹ş·òÂü±àÂë
+	for (i = 0; i < n0; i++)
+	{ //æ ¹æ®å“ˆå¤«æ›¼æ ‘æ±‚å“ˆå¤«æ›¼ç¼–ç 
 		hc.start = n0;
 		c = i;
 		f = ht[i].parent;
-		while (f != -1) {							//Ñ­»·Ö±µ½ÎŞË«Ç×½áµã£¬¼´µ½´ï¸ù½áµã
-			if (ht[f].lchild == c)				//µ±Ç°½áµãÊÇË«Ç×½áµãµÄ×óº¢×Ó
+		while (f != -1)
+		{						   //å¾ªç¯ç›´åˆ°æ— åŒäº²ç»“ç‚¹ï¼Œå³åˆ°è¾¾æ ¹ç»“ç‚¹
+			if (ht[f].lchild == c) //å½“å‰ç»“ç‚¹æ˜¯åŒäº²ç»“ç‚¹çš„å·¦å­©å­
 				hc.cd[hc.start--] = '0';
-			else										//µ±Ç°½áµãÊÇË«Ç×½áµãµÄÓÒº¢×Ó
+			else //å½“å‰ç»“ç‚¹æ˜¯åŒäº²ç»“ç‚¹çš„å³å­©å­
 				hc.cd[hc.start--] = '1';
-			c = f; f = ht[f].parent;			//ÔÙ¶ÔË«Ç×½áµã½øĞĞÍ¬ÑùµÄ²Ù×÷
+			c = f;
+			f = ht[f].parent; //å†å¯¹åŒäº²ç»“ç‚¹è¿›è¡ŒåŒæ ·çš„æ“ä½œ
 		}
-		hc.start++;								//¹ş·òÂüÖ¸Ïò×î¿ªÊ¼µÄ×Ö·û
+		hc.start++; //å“ˆå¤«æ›¼æŒ‡å‘æœ€å¼€å§‹çš„å­—ç¬¦
 		hcd[i] = hc;
 	}
 }

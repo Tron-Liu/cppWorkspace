@@ -2,14 +2,18 @@
 #include <stdlib.h>
 using namespace std;
 
-class A {
+class A
+{
 	int i;
-public :
-	A(int a = 5) {
+
+public:
+	A(int a = 5)
+	{
 		i = a;
 		cout << "ctor : i = " << i << endl;
 	}
-	~A() {
+	~A()
+	{
 		cout << "dtor : i = " << i << endl;
 	}
 };

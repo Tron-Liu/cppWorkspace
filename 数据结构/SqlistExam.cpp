@@ -11,117 +11,130 @@
 #include "SqlistGetElem.h"
 #include "SqlistDelete.h"
 
-//Àı2.3 É¾³ıË³Ğò±íÖĞÖµÎª xµÄÔªËØ  ½â·¨Ò»  P39
+//ä¾‹2.3 åˆ é™¤é¡ºåºè¡¨ä¸­å€¼ä¸º xçš„å…ƒç´   è§£æ³•ä¸€  P39
 void delNote1(Sqlist *&L, ElemType x)
 {
-	int k = 0;												//k¼ÇÂ¼²»µÈÓÚxµÄÔªËØµÄ¸öÊı£¬¼´Òª²åÈëµ½LÖĞµÄÔªËØ¸öÊı 
-	for(int i=0; i<L->length; i++) {       
-		if(L->data[i] != x) {							//Èôµ±Ç°ÔªËØ²»Îªx£¬½«Æä²åÈëµ½LÖĞ 
+	int k = 0; // kè®°å½•ä¸ç­‰äºxçš„å…ƒç´ çš„ä¸ªæ•°ï¼Œå³è¦æ’å…¥åˆ°Lä¸­çš„å…ƒç´ ä¸ªæ•°
+	for (int i = 0; i < L->length; i++)
+	{
+		if (L->data[i] != x)
+		{ //è‹¥å½“å‰å…ƒç´ ä¸ä¸ºxï¼Œå°†å…¶æ’å…¥åˆ°Lä¸­
 			L->data[k] = L->data[i];
-			k++;												//²åÈëÒ»¸öÔªËØ£¬ÔªËØ¸öÊık¼ÓÒ» 
+			k++; //æ’å…¥ä¸€ä¸ªå…ƒç´ ï¼Œå…ƒç´ ä¸ªæ•°kåŠ ä¸€
 		}
 	}
-	L->length = k;										//L³¤¶ÈµÈÓÚk 
+	L->length = k; // Lé•¿åº¦ç­‰äºk
 }
 
- //Àı2.3  ½â·¨¶ş  P39
+//ä¾‹2.3  è§£æ³•äºŒ  P39
 void delNode2(Sqlist *&L, ElemType x)
 {
 
-	int k = 0;												//k¼ÇÂ¼µÈÓÚxµÄÔªËØ¸öÊı 
-	for(int i=0; i<L->length; i++) {       
-		if(L->data[i] == x)							//Èôµ±Ç°ÔªËØµÈÓÚx£¬k¼ÓÒ» 
+	int k = 0; // kè®°å½•ç­‰äºxçš„å…ƒç´ ä¸ªæ•°
+	for (int i = 0; i < L->length; i++)
+	{
+		if (L->data[i] == x) //è‹¥å½“å‰å…ƒç´ ç­‰äºxï¼ŒkåŠ ä¸€
 			k++;
 		else
-			L->data[i-k] = L->data[i];			//Èô²»µÈÓÚ£¬½«ÆäÎ»ÖÃÇ°ÒÆ kµÄÎ»ÖÃ 
+			L->data[i - k] = L->data[i]; //è‹¥ä¸ç­‰äºï¼Œå°†å…¶ä½ç½®å‰ç§» kçš„ä½ç½®
 	}
-	L->length = L->length - k;					//L³¤¶ÈµÈÓÚÔ­À´³¤¶È¼õÈ¥ k 
+	L->length = L->length - k; // Lé•¿åº¦ç­‰äºåŸæ¥é•¿åº¦å‡å» k
 }
 
-//Àı2.4 p40  ½â·¨Ò» 
-int partition1(Sqlist *& L)
+//ä¾‹2.4 p40  è§£æ³•ä¸€
+int partition1(Sqlist *&L)
 {
-	int i=0, j=L->length-1;
-	ElemType pivot = L->data[0];					//ÒÔdata[0]Îª»ù×¼ 
-	while(i<j) {												//´ÓÇø¼äÁ½¶Ë½»ÌæÏòÖĞ¼äÉ¨Ãè£¬Ö±µ½ i=jÎªÖ¹ 
-		while(i<j && L->data[i] <= pivot)		//´Ó×óÏòÓÒÉ¨Ãè £¬ÕÒÒ»¸ö´óÓÚ pivotµÄÊı 
+	int i = 0, j = L->length - 1;
+	ElemType pivot = L->data[0]; //ä»¥data[0]ä¸ºåŸºå‡†
+	while (i < j)
+	{										 //ä»åŒºé—´ä¸¤ç«¯äº¤æ›¿å‘ä¸­é—´æ‰«æï¼Œç›´åˆ° i=jä¸ºæ­¢
+		while (i < j && L->data[i] <= pivot) //ä»å·¦å‘å³æ‰«æ ï¼Œæ‰¾ä¸€ä¸ªå¤§äº pivotçš„æ•°
 			i++;
-		while(i<j && L->data[j] > pivot)			//´ÓÓÒÏò×óÉ¨Ãè£¬ÕÒÒ»¸öĞ¡ÓÚµÈÓÚ pivotµÄÊı 
+		while (i < j && L->data[j] > pivot) //ä»å³å‘å·¦æ‰«æï¼Œæ‰¾ä¸€ä¸ªå°äºç­‰äº pivotçš„æ•°
 			j--;
-		if(i < j) 
-			Swap(L->data[i], L->data[j]);			//½« L->data[i]ºÍ L->data[j]½»»» 
+		if (i < j)
+			Swap(L->data[i], L->data[j]); //å°† L->data[i]å’Œ L->data[j]äº¤æ¢
 	}
-	Swap(L->data[i], pivot);							// ½« L->data[i]ºÍ L->data[0]½»»» 
- } 
- 
-//Àı2.4 p40  ½â·¨¶ş ´Ë½â·¨¸üÓÅ 
+	Swap(L->data[i], pivot); // å°† L->data[i]å’Œ L->data[0]äº¤æ¢
+}
+
+//ä¾‹2.4 p40  è§£æ³•äºŒ æ­¤è§£æ³•æ›´ä¼˜
 int partition2(Sqlist *&L)
 {
-	int i=0, j=L->length-1;
-	ElemType pivot = L->data[0];					//ÒÔL->data[0]Îª»ù×¼ 
-	while(i<j) {												//´ÓÇø¼äÁ½¶Ë½»ÌæÏòÖĞ¼äÉ¨Ãè£¬Ö±µ½ i=jÎªÖ¹
-		while(i<j && L->data[j] > pivot)			//´ÓÓÒÏò×óÉ¨Ãè£¬ÕÒÒ»¸öĞ¡ÓÚµÈÓÚ pivotµÄ data[j] 
+	int i = 0, j = L->length - 1;
+	ElemType pivot = L->data[0]; //ä»¥L->data[0]ä¸ºåŸºå‡†
+	while (i < j)
+	{										//ä»åŒºé—´ä¸¤ç«¯äº¤æ›¿å‘ä¸­é—´æ‰«æï¼Œç›´åˆ° i=jä¸ºæ­¢
+		while (i < j && L->data[j] > pivot) //ä»å³å‘å·¦æ‰«æï¼Œæ‰¾ä¸€ä¸ªå°äºç­‰äº pivotçš„ data[j]
 			j--;
-		L->data[i] = L->data[j];						//ÕÒµ½ÕâÑùµÄ data[j],·Åµ½ data[i]´¦ 
-		while(i<j && L->data[i] <= pivot)		//´Ó×óÏòÓÒÉ¨Ãè£¬ÕÒÒ»¸ö´óÓÚ pivotµÄdata[i] 
+		L->data[i] = L->data[j];			 //æ‰¾åˆ°è¿™æ ·çš„ data[j],æ”¾åˆ° data[i]å¤„
+		while (i < j && L->data[i] <= pivot) //ä»å·¦å‘å³æ‰«æï¼Œæ‰¾ä¸€ä¸ªå¤§äº pivotçš„data[i]
 			i++;
-		L->data[j] = L->data[i];						//ÕÒµ½ÕâÑùµÄ data[i],·Åµ½ data[j]´¦ 
+		L->data[j] = L->data[i]; //æ‰¾åˆ°è¿™æ ·çš„ data[i],æ”¾åˆ° data[j]å¤„
 	}
 	L->data[i] = pivot;
 }
- 
-//Àı2.5 ½«ÆæÊıÒÆµ½Å¼ÊıÇ°Ãæ   P42  ½â·¨Ò»
+
+//ä¾‹2.5 å°†å¥‡æ•°ç§»åˆ°å¶æ•°å‰é¢   P42  è§£æ³•ä¸€
 void move1(Sqlist *&L)
 {
-	int i=0, j=L->length-1;
-	while(i<j)
+	int i = 0, j = L->length - 1;
+	while (i < j)
 	{
-		while(i<j && L->data[i] % 2 == 1) i++;			//´ÓÓÒÏò×óÉ¨Ãè£¬ÕÒµ½Ò»¸öÆæÊıÔªËØ 
-		while(i<j && L->data[j] % 2 == 0) j--;			//´Ó×óÏòÓÒÉ¨Ãè£¬ÕÒµ½Ò»¸öÅ¼ÊıÔªËØ
-		if(i<j) Swap(L->data[i], L->data[j]);					//Èô i<j,½« L->data[i]ºÍ L->data[j]»¥»» 
+		while (i < j && L->data[i] % 2 == 1)
+			i++; //ä»å³å‘å·¦æ‰«æï¼Œæ‰¾åˆ°ä¸€ä¸ªå¥‡æ•°å…ƒç´ 
+		while (i < j && L->data[j] % 2 == 0)
+			j--; //ä»å·¦å‘å³æ‰«æï¼Œæ‰¾åˆ°ä¸€ä¸ªå¶æ•°å…ƒç´ 
+		if (i < j)
+			Swap(L->data[i], L->data[j]); //è‹¥ i<j,å°† L->data[i]å’Œ L->data[j]äº’æ¢
 	}
 }
 
-//½â·¨¶ş 
+//è§£æ³•äºŒ
 void move2(Sqlist *&L)
 {
-	int i=-1, j;
-	for(j=0; j<=L->length-1; j++) {
-		if(L->data[j] % 2 == 1) {								//j Ö¸ÏòÆæÊıÊ± 
-			i++;															//ÆæÊıÇø¼ä¸öÊı¼ÓÒ» 
-			if(i!=j) Swap(L->data[i],L->data[j]);			//Èô i²»µÈÓÚ j,½« L->data[i]ºÍ L->data[j]½»»»
+	int i = -1, j;
+	for (j = 0; j <= L->length - 1; j++)
+	{
+		if (L->data[j] % 2 == 1)
+		{		 // j æŒ‡å‘å¥‡æ•°æ—¶
+			i++; //å¥‡æ•°åŒºé—´ä¸ªæ•°åŠ ä¸€
+			if (i != j)
+				Swap(L->data[i], L->data[j]); //è‹¥ iä¸ç­‰äº j,å°† L->data[i]å’Œ L->data[j]äº¤æ¢
 		}
 	}
-} 
- 
+}
+
 int main()
 {
 	Sqlist *L;
 	ElemType e;
-	printf("Ë³Ğò±íµÄ»ù±¾ÔËËãÈçÏÂ£º\n");
-	printf("  (1)³õÊ¼»¯Ë³Ğò±íL\n");
+	printf("é¡ºåºè¡¨çš„åŸºæœ¬è¿ç®—å¦‚ä¸‹ï¼š\n");
+	printf("  (1)åˆå§‹åŒ–é¡ºåºè¡¨L\n");
 	InitList(L);
-	printf("  (2)ÒÀ´Î²åÈëa,b,c,d,eÔªËØ\n");
+	printf("  (2)ä¾æ¬¡æ’å…¥a,b,c,d,eå…ƒç´ \n");
 	ListInsert(L, 1, 'a');
 	ListInsert(L, 2, 'b');
 	ListInsert(L, 3, 'c');
 	ListInsert(L, 4, 'd');
 	ListInsert(L, 5, 'e');
-	printf("  (3)Êä³öË³Ğò±íL:");
+	printf("  (3)è¾“å‡ºé¡ºåºè¡¨L:");
 	DispList(L);
-	printf("  (4)Ë³Ğò±íLµÄ³¤¶È:%d\n", ListLength(L));
-	printf("  (5)Ë³Ğò±íLÎª:%s\n", (ListEmpty(L)?"¿Õ":"·Ç¿Õ"));
+	printf("  (4)é¡ºåºè¡¨Lçš„é•¿åº¦:%d\n", ListLength(L));
+	printf("  (5)é¡ºåºè¡¨Lä¸º:%s\n", (ListEmpty(L) ? "ç©º" : "éç©º"));
 	GetElem(L, 3, e);
-	printf("  (6)Ë³Ğò±íLµÄµÚ3¸öÔªËØ:%c\n", e);
-	printf("  (7)ÔªËØaµÄÎ»ÖÃ:%d\n", LocateElem(L,'a'));
-	printf("  (8)ÔÚµÚ4¸öÔªËØÎ»ÖÃÉÏ²åÈëfÔªËØ\n");
+	printf("  (6)é¡ºåºè¡¨Lçš„ç¬¬3ä¸ªå…ƒç´ :%c\n", e);
+	printf("  (7)å…ƒç´ açš„ä½ç½®:%d\n", LocateElem(L, 'a'));
+	printf("  (8)åœ¨ç¬¬4ä¸ªå…ƒç´ ä½ç½®ä¸Šæ’å…¥få…ƒç´ \n");
 	ListInsert(L, 4, 'f');
-	printf("  (9)Êä³öË³Ğò±íL£º"); DispList(L);
-	printf("  (10)É¾³ıLµÄµÚ3¸öÔªËØ\n");
+	printf("  (9)è¾“å‡ºé¡ºåºè¡¨Lï¼š");
+	DispList(L);
+	printf("  (10)åˆ é™¤Lçš„ç¬¬3ä¸ªå…ƒç´ \n");
 	ListDelete(L, 3, e);
-	printf("  (11)Êä³öË³Ğò±íL£º"); DispList(L);
-	printf("  (12)ÊÍ·ÅË³Ğò±íL\n"); 
+	printf("  (11)è¾“å‡ºé¡ºåºè¡¨Lï¼š");
+	DispList(L);
+	printf("  (12)é‡Šæ”¾é¡ºåºè¡¨L\n");
 	DestroyList(L);
 	system("pause");
 	return 1;
- }
+}

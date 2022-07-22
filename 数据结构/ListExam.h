@@ -1,55 +1,59 @@
 #pragma once
 #include "LinkNode.h"
 
-//Àı 2.6  p52
-void split(LinkNode *&L, LinkNode *&L1, LinkNode *&L2)		//L1Î²²å·¨ L2Í·²å·¨ 
+//ä¾‹ 2.6  p52
+void split(LinkNode *&L, LinkNode *&L1, LinkNode *&L2) // L1å°¾æ’æ³• L2å¤´æ’æ³•
 {
-	LinkNode *p = L->next, *r, *q;								// pÖ¸ÏòµÚÒ»¸öÊı¾İ½áµã 
-	L1 = L;																		// L1ÀûÓÃÔ­À´ LµÄÍ·½áµã 
-	r = L;																		// rÊ¼ÖÕÖ¸Ïò L1µÄÎ²½áµã 
-	L2 = (LinkNode *)malloc(sizeof(LinkNode));			//´´½¨ L2µÄÍ·½áµã 
-	L2->next = NULL;													//ÖÃ L2µÄÖ¸ÕëÓòÎª NULL 
-	while (p != NULL) {
-		r->next = p;															//²ÉÓÃÎ²²å·¨½«p£¨dataÖµÎª a[i]£©²åÈëL1ÖĞ 
+	LinkNode *p = L->next, *r, *q;			   // pæŒ‡å‘ç¬¬ä¸€ä¸ªæ•°æ®ç»“ç‚¹
+	L1 = L;									   // L1åˆ©ç”¨åŸæ¥ Lçš„å¤´ç»“ç‚¹
+	r = L;									   // rå§‹ç»ˆæŒ‡å‘ L1çš„å°¾ç»“ç‚¹
+	L2 = (LinkNode *)malloc(sizeof(LinkNode)); //åˆ›å»º L2çš„å¤´ç»“ç‚¹
+	L2->next = NULL;						   //ç½® L2çš„æŒ‡é’ˆåŸŸä¸º NULL
+	while (p != NULL)
+	{
+		r->next = p; //é‡‡ç”¨å°¾æ’æ³•å°†pï¼ˆdataå€¼ä¸º a[i]ï¼‰æ’å…¥L1ä¸­
 		r = p;
-		p = p->next;														//pÒÆµ½ÏÂÒ»¸ö½áµã£¨dataÖµÎª b[i]£© 
-		q = p->next;														//Í·²å·¨»á¸Ä±ä pµÄÖ¸ÕëÓò£¬ÓÃ qÀ´´æ´¢½áµã pµÄºó¼Ì½áµã 
-		p->next = L2->next; 											//²ÉÓÃÍ·²å·¨½« p²åÈëµ½ L2ÖĞ 
+		p = p->next;		// pç§»åˆ°ä¸‹ä¸€ä¸ªç»“ç‚¹ï¼ˆdataå€¼ä¸º b[i]ï¼‰
+		q = p->next;		//å¤´æ’æ³•ä¼šæ”¹å˜ pçš„æŒ‡é’ˆåŸŸï¼Œç”¨ qæ¥å­˜å‚¨ç»“ç‚¹ pçš„åç»§ç»“ç‚¹
+		p->next = L2->next; //é‡‡ç”¨å¤´æ’æ³•å°† pæ’å…¥åˆ° L2ä¸­
 		L2->next = p;
-		p = q;                													//pÖØĞÂÖ¸Ïò a[i+1] 
+		p = q; // pé‡æ–°æŒ‡å‘ a[i+1]
 	}
-	r->next = NULL;           											//L1Î²½áµãnextÖÃ¿Õ 
+	r->next = NULL; // L1å°¾ç»“ç‚¹nextç½®ç©º
 }
 
-//Àı 2.7 É¾³ıµ¥Á´±í L ÖĞÔªËØÖµ×î´óµÄ½áµã
+//ä¾‹ 2.7 åˆ é™¤å•é“¾è¡¨ L ä¸­å…ƒç´ å€¼æœ€å¤§çš„ç»“ç‚¹
 void delMaxNode(LinkNode *&L)
 {
 	LinkNode *p = L->next, *pre = L, *maxp = p, *maxpre = pre;
-	while (p != NULL) {									//ÓÃ pÉ¨ÃèÕû¸öµ¥Á´±í  preÊ¼ÖÕÖ¸ÏòÆäÇ°Çı½áµã 
-		if (maxp->data < p->data) {				// ÈôÕÒµ½Ò»¸ö¸ü´óµÄ½áµã 
-			maxp = p;										//¸üĞÂ maxp 
-			maxpre = pre;									//¸üĞÂ maxpre 
+	while (p != NULL)
+	{ //ç”¨ pæ‰«ææ•´ä¸ªå•é“¾è¡¨  preå§‹ç»ˆæŒ‡å‘å…¶å‰é©±ç»“ç‚¹
+		if (maxp->data < p->data)
+		{				  // è‹¥æ‰¾åˆ°ä¸€ä¸ªæ›´å¤§çš„ç»“ç‚¹
+			maxp = p;	  //æ›´æ–° maxp
+			maxpre = pre; //æ›´æ–° maxpre
 		}
-		pre = p;												// preÍ¬Ê±ºóÒÆÒ»¸ö½áµã 
+		pre = p; // preåŒæ—¶åç§»ä¸€ä¸ªç»“ç‚¹
 		p = p->next;
 	}
-	maxpre->next = maxp->next;					//É¾³ı maxp½áµã 
-	free(maxp);												//ÊÍ·Å maxp½áµã¿Õ¼ä 
+	maxpre->next = maxp->next; //åˆ é™¤ maxpç»“ç‚¹
+	free(maxp);				   //é‡Šæ”¾ maxpç»“ç‚¹ç©ºé—´
 }
 
-//Àı 2.8 Éè¼ÆÒ»¸öËã·¨Ê¹ÓĞÒ»¸ö´øÍ·½áµãµÄµ¥Á´±í L µİÔöÓĞĞòÅÅÁĞ
+//ä¾‹ 2.8 è®¾è®¡ä¸€ä¸ªç®—æ³•ä½¿æœ‰ä¸€ä¸ªå¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨ L é€’å¢æœ‰åºæ’åˆ—
 void sort(LinkNode *&L)
 {
 	LinkNode *p, *pre, *q;
-	p = L->next->next;								//pÖ¸Ïò LµÄµÚ¶ş¸öÊı¾İ½áµã 
-	L->next->next = NULL;						//¹¹ÔìÖ»º¬Ò»¸öÊı¾İ½áµãµÄÓĞĞòµ¥Á´±í 
-	while (p != NULL) {
-		q = p->next;									//q±£´æ pµÄÏÂÒ»¸ö½áµã 
-		pre = L;											//´ÓÓĞĞòµ¥Á´±í¿ªÍ·½øĞĞ±È½Ï£¬preÖ¸Ïò²åÈë½áµãµÄÇ°Çı½áµã 
+	p = L->next->next;	  // pæŒ‡å‘ Lçš„ç¬¬äºŒä¸ªæ•°æ®ç»“ç‚¹
+	L->next->next = NULL; //æ„é€ åªå«ä¸€ä¸ªæ•°æ®ç»“ç‚¹çš„æœ‰åºå•é“¾è¡¨
+	while (p != NULL)
+	{
+		q = p->next; // qä¿å­˜ pçš„ä¸‹ä¸€ä¸ªç»“ç‚¹
+		pre = L;	 //ä»æœ‰åºå•é“¾è¡¨å¼€å¤´è¿›è¡Œæ¯”è¾ƒï¼ŒpreæŒ‡å‘æ’å…¥ç»“ç‚¹çš„å‰é©±ç»“ç‚¹
 		while (pre->next != NULL && pre->next->data < p->data)
-			pre = pre->next;							//ÔÚÓĞĞòµ¥Á´±íÖĞÕÒ²åÈë pËùÖ¸½áµãµÄÇ°Çı½áµã£¨preËùÖ¸Ïò£© 
-		p->next = pre->next;						//ÔÚ preËùÖ¸½áµãÖ®ºó²åÈë pËùÖ¸½áµã 
+			pre = pre->next; //åœ¨æœ‰åºå•é“¾è¡¨ä¸­æ‰¾æ’å…¥ pæ‰€æŒ‡ç»“ç‚¹çš„å‰é©±ç»“ç‚¹ï¼ˆpreæ‰€æŒ‡å‘ï¼‰
+		p->next = pre->next; //åœ¨ preæ‰€æŒ‡ç»“ç‚¹ä¹‹åæ’å…¥ pæ‰€æŒ‡ç»“ç‚¹
 		pre->next = p;
-		p = q;												//É¨ÃèÔ­µ¥Á´±íÓàÏÂµÄ½áµã 
+		p = q; //æ‰«æåŸå•é“¾è¡¨ä½™ä¸‹çš„ç»“ç‚¹
 	}
 }

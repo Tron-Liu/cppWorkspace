@@ -1,11 +1,13 @@
 #include <iostream>
 
-typedef int KeyType;		//¹Ø¼ü×ÖÀàĞÍ
-typedef struct node {
-	KeyType key;				//¹Ø¼ü×ÖÓò
-	struct node *next;		//ÏÂÒ»¸ö½áµãÖ¸Õë
-}NodeType;						//µ¥Á´±í½áµãÀàĞÍ
+typedef int KeyType; //å…³é”®å­—ç±»å‹
+typedef struct node
+{
+	KeyType key;	   //å…³é”®å­—åŸŸ
+	struct node *next; //ä¸‹ä¸€ä¸ªç»“ç‚¹æŒ‡é’ˆ
+} NodeType;			   //å•é“¾è¡¨ç»“ç‚¹ç±»å‹
 
-typedef struct {
-	NodeType *firstp;		//Ê×½áµãÖ¸Õë
-}HashTable;						//¹şÏ£±íµ¥ÔªÀàĞÍ
+typedef struct
+{
+	NodeType *firstp; //é¦–ç»“ç‚¹æŒ‡é’ˆ
+} HashTable;		  //å“ˆå¸Œè¡¨å•å…ƒç±»å‹

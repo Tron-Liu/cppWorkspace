@@ -1,109 +1,109 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include"SqStack.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "SqStack.h"
 #include "SqStack1.h"
 
-void  trans(char *exp, char postexp[])		//½«ËãÊõ±í´ïÊ½exp×ª»»³Éºó×º±í´ïÊ½postexp
+void trans(char *exp, char postexp[]) //å°†ç®—æœ¯è¡¨è¾¾å¼expè½¬æ¢æˆåŽç¼€è¡¨è¾¾å¼postexp
 {
 	char e;
-	SqStack *Optr;										//¶¨ÒåÔËËã·ûÕ»Ö¸Õë
-	InitStack(Optr);									//³õÊ¼»¯ÔËËã·ûÕ»
-	int i = 0;												//i×÷ÎªpostexpµÄÏÂ±ê
-	while (* exp!='\0')								//exp±í´ïÊ½Î´É¨ÃèÍêÊ±Ñ­»·
+	SqStack *Optr;		 //å®šä¹‰è¿ç®—ç¬¦æ ˆæŒ‡é’ˆ
+	InitStack(Optr);	 //åˆå§‹åŒ–è¿ç®—ç¬¦æ ˆ
+	int i = 0;			 // iä½œä¸ºpostexpçš„ä¸‹æ ‡
+	while (*exp != '\0') // expè¡¨è¾¾å¼æœªæ‰«æå®Œæ—¶å¾ªçŽ¯
 	{
 		switch (*exp)
 		{
-		case '(':												//ÅÐ¶¨Îª×óÀ¨ºÅ
-			Push(Optr, '(');								//×óÀ¨ºÅ½øÕ»
-			exp++;											//¼ÌÐøÉ¨ÃèÆäËûÔªËØ
+		case '(':			 //åˆ¤å®šä¸ºå·¦æ‹¬å·
+			Push(Optr, '('); //å·¦æ‹¬å·è¿›æ ˆ
+			exp++;			 //ç»§ç»­æ‰«æå…¶ä»–å…ƒç´ 
 			break;
-		case ')':												//ÅÐ¶¨ÎªÓÒÀ¨ºÅ
-			Pop(Optr, e);								//³öÕ»ÔªËØe
-			while (e != '(')								//²»ÎªÓÒÀ¨ºÅÊ±Ñ­»·
+		case ')':			 //åˆ¤å®šä¸ºå³æ‹¬å·
+			Pop(Optr, e);	 //å‡ºæ ˆå…ƒç´ e
+			while (e != '(') //ä¸ä¸ºå³æ‹¬å·æ—¶å¾ªçŽ¯
 			{
-				postexp[i++] = e;					//½«e´æ·Åµ½postexpÖÐ
-				Pop(Optr, e);							//¼ÌÐø³öÕ»ÔªËØe
+				postexp[i++] = e; //å°†eå­˜æ”¾åˆ°postexpä¸­
+				Pop(Optr, e);	  //ç»§ç»­å‡ºæ ˆå…ƒç´ e
 			}
-			exp++;											//¼ÌÐøÉ¨ÃèÆäËûÔªËØ
+			exp++; //ç»§ç»­æ‰«æå…¶ä»–å…ƒç´ 
 			break;
 		case '+':
-		case '-':												//ÅÐ¶¨Îª¼Ó»ò¼õºÅ
-			while (!StackEmpty(Optr))			//Õ»²»¿ÕÊ±Ñ­»·
+		case '-':					  //åˆ¤å®šä¸ºåŠ æˆ–å‡å·
+			while (!StackEmpty(Optr)) //æ ˆä¸ç©ºæ—¶å¾ªçŽ¯
 			{
-				GetTop(Optr, e);						//È¡Õ»¶¥ÔªËØ
-				if (e != '(')									//e²»ÊÇÓÒÀ¨ºÅ
+				GetTop(Optr, e); //å–æ ˆé¡¶å…ƒç´ 
+				if (e != '(')	 // eä¸æ˜¯å³æ‹¬å·
 				{
-					postexp[i++] = e;				//½«e´æ·Åµ½postexpÖÐ
-					Pop(Optr, e);						//³öÕ»ÔªËØ
+					postexp[i++] = e; //å°†eå­˜æ”¾åˆ°postexpä¸­
+					Pop(Optr, e);	  //å‡ºæ ˆå…ƒç´ 
 				}
-				else											//ÊÇÓÒÀ¨ºÅÊ±ÍË³öÑ­»·
+				else //æ˜¯å³æ‹¬å·æ—¶é€€å‡ºå¾ªçŽ¯
 					break;
 			}
-			Push(Optr, *exp);							//½«'+'»ò'-'½øÕ»
-			exp++;											//¼ÌÐøÉ¨ÃèÆäËû×Ö·û
+			Push(Optr, *exp); //å°†'+'æˆ–'-'è¿›æ ˆ
+			exp++;			  //ç»§ç»­æ‰«æå…¶ä»–å­—ç¬¦
 			break;
 		case '*':
-		case '/':												//ÅÐ¶ÏÎª'*'»ò'/'ºÅ
-			while (!StackEmpty(Optr))			//Õ»²»¿ÕÊ±Ñ­»·
+		case '/':					  //åˆ¤æ–­ä¸º'*'æˆ–'/'å·
+			while (!StackEmpty(Optr)) //æ ˆä¸ç©ºæ—¶å¾ªçŽ¯
 			{
-				GetTop(Optr, e);						//È¡Õ»¶¥ÔªËØ
-				if (e == '*' || e == '/')				//½«Õ»¶¥ÔªËØ'*'»ò'/'ÔËËã·û³öÕ»²¢´æ·Åµ½postexpÖÐ
+				GetTop(Optr, e);		  //å–æ ˆé¡¶å…ƒç´ 
+				if (e == '*' || e == '/') //å°†æ ˆé¡¶å…ƒç´ '*'æˆ–'/'è¿ç®—ç¬¦å‡ºæ ˆå¹¶å­˜æ”¾åˆ°postexpä¸­
 				{
-					postexp[i++] = e;				//½«e´æ·Åµ½postexpÖÐ
-					Pop(Optr, e);						//³öÕ»eÔªËØ
+					postexp[i++] = e; //å°†eå­˜æ”¾åˆ°postexpä¸­
+					Pop(Optr, e);	  //å‡ºæ ˆeå…ƒç´ 
 				}
-				else											//eÎª·Ç'*'»ò'/'ÔËËã·ûÊ±ÍË³öÑ­»·
+				else // eä¸ºéž'*'æˆ–'/'è¿ç®—ç¬¦æ—¶é€€å‡ºå¾ªçŽ¯
 					break;
 			}
-			Push(Optr, *exp);							//½«'*'»ò'/'½øÕ»
-			exp++;											//¼ÌÐøÉ¨ÃèÆäËûÔªËØ
+			Push(Optr, *exp); //å°†'*'æˆ–'/'è¿›æ ˆ
+			exp++;			  //ç»§ç»­æ‰«æå…¶ä»–å…ƒç´ 
 			break;
-		default:											//´¦ÀíÊý×Ö×Ö·û
-			while (*exp>='0'&&*exp<='9')	//ÅÐ¶ÏÎªÊý×Ö×Ö·û
+		default:							   //å¤„ç†æ•°å­—å­—ç¬¦
+			while (*exp >= '0' && *exp <= '9') //åˆ¤æ–­ä¸ºæ•°å­—å­—ç¬¦
 			{
 				postexp[i++] = *exp;
 				exp++;
 			}
-			postexp[i++] = '#';						//ÓÃ#±êÊ¶Ò»¸öÊý×Ö´®½áÊø
+			postexp[i++] = '#'; //ç”¨#æ ‡è¯†ä¸€ä¸ªæ•°å­—ä¸²ç»“æŸ
 		}
 	}
-	while (!StackEmpty(Optr))					//´ËÊ±expÉ¨ÃèÍê±Ï£¬Õ»²»¿ÕÊ±Ñ­»·
+	while (!StackEmpty(Optr)) //æ­¤æ—¶expæ‰«æå®Œæ¯•ï¼Œæ ˆä¸ç©ºæ—¶å¾ªçŽ¯
 	{
-		Pop(Optr, e);									//³öÕ»ÔªËØe
-		postexp[i++] = e;							//½«e´æ·Åµ½postexpÖÐ
+		Pop(Optr, e);	  //å‡ºæ ˆå…ƒç´ e
+		postexp[i++] = e; //å°†eå­˜æ”¾åˆ°postexpä¸­
 	}
-	postexp[i] = '\0';									//¸øpostexp±í´ïÊ½Ìí¼Ó½áÊø±êÊ¶
-	DestroyStack(Optr);								//Ïú»ÙÕ»
+	postexp[i] = '\0';	//ç»™postexpè¡¨è¾¾å¼æ·»åŠ ç»“æŸæ ‡è¯†
+	DestroyStack(Optr); //é”€æ¯æ ˆ
 }
 
-double compavalue(char *postexp)		//¼ÆËãºó×º±í´ïÊ½µÄÖµ
+double compavalue(char *postexp) //è®¡ç®—åŽç¼€è¡¨è¾¾å¼çš„å€¼
 {
 	double d, a, b, c, e;
-	SqStack1 *Opnd;									//¶¨Òå²Ù×÷ÊýÕ»
-	InitStack1(Opnd);									//³õÊ¼»¯²Ù×÷ÊýÕ»
-	while (*postexp != '\0')						//postexp×Ö·û´®Î´É¨ÃèÍê±Ï
+	SqStack1 *Opnd;			 //å®šä¹‰æ“ä½œæ•°æ ˆ
+	InitStack1(Opnd);		 //åˆå§‹åŒ–æ“ä½œæ•°æ ˆ
+	while (*postexp != '\0') // postexpå­—ç¬¦ä¸²æœªæ‰«æå®Œæ¯•
 	{
 		switch (*postexp)
 		{
-		case '+':											//ÅÐ¶¨Îª'+'ºÅ
-			Pop1(Opnd, a);							//³öÕ»ÔªËØa
-			Pop1(Opnd, b);							//³öÕ»ÔªËØb
-			c = b + a;										//¼ÆËãc
-			Push1(Opnd, c);							//½«¼ÆËã½á¹ûc½øÕ»
+		case '+':			//åˆ¤å®šä¸º'+'å·
+			Pop1(Opnd, a);	//å‡ºæ ˆå…ƒç´ a
+			Pop1(Opnd, b);	//å‡ºæ ˆå…ƒç´ b
+			c = b + a;		//è®¡ç®—c
+			Push1(Opnd, c); //å°†è®¡ç®—ç»“æžœcè¿›æ ˆ
 			break;
-		case '-':												//ÅÐ¶ÏÎª'-'ºÅ
+		case '-': //åˆ¤æ–­ä¸º'-'å·
 			Pop1(Opnd, a);
 			Pop1(Opnd, b);
 			c = b - a;
 			Push1(Opnd, c);
 			break;
-		case '*':											//ÅÐ¶ÏÎª'*'ºÅ
+		case '*': //åˆ¤æ–­ä¸º'*'å·
 			Pop1(Opnd, a);
 			Pop1(Opnd, b);
 			c = b * a;
 			Push1(Opnd, c);
 			break;
-		case '/':												//ÅÐ¶ÏÎª'/'ºÅ
+		case '/': //åˆ¤æ–­ä¸º'/'å·
 			Pop1(Opnd, a);
 			Pop1(Opnd, b);
 			if (a != 0)
@@ -114,35 +114,35 @@ double compavalue(char *postexp)		//¼ÆËãºó×º±í´ïÊ½µÄÖµ
 			}
 			else
 			{
-				printf("\n\t³ýÁã´íÎó£¡\n");
-				exit(0);										//Òì³£ÍË³ö
+				printf("\n\té™¤é›¶é”™è¯¯ï¼\n");
+				exit(0); //å¼‚å¸¸é€€å‡º
 			}
 			break;
-		default:											//´¦ÀíÊý×Ö×Ö·û
-			d = 0;											//½«Á¬ÐøµÄÊý×Ö×Ö·û×ª»»³É¶ÔÓ¦µÄÊýÖµ´æ·Åµ½dÖÐ
-			while (*postexp>='0' && *postexp<='9')		//ÅÐ¶¨ÎªÊý×Ö×Ö·û
+		default:									   //å¤„ç†æ•°å­—å­—ç¬¦
+			d = 0;									   //å°†è¿žç»­çš„æ•°å­—å­—ç¬¦è½¬æ¢æˆå¯¹åº”çš„æ•°å€¼å­˜æ”¾åˆ°dä¸­
+			while (*postexp >= '0' && *postexp <= '9') //åˆ¤å®šä¸ºæ•°å­—å­—ç¬¦
 			{
 				d = 10 * d + *postexp - '0';
 				postexp++;
 			}
-			Push1(Opnd, d);							//½«ÊýÖµd½øÕ»
+			Push1(Opnd, d); //å°†æ•°å€¼dè¿›æ ˆ
 			break;
 		}
-		postexp++;										//¼ÌÐø´¦ÀíÆäËû×Ö·û
+		postexp++; //ç»§ç»­å¤„ç†å…¶ä»–å­—ç¬¦
 	}
-	GetTop1(Opnd, e);								//È¡Õ»¶¥ÔªËØe
-	DestroyStack1(Opnd);							//Ïú»ÙÕ»
-	return e;												//·µ»Øe
+	GetTop1(Opnd, e);	 //å–æ ˆé¡¶å…ƒç´ e
+	DestroyStack1(Opnd); //é”€æ¯æ ˆ
+	return e;			 //è¿”å›že
 }
 
 int main()
 {
-	char exp[] = "(56-20)/(4+2)";									//¿É½«exp¸ÄÎª¼üÅÌÊäÈë
+	char exp[] = "(56-20)/(4+2)"; //å¯å°†expæ”¹ä¸ºé”®ç›˜è¾“å…¥
 	char postexp[MaxSize];
-	trans(exp, postexp);													//½«exp×ª»»Îªpostexp
-	printf("ÖÐ×º±í´ïÊ½:%s\n", exp);									//Êä³öexp
-	printf("ºó×º±í´ïÊ½:%s\n", postexp);							//Êä³öpostexp
-	printf("±í´ïÊ½µÄÖµ:%g\n", compavalue(postexp));	//ÇópostexpµÄÖµ²¢Êä³ö
+	trans(exp, postexp);							//å°†expè½¬æ¢ä¸ºpostexp
+	printf("ä¸­ç¼€è¡¨è¾¾å¼:%s\n", exp);					//è¾“å‡ºexp
+	printf("åŽç¼€è¡¨è¾¾å¼:%s\n", postexp);				//è¾“å‡ºpostexp
+	printf("è¡¨è¾¾å¼çš„å€¼:%g\n", compavalue(postexp)); //æ±‚postexpçš„å€¼å¹¶è¾“å‡º
 	system("pause");
 	return 1;
 }

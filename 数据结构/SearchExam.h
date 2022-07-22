@@ -1,23 +1,27 @@
 #pragma once
 #include "SearchType.h"
 
-//Àı9.4 ÕÒ³ö×ó×ÓÊ÷µÄ×î´ó½áµãºÍÓÒ×ÓÊ÷µÄ×îĞ¡½áµã
-void maxminnode(BSTNode *p) {
-	if (p != NULL) {
+//ä¾‹9.4 æ‰¾å‡ºå·¦å­æ ‘çš„æœ€å¤§ç»“ç‚¹å’Œå³å­æ ‘çš„æœ€å°ç»“ç‚¹
+void maxminnode(BSTNode *p)
+{
+	if (p != NULL)
+	{
 		if (p->lchild != NULL)
-			printf("×ó×ÓÊ÷µÄ×î´ó½áµãÎª£º%d\n", maxnode(p->lchild));
+			printf("å·¦å­æ ‘çš„æœ€å¤§ç»“ç‚¹ä¸ºï¼š%d\n", maxnode(p->lchild));
 		if (p->rchild != NULL)
-			printf("ÓÒ×ÓÊ÷µÄ×î´ó½áµãÎª£º%d\n", maxnode(p->lchild));
+			printf("å³å­æ ‘çš„æœ€å¤§ç»“ç‚¹ä¸ºï¼š%d\n", maxnode(p->lchild));
 	}
 }
 
-KeyType maxnode(BSTNode *p) {		//·µ»ØÒ»¿Ã¶ş²æÅÅĞòÊ÷ÖĞ×î´ó½áµã¹Ø¼ü×Ö
+KeyType maxnode(BSTNode *p)
+{ //è¿”å›ä¸€æ£µäºŒå‰æ’åºæ ‘ä¸­æœ€å¤§ç»“ç‚¹å…³é”®å­—
 	while (p->rchild != NULL)
 		p = p->rchild;
 	return (p->data);
 }
 
-KeyType minnode(BSTNode *p) {		//·µ»ØÒ»¿Ã¶ş²æÅÅĞòÊ÷ÖĞ×îĞ¡½áµã¹Ø¼ü×Ö
+KeyType minnode(BSTNode *p)
+{ //è¿”å›ä¸€æ£µäºŒå‰æ’åºæ ‘ä¸­æœ€å°ç»“ç‚¹å…³é”®å­—
 	while (p->lchild != NULL)
 		p = p->lchild;
 	return (p->data);

@@ -2,13 +2,15 @@
 #include "SearchType.h"
 #include "InsertBST.h"
 
-//·µ»ØBSTÊ÷¸ù½ÚµãÖ¸Õë
-BSTNode *CreateBST(KeyType A[], int n) {		//´´½¨¶ş²æÅÅĞòÊ÷
-	BSTNode *bt = NULL;			//³õÊ¼Ê± bt Îª¿ÕÊ÷
+//è¿”å›BSTæ ‘æ ¹èŠ‚ç‚¹æŒ‡é’ˆ
+BSTNode *CreateBST(KeyType A[], int n)
+{						//åˆ›å»ºäºŒå‰æ’åºæ ‘
+	BSTNode *bt = NULL; //åˆå§‹æ—¶ bt ä¸ºç©ºæ ‘
 	int i = 0;
-	while (i < n) {
-		InsertBST(bt, A[i]);			//½«¹Ø¼ü×ÖA[i]²åÈë¶ş²æÅÅĞòÊ÷ bt ÖĞ
+	while (i < n)
+	{
+		InsertBST(bt, A[i]); //å°†å…³é”®å­—A[i]æ’å…¥äºŒå‰æ’åºæ ‘ bt ä¸­
 		i++;
 	}
-	return bt;								//·µ»Ø½¨Á¢µÄ¶ş²æÅÅĞòÊ÷µÄ¸ùÖ¸Õë
+	return bt; //è¿”å›å»ºç«‹çš„äºŒå‰æ’åºæ ‘çš„æ ¹æŒ‡é’ˆ
 }

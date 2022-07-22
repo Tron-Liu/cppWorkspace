@@ -1,11 +1,13 @@
 #pragma once
 #include "Sqlist.h"
 
-//ÕûÌå½¨Á¢Ë³Ğò±í
-void CreateList(Sqlist * &L, ElemType a[], int n) {	 //ÓÉaÖĞµÄn¸öÔªËØ½¨Á¢Ë³Ğò±í
-	L = (Sqlist *)malloc(sizeof(Sqlist));		//·ÖÅä´æ·ÅÏßĞÔ±íµÄ¿Õ¼ä
-	for (int i = 0; i < n; i++) {						//iÉ¨ÃèÊı×éaÖĞµÄÔªËØ
-		L->data[i] = a[i];								//½«ÔªËØa[i]´æ·Åµ½LÖĞ
+//æ•´ä½“å»ºç«‹é¡ºåºè¡¨
+void CreateList(Sqlist *&L, ElemType a[], int n)
+{										  //ç”±aä¸­çš„nä¸ªå…ƒç´ å»ºç«‹é¡ºåºè¡¨
+	L = (Sqlist *)malloc(sizeof(Sqlist)); //åˆ†é…å­˜æ”¾çº¿æ€§è¡¨çš„ç©ºé—´
+	for (int i = 0; i < n; i++)
+	{					   // iæ‰«ææ•°ç»„aä¸­çš„å…ƒç´ 
+		L->data[i] = a[i]; //å°†å…ƒç´ a[i]å­˜æ”¾åˆ°Lä¸­
 	}
-	L->length = n;										//ÉèÖÃLµÄ³¤¶Èn
+	L->length = n; //è®¾ç½®Lçš„é•¿åº¦n
 }

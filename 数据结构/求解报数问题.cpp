@@ -2,30 +2,33 @@
 #include <stdlib.h>
 #include "circular_queue1.h"
 
-void number(int n) {
+void number(int n)
+{
 	int i;
 	ElemType e;
-	SqQueue *q;						//ª∑–Œ∂”¡–÷∏’Îq
-	InitQueue(q);						//≥ı ºªØ∂”¡–q
-	for (i = 1; i <= n; i++)			//ππΩ®≥ı º–Ú¡–
+	SqQueue *q;				 //ÁéØÂΩ¢ÈòüÂàóÊåáÈíàq
+	InitQueue(q);			 //ÂàùÂßãÂåñÈòüÂàóq
+	for (i = 1; i <= n; i++) //ÊûÑÂª∫ÂàùÂßãÂ∫èÂàó
 		enQueue(q, i);
-	printf("±® ˝≥ˆ¡–À≥–Ú£∫");
-	while (!QueueEmpty(q)) {	//∂”¡–≤ªø’—≠ª∑
-		deQueue(q, e);					//≥ˆ∂”“ª∏ˆ‘™Àÿe
-		printf("%d ", e);					// ‰≥ˆ‘™Àÿ±‡∫≈
-		if (!QueueEmpty(q)) {		//∂”¡–≤ªø’
-			deQueue(q, e);				//≥ˆ∂”“ª∏ˆ‘™Àÿe
-			enQueue(q, e);				//Ω´∏’≥ˆ∂”µƒ‘™ÀÿΩ¯∂”
+	printf("Êä•Êï∞Âá∫ÂàóÈ°∫Â∫èÔºö");
+	while (!QueueEmpty(q))
+	{					  //ÈòüÂàó‰∏çÁ©∫Âæ™ÁéØ
+		deQueue(q, e);	  //Âá∫Èòü‰∏Ä‰∏™ÂÖÉÁ¥†e
+		printf("%d ", e); //ËæìÂá∫ÂÖÉÁ¥†ÁºñÂè∑
+		if (!QueueEmpty(q))
+		{				   //ÈòüÂàó‰∏çÁ©∫
+			deQueue(q, e); //Âá∫Èòü‰∏Ä‰∏™ÂÖÉÁ¥†e
+			enQueue(q, e); //Â∞ÜÂàöÂá∫ÈòüÁöÑÂÖÉÁ¥†ËøõÈòü
 		}
 	}
 	printf("\n");
-	DestroyQueue(q);				//œ˙ªŸ∂”¡–
+	DestroyQueue(q); //ÈîÄÊØÅÈòüÂàó
 }
 
 int main()
 {
 	int i, n = 8;
-	printf("≥ı º–Ú¡–:");
+	printf("ÂàùÂßãÂ∫èÂàó:");
 	for (i = 1; i <= n; i++)
 		printf("%d ", i);
 	printf("\n");

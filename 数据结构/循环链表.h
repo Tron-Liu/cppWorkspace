@@ -1,66 +1,69 @@
 #include <stdio.h>
 #include <malloc.h>
 typedef int ElemType;
-//Àı2.11 Ñ­»·µ¥Á´±í  p60
+//ä¾‹2.11 å¾ªç¯å•é“¾è¡¨  p60
 typedef struct LNode
 {
 	ElemType data;
 	struct LNode *next;
-}LinkNode;
+} LinkNode;
 
 int count(LinkNode *L, ElemType x)
 {
 	int i = 0;
-	LinkNode *p = L->next;					//pÖ¸ÏòÊ×½áµã£¬iÖÃÎª0
-	while (p != L)									//É¨ÃèÑ­»·µ¥Á´±íL
+	LinkNode *p = L->next; // pæŒ‡å‘é¦–ç»“ç‚¹ï¼Œiç½®ä¸º0
+	while (p != L)		   //æ‰«æå¾ªç¯å•é“¾è¡¨L
 	{
 		if (p->data == x)
-			x++;											//ÕÒµ½ÖµÎªxµÄ½áµãºóÔö1
-		p = p->next;								//pÖ¸ÏòÏÂÒ»¸ö½áµã
+			x++;	 //æ‰¾åˆ°å€¼ä¸ºxçš„ç»“ç‚¹åå¢1
+		p = p->next; // pæŒ‡å‘ä¸‹ä¸€ä¸ªç»“ç‚¹
 	}
-	return i;											//·µ»ØÖµÎªxµÄ½áµã¸öÊı
+	return i; //è¿”å›å€¼ä¸ºxçš„ç»“ç‚¹ä¸ªæ•°
 }
 
-//Àı2.12 Ñ­»·Ë«Á´±í p60
+//ä¾‹2.12 å¾ªç¯åŒé“¾è¡¨ p60
 
 typedef struct DNode
 {
 	ElemType data;
 	struct DNode *prior;
 	struct DNode *next;
-}DLinkNode;
+} DLinkNode;
 
 bool delelem(DLinkNode *&L, ElemType x)
 {
-	DLinkNode *p = L->next;							//pÖ¸ÏòÊ×½áµã
-	while (p != L && p->data != x)					//²éÕÒµÚÒ»¸ödataÖµÎªxµÄ½áµãp
-		p = p->next;											//ÒòÎªÊÇÑ­»·Ë«Á´±í£¬ËùÒÔĞèÒªÈÃp != L
-	if (p != L)														//ÕÒµ½ÁËµÚÒ»¸öÖµÎªxµÄ½áµãp
+	DLinkNode *p = L->next;		   // pæŒ‡å‘é¦–ç»“ç‚¹
+	while (p != L && p->data != x) //æŸ¥æ‰¾ç¬¬ä¸€ä¸ªdataå€¼ä¸ºxçš„ç»“ç‚¹p
+		p = p->next;			   //å› ä¸ºæ˜¯å¾ªç¯åŒé“¾è¡¨ï¼Œæ‰€ä»¥éœ€è¦è®©p != L
+	if (p != L)					   //æ‰¾åˆ°äº†ç¬¬ä¸€ä¸ªå€¼ä¸ºxçš„ç»“ç‚¹p
 	{
-		p->next->prior = p->prior;						//É¾³ı½áµãp
+		p->next->prior = p->prior; //åˆ é™¤ç»“ç‚¹p
 		p->prior->next = p->next;
 		free(p);
-		return true;												//·µ»ØÕæ
+		return true; //è¿”å›çœŸ
 	}
-	else																//Ã»ÓĞÕÒµ½ÖµÎªxµÄ½áµã£¬·µ»Øfalse
+	else //æ²¡æœ‰æ‰¾åˆ°å€¼ä¸ºxçš„ç»“ç‚¹ï¼Œè¿”å›false
 		return false;
 }
 
-//Àı2.13 p60
+//ä¾‹2.13 p60
 bool Symm(DLinkNode *L)
 {
-	bool same = true;					//same±íÊ¾LÊÇ·ñ¶Ô³Æ£¬³õÊ¼Ê±Îªtrue
-	DLinkNode *p = L->next;		//pÖ¸ÏòÊ×½áµã
-	DLinkNode *q = L->prior;		//qÖ¸ÏòÎ²½áµã
+	bool same = true;		 // sameè¡¨ç¤ºLæ˜¯å¦å¯¹ç§°ï¼Œåˆå§‹æ—¶ä¸ºtrue
+	DLinkNode *p = L->next;	 // pæŒ‡å‘é¦–ç»“ç‚¹
+	DLinkNode *q = L->prior; // qæŒ‡å‘å°¾ç»“ç‚¹
 	while (same)
 	{
-		if (p->data != q->data) {		//¶ÔÓ¦½áµãÖµ²»ÏàÍ¬£¬Ñ­»·½áÊø
+		if (p->data != q->data)
+		{ //å¯¹åº”ç»“ç‚¹å€¼ä¸ç›¸åŒï¼Œå¾ªç¯ç»“æŸ
 			same = false;
 		}
-		else {
-			if (p == q || p == q->prior) break;
-			q = q->prior;					//qÇ°ÒÆÒ»¸ö½áµã
-			p = p->next;					//pºóÒÆÒ»¸ö½áµã
+		else
+		{
+			if (p == q || p == q->prior)
+				break;
+			q = q->prior; // qå‰ç§»ä¸€ä¸ªç»“ç‚¹
+			p = p->next;  // påç§»ä¸€ä¸ªç»“ç‚¹
 		}
 	}
 	return same;

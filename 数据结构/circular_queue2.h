@@ -1,56 +1,57 @@
 #pragma once
-//ÒÑÖª¶ÓÍ·Ö¸ÕëºÍ¶ÓÁĞÖĞµÄÔªËØ¸öÊı
+//å·²çŸ¥é˜Ÿå¤´æŒ‡é’ˆå’Œé˜Ÿåˆ—ä¸­çš„å…ƒç´ ä¸ªæ•°
 #include <stdio.h>
 #include <malloc.h>
 #define MaxSize 10
 typedef int ElemType;
 
-typedef struct {
+typedef struct
+{
 	ElemType data[MaxSize];
 	int front;
 	int count;
-}QuType;
+} QuType;
 
-//³õÊ¼»¯Ëã·¨
-void InitQueue(QuType *& qu) {
+//åˆå§‹åŒ–ç®—æ³•
+void InitQueue(QuType *&qu)
+{
 	qu = (QuType *)malloc(sizeof(QuType));
-	qu->front = 0;						//¶ÓÍ·Ö¸ÕëÉèÖÃÎª0
-	qu->count = 0;					//¶ÓÁĞÖĞµÄÔªËØ¸öÊıÉèÖÃÎª0
+	qu->front = 0; //é˜Ÿå¤´æŒ‡é’ˆè®¾ç½®ä¸º0
+	qu->count = 0; //é˜Ÿåˆ—ä¸­çš„å…ƒç´ ä¸ªæ•°è®¾ç½®ä¸º0
 }
 
-//½ø¶ÓËã·¨
+//è¿›é˜Ÿç®—æ³•
 bool EnQueue(QuType *&qu, ElemType x)
 {
-	int rear;																	//ÁÙÊ±´æ·Å¶ÓÎ²Ö¸Õë
-	if (qu->count == MaxSize)										//¶ÓÂúÉÏÒç³ö
+	int rear;				  //ä¸´æ—¶å­˜æ”¾é˜Ÿå°¾æŒ‡é’ˆ
+	if (qu->count == MaxSize) //é˜Ÿæ»¡ä¸Šæº¢å‡º
 		return false;
 	else
 	{
-		rear = (qu->front + qu->count) % MaxSize;		//Çó¶ÓÎ²Î»ÖÃ
-		rear = (rear + 1) % MaxSize;								//¶ÓÎ²Ö¸ÕëÑ­»·Ôö1
+		rear = (qu->front + qu->count) % MaxSize; //æ±‚é˜Ÿå°¾ä½ç½®
+		rear = (rear + 1) % MaxSize;			  //é˜Ÿå°¾æŒ‡é’ˆå¾ªç¯å¢1
 		qu->data[rear] = x;
-		qu->count++;														//ÔªËØ¸öÊıÔö1
+		qu->count++; //å…ƒç´ ä¸ªæ•°å¢1
 		return true;
 	}
 }
 
-//³ö¶ÓËã·¨
+//å‡ºé˜Ÿç®—æ³•
 bool DeQueue(QuType *&qu, ElemType &x)
 {
-	if (qu->count == 0)											//¶Ó¿ÕÏÂÒç³ö
+	if (qu->count == 0) //é˜Ÿç©ºä¸‹æº¢å‡º
 		return false;
 	else
 	{
-		qu->front = (qu->front + 1) % MaxSize;	//¶ÓÍ·ÔªËØÑ­»·Ôö1
+		qu->front = (qu->front + 1) % MaxSize; //é˜Ÿå¤´å…ƒç´ å¾ªç¯å¢1
 		x = qu->data[qu->front];
-		qu->count--;												//ÔªËØ¸öÊı¼õ1
+		qu->count--; //å…ƒç´ ä¸ªæ•°å‡1
 		return true;
 	}
 }
 
-//ÅĞ¶Ï¶ÓÁĞ¿ÕËã·¨
+//åˆ¤æ–­é˜Ÿåˆ—ç©ºç®—æ³•
 bool QueueEmpty(QuType *qu)
 {
 	return (qu->count == 0);
 }
-

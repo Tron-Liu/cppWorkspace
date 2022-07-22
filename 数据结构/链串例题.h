@@ -1,12 +1,15 @@
 #pragma once
-#include "Á´´®.h"
-//Àý4.3
-void Repl(LinkStrNode *&s) {
+#include "é“¾ä¸².h"
+//ä¾‹4.3
+void Repl(LinkStrNode *&s)
+{
 	LinkStrNode *p = s->next, *q;
 	bool find = false;
-	while (p != NULL && p->next != NULL && !find) {		//²éÕÒ'ab'×Ó´®
-		if (p->data == 'a'&&p->next->data == 'b') {				//ÕÒµ½Ê±
-			p->data = 'x';															//Ìæ»»
+	while (p != NULL && p->next != NULL && !find)
+	{ //æŸ¥æ‰¾'ab'å­ä¸²
+		if (p->data == 'a' && p->next->data == 'b')
+		{				   //æ‰¾åˆ°æ—¶
+			p->data = 'x'; //æ›¿æ¢
 			p->next->data = 'z';
 			q = (LinkStrNode *)malloc(sizeof(LinkStrNode));
 			q->data = 'y';
@@ -14,7 +17,7 @@ void Repl(LinkStrNode *&s) {
 			p->next = q;
 			find = true;
 		}
-		else							//ÉÐÎ´ÕÒµ½Ê±¼ÌÐø²éÕÒ
+		else //å°šæœªæ‰¾åˆ°æ—¶ç»§ç»­æŸ¥æ‰¾
 			p = p->next;
 	}
 }

@@ -4,20 +4,24 @@ void BinInsertSort(RecType R[], int n)
 {
 	int i, j, low, high, mid;
 	RecType tmp;
-	for (i = 1; i < n; i++) {
-		if (R[i].key < R[i - 1].key) {			//·´ĞòÊ±
-			tmp = R[i];								//½« R[i] ±£´æµ½ tmp ÖĞ
-			low = 0; high = i - 1;
-			while (low <= high) {				//ÔÚ R[low..high] ÖĞ²éÕÒ²åÈëµÄÎ»ÖÃ
-				mid = (low + high) / 2;		//È¡ÖĞ¼äÎ»ÖÃ
-				if (tmp.key < R[mid].key)	
-					high = mid - 1;				//²åÈëµãÔÚ×ó°ëÇø
+	for (i = 1; i < n; i++)
+	{
+		if (R[i].key < R[i - 1].key)
+		{				//ååºæ—¶
+			tmp = R[i]; //å°† R[i] ä¿å­˜åˆ° tmp ä¸­
+			low = 0;
+			high = i - 1;
+			while (low <= high)
+			{							//åœ¨ R[low..high] ä¸­æŸ¥æ‰¾æ’å…¥çš„ä½ç½®
+				mid = (low + high) / 2; //å–ä¸­é—´ä½ç½®
+				if (tmp.key < R[mid].key)
+					high = mid - 1; //æ’å…¥ç‚¹åœ¨å·¦åŠåŒº
 				else
-					low = mid + 1;					//²åÈëµãÔÚÓÒ°ëÇø
-			}												//ÕÒÎ»ÖÃ high
-			for (j = i - 1; j >= high + 1; j--)		//¼¯ÖĞ½øĞĞÔªËØºóÒÆ
+					low = mid + 1;				//æ’å…¥ç‚¹åœ¨å³åŠåŒº
+			}									//æ‰¾ä½ç½® high
+			for (j = i - 1; j >= high + 1; j--) //é›†ä¸­è¿›è¡Œå…ƒç´ åç§»
 				R[j + 1] = R[j];
-			R[high + 1] = tmp;					//²åÈë tmp
+			R[high + 1] = tmp; //æ’å…¥ tmp
 		}
 	}
 }

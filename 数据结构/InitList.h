@@ -1,9 +1,9 @@
 #pragma once
 #include "LinkNode.h"
 
-/*³õÊ¼»¯ÏßÐÔ±í*/
+/*åˆå§‹åŒ–çº¿æ€§è¡¨*/
 void InitList(LinkNode *&L)
 {
 	L = (LinkNode *)malloc(sizeof(LinkNode));
-	L->next = NULL;												//´´½¨Í·½Úµã 
+	L->next = NULL; //åˆ›å»ºå¤´èŠ‚ç‚¹
 }

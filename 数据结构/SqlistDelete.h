@@ -1,17 +1,20 @@
 #pragma once
 #include "Sqlist.h"
 
-//É¾³ıÊı¾İÔªËØ
-bool ListDelete(Sqlist*&L, int i, ElemType &e) {
+//åˆ é™¤æ•°æ®å…ƒç´ 
+bool ListDelete(Sqlist *&L, int i, ElemType &e)
+{
 	int j;
-	if (i<1 || i>L->length) {						//²ÎÊı i ´íÎóÊ±·µ»Øfalse
+	if (i < 1 || i > L->length)
+	{ //å‚æ•° i é”™è¯¯æ—¶è¿”å›false
 		return false;
 	}
-	i--;													//½«Ë³Ğò±íÂß¼­ĞòºÅ×ª»¯ÎªÎïÀíĞòºÅ
-	e = L->data[i];									//·µ»ØÉ¾³ıÊı¾İÔªËØµÄÖµ
-	for (j = i; j < L->length; j++) {			//½« data[i] Ö®ºóµÄÔªËØÇ°ÒÆÒ»¸öÎ»ÖÃ
+	i--;			//å°†é¡ºåºè¡¨é€»è¾‘åºå·è½¬åŒ–ä¸ºç‰©ç†åºå·
+	e = L->data[i]; //è¿”å›åˆ é™¤æ•°æ®å…ƒç´ çš„å€¼
+	for (j = i; j < L->length; j++)
+	{ //å°† data[i] ä¹‹åçš„å…ƒç´ å‰ç§»ä¸€ä¸ªä½ç½®
 		L->data[j] = L->data[j + 1];
 	}
-	L->length--;										//Ë³Ğò±í³¤¶È¼õÒ»
-	return true;										//³É¹¦É¾³ı·µ»Ø true
+	L->length--; //é¡ºåºè¡¨é•¿åº¦å‡ä¸€
+	return true; //æˆåŠŸåˆ é™¤è¿”å› true
 }

@@ -1,16 +1,16 @@
 #pragma once
 /*ADT Queue
 	{
-		йЩ╬щ╤тоСё╨
-			D={a[i] | 1<=i<=n, n>=0, a[i]н╙ElemTypeюЮпм}
-		йЩ╬щ╧ьо╣ё╨
-			R={<a[i],a[i+1]> | a[i],a[i+1]йТсзDё╛i=1 ,..., n-1}
-		╩Ы╠╬тккЦё╨
-			InitQueue(&q):ЁУй╪╩╞╤сапё╛╧╧тЛр╩╦Ж©у╤сапq║ё
-			DestroyQueue(&q):оЗ╩ы╤сапё╛йм╥е╤сапqу╪сц╣д╢Ф╢╒©у╪Д║ё
-			QueueEmpty(q):еп╤о╤сапйг╥Ян╙©уё╛хТ╤сапqн╙©уё╛тР╥╣╩ьуФё╩╥ЯтР╥╣╩ь╪ы║ё
-			enQueue(&q,e):╫Ь╤сапё╛╫╚т╙кьe╫Ь╤сапвВн╙╤сн╡т╙кь║ё
-			deQueue(&q,&e);ЁЖ╤сапё╛╢с╤сапqжпЁЖ╤ср╩╦Жт╙кьё╛╡╒╫╚фДж╣╦Ё╦Ьe║ё
+		Ф∙╟Ф█╝Е╞╧Х╠║О╪ 
+			D={a[i] | 1<=i<=n, n>=0, a[i]Д╦╨ElemTypeГ╠╩Е·▀}
+		Ф∙╟Ф█╝Е┘ЁГЁ╩О╪ 
+			R={<a[i],a[i+1]> | a[i],a[i+1]Е╠·Д╨▌DО╪▄i=1 ,..., n-1}
+		Е÷╨Ф°╛Х©░Г╝≈О╪ 
+			InitQueue(&q):Е┬²Е╖▀Е▄√И≤÷Е┬≈О╪▄Ф·└И─═Д╦─Д╦╙Г╘╨И≤÷Е┬≈qЦ─┌
+			DestroyQueue(&q):И■─Ф╞│И≤÷Е┬≈О╪▄И┤┼Ф■╬И≤÷Е┬≈qЕ█═Г■╗Г └Е╜≤Е┌╗Г╘╨И≈╢Ц─┌
+			QueueEmpty(q):Е┬╓Ф√╜И≤÷Е┬≈Ф≤╞Е░╕Д╦╨Г╘╨О╪▄Х▀╔И≤÷Е┬≈qД╦╨Г╘╨О╪▄Е┬≥Х©■Е⌡·Г°÷О╪⌡Е░╕Е┬≥Х©■Е⌡·Е│┤Ц─┌
+			enQueue(&q,e):Х©⌡И≤÷Е┬≈О╪▄Е╟├Е┘┐Г╢═eХ©⌡И≤÷Е┬≈Д╫°Д╦╨И≤÷Е╟╬Е┘┐Г╢═Ц─┌
+			deQueue(&q,&e);Е┤╨И≤÷Е┬≈О╪▄Д╩▌И≤÷Е┬≈qД╦╜Е┤╨И≤÷Д╦─Д╦╙Е┘┐Г╢═О╪▄Е╧╤Е╟├Е┘╤Е─╪Х╣▀Г╩≥eЦ─┌
 	}
 */
 
@@ -22,41 +22,41 @@ typedef struct MyStruct
 {
 	ElemType data[MaxSize];
 	int front, rear;
-}SqQueue;
+} SqQueue;
 
-//ЁУй╪╩╞╤сап
+//Е┬²Е╖▀Е▄√И≤÷Е┬≈
 void InitQueue(SqQueue *&q)
 {
 	q = (SqQueue *)malloc(sizeof(SqQueue));
 	q->front = q->rear = -1;
 }
 
-//оЗ╩ы╤сап
+//И■─Ф╞│И≤÷Е┬≈
 void DestroyQueue(SqQueue *&q)
 {
 	free(q);
 }
 
-//еп╤о╤сапйг╥Ян╙©у
+//Е┬╓Ф√╜И≤÷Е┬≈Ф≤╞Е░╕Д╦╨Г╘╨
 bool QueueEmpty(SqQueue *q)
 {
-	return(q->front == q->rear);
+	return (q->front == q->rear);
 }
 
-//╫Ь╤сап
+//Х©⌡И≤÷Е┬≈
 bool enQueue(SqQueue *&q, ElemType e)
 {
-	if (q->rear == MaxSize - 1)			//╤сбЗиорГЁЖ
-		return false;								//╥╣╩ь╪ы
-	q->rear++;									//╤сн╡тЖ1
-	q->data[q->rear] = e;					//rearн╩жц╡ЕхКт╙кьe
-	return true;									//╥╣╩ьуФ
+	if (q->rear == MaxSize - 1) //И≤÷Ф╩║Д╦┼Ф╨╒Е┤╨
+		return false;			//Х©■Е⌡·Е│┤
+	q->rear++;					//И≤÷Е╟╬Е╒·1
+	q->data[q->rear] = e;		// rearД╫█Г╫╝Ф▐▓Е┘╔Е┘┐Г╢═e
+	return true;				//Х©■Е⌡·Г°÷
 }
 
-//ЁЖ╤сап
+//Е┤╨И≤÷Е┬≈
 bool deQueue(SqQueue *&q, ElemType &e)
 {
-	if (q->front == q->rear)				//╤с©уобрГЁЖ
+	if (q->front == q->rear) //И≤÷Г╘╨Д╦▀Ф╨╒Е┤╨
 		return false;
 	q->front++;
 	e = q->data[q->front];

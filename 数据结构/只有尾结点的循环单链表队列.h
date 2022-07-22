@@ -3,53 +3,61 @@
 #include <malloc.h>
 
 typedef int ElemType;
-typedef struct LNode {
+typedef struct LNode
+{
 	ElemType data;
 	LNode *next;
-}LinkNode;
+} LinkNode;
 
-//³õÊ¼»¯Ëã·¨
-void initQueue(LinkNode *&rear) {
+//åˆå§‹åŒ–ç®—æ³•
+void initQueue(LinkNode *&rear)
+{
 	rear = NULL;
 }
 
-//½ø¶ÓËã·¨
-void enQueue(LinkNode *&rear, ElemType e) {
+//è¿›é˜Ÿç®—æ³•
+void enQueue(LinkNode *&rear, ElemType e)
+{
 	LinkNode *p;
-	p = (LinkNode *)malloc(sizeof(LinkNode));			//´´½¨ÐÂ½áµã
+	p = (LinkNode *)malloc(sizeof(LinkNode)); //åˆ›å»ºæ–°ç»“ç‚¹
 	p->data = e;
-	if (rear == NULL) {												//Ô­Á´¶ÓÎª¿Õ
-		p->next = p;													//¸ÄÎªÑ­»·Á´±í
-		rear = p;															//rearÖ¸ÏòÐÂ½áµã
+	if (rear == NULL)
+	{				 //åŽŸé“¾é˜Ÿä¸ºç©º
+		p->next = p; //æ”¹ä¸ºå¾ªçŽ¯é“¾è¡¨
+		rear = p;	 // rearæŒ‡å‘æ–°ç»“ç‚¹
 	}
-	else {																	//Ô­¶ÓÁÐ²»¿Õ
-		p->next = rear->next;										//½«p½áµã²åÈëµ½rear½áµãÖ®ºó
-		rear->next = p;												//¸ÄÎªÑ­»·Á´±í
-		rear = p;															//rearÖ¸ÏòÐÂ½áµãp
+	else
+	{						  //åŽŸé˜Ÿåˆ—ä¸ç©º
+		p->next = rear->next; //å°†pç»“ç‚¹æ’å…¥åˆ°rearç»“ç‚¹ä¹‹åŽ
+		rear->next = p;		  //æ”¹ä¸ºå¾ªçŽ¯é“¾è¡¨
+		rear = p;			  // rearæŒ‡å‘æ–°ç»“ç‚¹p
 	}
 }
 
-//³ö¶ÓËã·¨
-bool deQueue(LinkNode *&rear, ElemType &e) {
+//å‡ºé˜Ÿç®—æ³•
+bool deQueue(LinkNode *&rear, ElemType &e)
+{
 	LinkNode *t;
-	if (rear == NULL)													//¶Ó¿Õ
+	if (rear == NULL) //é˜Ÿç©º
 		return false;
-	else if (rear->next == rear) {								//Ô­¶ÓÁÐÖ»ÓÐÒ»¸ö½áµã
+	else if (rear->next == rear)
+	{ //åŽŸé˜Ÿåˆ—åªæœ‰ä¸€ä¸ªç»“ç‚¹
 		e = rear->data;
 		free(rear);
-		rear == NULL;													//ÈÃrearÎª¿ÕÁ´±í
+		rear == NULL; //è®©rearä¸ºç©ºé“¾è¡¨
 	}
-	else {																	//Ô­¶ÓÖÐÓÐÁ½¸ö»òÁ½¸öÒÔÉÏµÄ½áµã
-		t = rear->next;													//tÖ¸Ïò¶ÓÍ·½áµã
+	else
+	{					//åŽŸé˜Ÿä¸­æœ‰ä¸¤ä¸ªæˆ–ä¸¤ä¸ªä»¥ä¸Šçš„ç»“ç‚¹
+		t = rear->next; // tæŒ‡å‘é˜Ÿå¤´ç»“ç‚¹
 		e = t->data;
-		rear->next = t->next;										//É¾³ýt½áµã
-		free(t);																//ÊÍ·Å½áµã¿Õ¼ä
+		rear->next = t->next; //åˆ é™¤tç»“ç‚¹
+		free(t);			  //é‡Šæ”¾ç»“ç‚¹ç©ºé—´
 	}
 	return true;
 }
 
-//ÅÐ¶Ó¿ÕËã·¨
-bool queueEmpty(LinkNode *rear) {
+//åˆ¤é˜Ÿç©ºç®—æ³•
+bool queueEmpty(LinkNode *rear)
+{
 	return (rear == NULL);
 }
-

@@ -1,37 +1,42 @@
 #pragma once
 #include "BTree.h"
 
-/* 
-	pre ´æ·ÅÏÈĞòĞòÁĞ£¬in ´æ·ÅÖĞĞòĞòÁĞ£¬nÎª¶ş²æÊ÷µÄ½áµã¸öÊı
-	±¾Ëã·¨Ö´ĞĞºó·µ»Ø¹¹ÔìµÄ¶ş²æÁ´µÄ¸ù½ÚµãÖ¸Õë b
+/*
+	pre å­˜æ”¾å…ˆåºåºåˆ—ï¼Œin å­˜æ”¾ä¸­åºåºåˆ—ï¼Œnä¸ºäºŒå‰æ ‘çš„ç»“ç‚¹ä¸ªæ•°
+	æœ¬ç®—æ³•æ‰§è¡Œåè¿”å›æ„é€ çš„äºŒå‰é“¾çš„æ ¹èŠ‚ç‚¹æŒ‡é’ˆ b
 */
-BTNode * CreateBT1(char * pre, char * in, int n) {
-	BTNode * b;
-	char * p;
+BTNode *CreateBT1(char *pre, char *in, int n)
+{
+	BTNode *b;
+	char *p;
 	int k;
-	if (n <= 0) return NULL;
-	b = (BTNode *)malloc(sizeof(BTNode));			//´´½¨¶ş²æÊ÷½áµã b
+	if (n <= 0)
+		return NULL;
+	b = (BTNode *)malloc(sizeof(BTNode)); //åˆ›å»ºäºŒå‰æ ‘ç»“ç‚¹ b
 	b->data = *pre;
-	for (p = in; p < in + n; p++)							//ÔÚÖĞĞòĞòÁĞÖĞÕÒµ½µÈÓÚ *pre ×Ö·ûµÄÎ»ÖÃ k
-		if (*p == *pre)												//pre Ö¸Ïò¸ù½áµã
-			break;														//ÔÚ in ÖĞÕÒµ½ºóÍË³öÑ­»·
-	k = p - in;															//È·¶¨¸ù½áµãÔÚ in ÖĞµÄÎ»ÖÃ
-	b->lchild = CreateBT1(pre + 1, in, k);				//µİ¹é¹¹Ôì×ó×ÓÊ÷
-	b->rchild = CreateBT1(pre + k + 1, p + 1, n - k - 1);		//µİ¹é¹¹ÔìÓÒ×ÓÊ÷
+	for (p = in; p < in + n; p++)						  //åœ¨ä¸­åºåºåˆ—ä¸­æ‰¾åˆ°ç­‰äº *pre å­—ç¬¦çš„ä½ç½® k
+		if (*p == *pre)									  // pre æŒ‡å‘æ ¹ç»“ç‚¹
+			break;										  //åœ¨ in ä¸­æ‰¾åˆ°åé€€å‡ºå¾ªç¯
+	k = p - in;											  //ç¡®å®šæ ¹ç»“ç‚¹åœ¨ in ä¸­çš„ä½ç½®
+	b->lchild = CreateBT1(pre + 1, in, k);				  //é€’å½’æ„é€ å·¦å­æ ‘
+	b->rchild = CreateBT1(pre + k + 1, p + 1, n - k - 1); //é€’å½’æ„é€ å³å­æ ‘
 	return b;
 }
 
-BTNode * CreateBT2(char * post, char * in, int n) {
-	BTNode * b;
+BTNode *CreateBT2(char *post, char *in, int n)
+{
+	BTNode *b;
 	char r, *p;
 	int k;
-	if (n <= 0) return NULL;
-	r = *(post + n - 1);												//¸ù½áµãÖµ
-	b = (BTNode*)malloc(sizeof(BTNode));				//´´½¨¶ş²æÊ÷½áµã b
+	if (n <= 0)
+		return NULL;
+	r = *(post + n - 1);				  //æ ¹ç»“ç‚¹å€¼
+	b = (BTNode *)malloc(sizeof(BTNode)); //åˆ›å»ºäºŒå‰æ ‘ç»“ç‚¹ b
 	b->data = r;
-	for (p = in; p < in + n; p++)								//ÔÚ in ÖĞ²éÕÒ¸ù½Úµã
-		if (*p == r) break;
-	k = p - in;																//k Îª¸ù½ÚµãÔÚ in ÖĞµÄÏÂ±ê
-	b->lchild = CreateBT2(post, in, k);						//µİ¹é¹¹Ôì×ó×ÓÊ÷
-	b->rchild = CreateBT2(post + k, p + 1, n - k - 1);		//µİ¹é¹¹ÔìÓÒ×ÓÊ÷
+	for (p = in; p < in + n; p++) //åœ¨ in ä¸­æŸ¥æ‰¾æ ¹èŠ‚ç‚¹
+		if (*p == r)
+			break;
+	k = p - in;										   // k ä¸ºæ ¹èŠ‚ç‚¹åœ¨ in ä¸­çš„ä¸‹æ ‡
+	b->lchild = CreateBT2(post, in, k);				   //é€’å½’æ„é€ å·¦å­æ ‘
+	b->rchild = CreateBT2(post + k, p + 1, n - k - 1); //é€’å½’æ„é€ å³å­æ ‘
 }

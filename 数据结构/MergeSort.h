@@ -2,51 +2,64 @@
 #include <iostream>
 #include "RecType.h"
 
-//½«Á½¸öÓĞĞò±í¹é²¢ÎªÒ»¸öÓĞĞò±í
-//³ÆR[low..mid]ÎªµÚÒ»¶Î£¬R[mid+1..high]ÎªµÚ¶ş¶Î£¬
-void Merge(RecType R[], int low, int mid, int high) {
+//å°†ä¸¤ä¸ªæœ‰åºè¡¨å½’å¹¶ä¸ºä¸€ä¸ªæœ‰åºè¡¨
+//ç§°R[low..mid]ä¸ºç¬¬ä¸€æ®µï¼ŒR[mid+1..high]ä¸ºç¬¬äºŒæ®µï¼Œ
+void Merge(RecType R[], int low, int mid, int high)
+{
 	RecType *R1;
-	int i = low, j = mid + 1, k = 0;				// k ÊÇR1µÄÏÂ±ê£¬i¡¢j·Ö±ğÎªµÚ1¡¢2¶ÎµÄÏÂ±ê
-	R1 = (RecType*)malloc((high - low + 1) * sizeof(RecType));		//¶¯Ì¬·ÖÅä¿Õ¼ä
-	while(i<=mid&&j<=high)					//ÔÚµÚÒ»¶ÎºÍµÚ¶ş¶Î¾ùÎ´É¨ÃèÍêÊ±Ñ­»·
-		if (R[i].key <= R[j].key)	 {					//½«µÚÒ»¶ÎÖĞµÄÔªËØ·ÅÈëR1ÖĞ
+	int i = low, j = mid + 1, k = 0;							// k æ˜¯R1çš„ä¸‹æ ‡ï¼Œiã€jåˆ†åˆ«ä¸ºç¬¬1ã€2æ®µçš„ä¸‹æ ‡
+	R1 = (RecType *)malloc((high - low + 1) * sizeof(RecType)); //åŠ¨æ€åˆ†é…ç©ºé—´
+	while (i <= mid && j <= high)								//åœ¨ç¬¬ä¸€æ®µå’Œç¬¬äºŒæ®µå‡æœªæ‰«æå®Œæ—¶å¾ªç¯
+		if (R[i].key <= R[j].key)
+		{ //å°†ç¬¬ä¸€æ®µä¸­çš„å…ƒç´ æ”¾å…¥R1ä¸­
 			R1[k] = R[i];
-			i++; k++;
+			i++;
+			k++;
 		}
-		else {												//½«µÚ¶ş¶ÎÖĞµÄÔªËØ·ÅÈëR1ÖĞ
+		else
+		{ //å°†ç¬¬äºŒæ®µä¸­çš„å…ƒç´ æ”¾å…¥R1ä¸­
 			R1[k] = R[j];
-			i++; k++;
+			i++;
+			k++;
 		}
-	while (i <= mid) {									//½«µÚÒ»¶ÎÓàÏÂµÄ²¿·Ö¸´ÖÆµ½R1ÖĞ
+	while (i <= mid)
+	{ //å°†ç¬¬ä¸€æ®µä½™ä¸‹çš„éƒ¨åˆ†å¤åˆ¶åˆ°R1ä¸­
 		R1[k] = R[i];
-		i++; k++;
+		i++;
+		k++;
 	}
-	while (j <= high) {								//½«µÚ¶ş¶ÎÓàÏÂµÄ²¿·Ö¸´ÖÆµ½R1ÖĞ
+	while (j <= high)
+	{ //å°†ç¬¬äºŒæ®µä½™ä¸‹çš„éƒ¨åˆ†å¤åˆ¶åˆ°R1ä¸­
 		R1[k] = R[j];
-		j++; k++;
+		j++;
+		k++;
 	}
-	for (k = 0, i = low; i < high; k++, i++)		//½«R1¸´ÖÆµ½R[low..high]ÖĞ
+	for (k = 0, i = low; i < high; k++, i++) //å°†R1å¤åˆ¶åˆ°R[low..high]ä¸­
 		R[i] = R1[k];
 	free(R1);
 }
 
-void MergePass(RecType R[], int length, int n) {				//¶ÔÕû¸öÅÅĞòĞòÁĞ½øĞĞÒ»ÌË¹é²¢
+void MergePass(RecType R[], int length, int n)
+{ //å¯¹æ•´ä¸ªæ’åºåºåˆ—è¿›è¡Œä¸€è¶Ÿå½’å¹¶
 	int i;
-	for (i = 0; i + 2 * length - 1 < n; i = i + 2 * length)		//¹é²¢ length ³¤µÄÁ½ÏàÁÚ×Ó±í
+	for (i = 0; i + 2 * length - 1 < n; i = i + 2 * length) //å½’å¹¶ length é•¿çš„ä¸¤ç›¸é‚»å­è¡¨
 		Merge(R, i, i + length - 1, i + 2 * length - 1);
-	if (i + length - 1 < n - 1)												//ÓàÏÂÁ½¸ö×Ó±í£¬ºóÕßµÄ³¤¶ÈĞ¡ÓÚ length
-		Merge(R, i, i + length - 1, n - 1);								//¹é²¢ÕâÁ½¸ö×Ó±í
+	if (i + length - 1 < n - 1)				//ä½™ä¸‹ä¸¤ä¸ªå­è¡¨ï¼Œåè€…çš„é•¿åº¦å°äº length
+		Merge(R, i, i + length - 1, n - 1); //å½’å¹¶è¿™ä¸¤ä¸ªå­è¡¨
 }
 
-void MergeSort(RecType R[], int n) {								//¶şÂ·¹é²¢ÅÅĞò
+void MergeSort(RecType R[], int n)
+{ //äºŒè·¯å½’å¹¶æ’åº
 	int length;
-	for (length = 1; length < n; length = 2 * length)			//½øĞĞ floor(n/2) ÌËÅÅĞò£¬floor : ÉÏÈ¡Õûº¯Êı
+	for (length = 1; length < n; length = 2 * length) //è¿›è¡Œ floor(n/2) è¶Ÿæ’åºï¼Œfloor : ä¸Šå–æ•´å‡½æ•°
 		MergePass(R, length, n);
 }
 
-void MergeSortDC(RecType R[], int low, int high) {		//¶ÔR[low..high]½øĞĞ¶şÂ·¹é²¢ÅÅĞò
+void MergeSortDC(RecType R[], int low, int high)
+{ //å¯¹R[low..high]è¿›è¡ŒäºŒè·¯å½’å¹¶æ’åº
 	int mid;
-	if (low < high) {
+	if (low < high)
+	{
 		mid = (low + high) / 2;
 		MergeSortDC(R, low, mid);
 		MergeSortDC(R, mid + 1, high);
@@ -54,6 +67,7 @@ void MergeSortDC(RecType R[], int low, int high) {		//¶ÔR[low..high]½øĞĞ¶şÂ·¹é²¢
 	}
 }
 
-void MergeSort1(RecType R[], int n) {			//×Ô¶¥ÏòÏÂµÄ¶şÂ·¹é²¢Ëã·¨
+void MergeSort1(RecType R[], int n)
+{ //è‡ªé¡¶å‘ä¸‹çš„äºŒè·¯å½’å¹¶ç®—æ³•
 	MergeSortDC(R, 0, n - 1);
 }

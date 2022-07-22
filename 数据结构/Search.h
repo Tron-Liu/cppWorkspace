@@ -1,162 +1,188 @@
 #pragma once
 #include "GraphType.h"
 
-int visited[MAXV] = { 0 };					//È«¾ÖÊı×é
-void DFS(AdjGraph *G, int v) {			//ÒÔÁÚ½Ó±íÎª´æ´¢½á¹¹µÄÉî¶ÈÓÅÏÈ±éÀúËã·¨
+int visited[MAXV] = {0}; //å…¨å±€æ•°ç»„
+void DFS(AdjGraph *G, int v)
+{ //ä»¥é‚»æ¥è¡¨ä¸ºå­˜å‚¨ç»“æ„çš„æ·±åº¦ä¼˜å…ˆéå†ç®—æ³•
 	ArcNode *p;
-	visited[v] = 1;								//ÖÃÒÑ·ÃÎÊµÄ±ê¼Ç
-	printf("%d", v);								//Êä³ö±»·ÃÎÊ¶¥µãµÄ±àºÅ
-	p = G->adjlist[v].firstarc;				//p Ö¸Ïò¶¥µã v µÄµÚÒ»¸öÁÚ½Óµã
-	while (p != NULL) {
-		if (visited[p->adjvex] == 0)		//Èô p->adjvex¶¥µãÎ´±»·ÃÎÊ£¬µİ¹é·ÃÎÊËü
+	visited[v] = 1;				//ç½®å·²è®¿é—®çš„æ ‡è®°
+	printf("%d", v);			//è¾“å‡ºè¢«è®¿é—®é¡¶ç‚¹çš„ç¼–å·
+	p = G->adjlist[v].firstarc; // p æŒ‡å‘é¡¶ç‚¹ v çš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+	while (p != NULL)
+	{
+		if (visited[p->adjvex] == 0) //è‹¥ p->adjvexé¡¶ç‚¹æœªè¢«è®¿é—®ï¼Œé€’å½’è®¿é—®å®ƒ
 			DFS(G, p->adjvex);
-		p = p->nextarc;						//p Ö¸Ïò¶¥µã v µÄÏÂÒ»¸öÁÚ½Óµã
+		p = p->nextarc; // p æŒ‡å‘é¡¶ç‚¹ v çš„ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 	}
 }
 
 #include "circular_queue1.h"
-void BFS(AdjGraph *G, int v) {
+void BFS(AdjGraph *G, int v)
+{
 	int w, i;
 	ArcNode *p;
-	SqQueue *qu;												//¶¨Òå»·ĞÎ¶ÓÁĞÖ¸Õë
-	InitQueue(qu);												//³õÊ¼»¯¶ÓÁĞ
-	int visited1[MAXV];										//¶¨Òå¶¥µã·ÃÎÊ±ê¼ÇÊı×é
-	for (i = 0; i < G->n; i++) visited1[i] = 0;		//·ÃÎÊ±ê¼ÇÊı×é³õÊ¼»¯
-	printf("%2d", v);											//Êä³ö±»·ÃÎÊ¶¥µãµÄ±àºÅ
-	visited1[v] = 1;												//ÖÃÒÑ·ÃÎÊ±ê¼Ç
+	SqQueue *qu;		//å®šä¹‰ç¯å½¢é˜Ÿåˆ—æŒ‡é’ˆ
+	InitQueue(qu);		//åˆå§‹åŒ–é˜Ÿåˆ—
+	int visited1[MAXV]; //å®šä¹‰é¡¶ç‚¹è®¿é—®æ ‡è®°æ•°ç»„
+	for (i = 0; i < G->n; i++)
+		visited1[i] = 0; //è®¿é—®æ ‡è®°æ•°ç»„åˆå§‹åŒ–
+	printf("%2d", v);	 //è¾“å‡ºè¢«è®¿é—®é¡¶ç‚¹çš„ç¼–å·
+	visited1[v] = 1;	 //ç½®å·²è®¿é—®æ ‡è®°
 	enQueue(qu, v);
-	while (!QueueEmpty(qu)) {							//¶Ó²»¿ÕÑ­»·
-		deQueue(qu, w);										//³ö¶ÓÒ»¸ö¶¥µã w
-		p = G->adjlist[w].firstarc;						//Ö¸Ïò w µÄµÚÒ»¸öÁÚ½Óµã
-		while (p != NULL) {									//²éÕÒ w µÄËùÓĞÁÚ½Óµã
-			if (visited1[p->adjvex] == 0) {				//Èôµ±Ç°ÁÚ½ÓµãÎ´±»·ÃÎÊ
-				printf("%2d", p->adjvex);				//·ÃÎÊ¸ÃÁÚ½Óµã
-				visited1[p->adjvex] = 1;					//ÖÃÒÑ·ÃÎÊ±ê¼Ç
-				enQueue(qu, p->adjvex);				//¸Ã¶¥µã½ø¶Ó
+	while (!QueueEmpty(qu))
+	{								//é˜Ÿä¸ç©ºå¾ªç¯
+		deQueue(qu, w);				//å‡ºé˜Ÿä¸€ä¸ªé¡¶ç‚¹ w
+		p = G->adjlist[w].firstarc; //æŒ‡å‘ w çš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+		while (p != NULL)
+		{ //æŸ¥æ‰¾ w çš„æ‰€æœ‰é‚»æ¥ç‚¹
+			if (visited1[p->adjvex] == 0)
+			{							  //è‹¥å½“å‰é‚»æ¥ç‚¹æœªè¢«è®¿é—®
+				printf("%2d", p->adjvex); //è®¿é—®è¯¥é‚»æ¥ç‚¹
+				visited1[p->adjvex] = 1;  //ç½®å·²è®¿é—®æ ‡è®°
+				enQueue(qu, p->adjvex);	  //è¯¥é¡¶ç‚¹è¿›é˜Ÿ
 			}
-			p = p->nextarc;									//ÕÒÏÂÒ»¸öÁÚ½Óµã
+			p = p->nextarc; //æ‰¾ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 		}
 	}
 	printf("\n");
 }
 
-//²ÉÓÃÉî¶ÈÓÅÏÈ±éÀú·ÇÁ¬Í¨Í¼µÄËã·¨
-void DFS1(AdjGraph *G) {
+//é‡‡ç”¨æ·±åº¦ä¼˜å…ˆéå†éè¿é€šå›¾çš„ç®—æ³•
+void DFS1(AdjGraph *G)
+{
 	int i;
 	for (i = 0; i < G->n; i++)
-		if (visited[i] == 0) DFS(G, i);
+		if (visited[i] == 0)
+			DFS(G, i);
 }
 
-//²ÉÓÃ¹ã¶ÈÓÅÏÈ±éÀú·ÇÁ¬Í¨Í¼µÄËã·¨
-void BFS1(AdjGraph *G) {
+//é‡‡ç”¨å¹¿åº¦ä¼˜å…ˆéå†éè¿é€šå›¾çš„ç®—æ³•
+void BFS1(AdjGraph *G)
+{
 	int i;
 	for (i = 0; i < G->n; i++)
-		if (visited[i] == 0)BFS(G, i);
+		if (visited[i] == 0)
+			BFS(G, i);
 }
 
-//Àı8.3 ¼ÙÉèÍ¼ G ²ÉÓÃÁÚ½Ó±í´æ´¢£¬Éè¼ÆÒ»¸öËã·¨£¬ÅĞ¶ÏÎŞÏòÍ¼ G ÊÇ·ñÁ¬Í¨
-bool Connect(AdjGraph * G) {			//ÅĞ¶ÏÎŞÏòÍ¼µÄÁ¬Í¨ĞÔ
+//ä¾‹8.3 å‡è®¾å›¾ G é‡‡ç”¨é‚»æ¥è¡¨å­˜å‚¨ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•ï¼Œåˆ¤æ–­æ— å‘å›¾ G æ˜¯å¦è¿é€š
+bool Connect(AdjGraph *G)
+{ //åˆ¤æ–­æ— å‘å›¾çš„è¿é€šæ€§
 	int i;
 	bool flag = true;
-	for (i = 0; i < G->n; i++)				//visitedÊı×éÖÃ³õÖµ
+	for (i = 0; i < G->n; i++) // visitedæ•°ç»„ç½®åˆå€¼
 		visited[i] = 0;
-	DFS(G, 0);										//µ÷ÓÃ DFS Ëã·¨£¬´Ó¶¥µã 0 ¿ªÊ¼Éî¶ÈÓÅÏÈ±éÀú
-	for(i=0;i<G->n;i++)
-		if (visited[i] == 0) {					//ÈôÓĞ¶¥µãÃ»ÓĞ±»·ÃÎÊµ½£¬ËµÃ÷ÊÇ²»Á¬Í¨µÄ
+	DFS(G, 0); //è°ƒç”¨ DFS ç®—æ³•ï¼Œä»é¡¶ç‚¹ 0 å¼€å§‹æ·±åº¦ä¼˜å…ˆéå†
+	for (i = 0; i < G->n; i++)
+		if (visited[i] == 0)
+		{ //è‹¥æœ‰é¡¶ç‚¹æ²¡æœ‰è¢«è®¿é—®åˆ°ï¼Œè¯´æ˜æ˜¯ä¸è¿é€šçš„
 			flag = false;
 			break;
 		}
 	return flag;
 }
 
-//Àı8.4 ¼ÙÉèÍ¼ G ²ÉÓÃÁÚ½Ó±í´æ´¢£¬Éè¼ÆÒ»¸öËã·¨ÅĞ¶ÏÍ¼ G ÖĞ´Ó¶¥µã u µ½ v ÊÇ·ñ´æÔÚ¼òµ¥Â·¾¶¡£
-//¼òµ¥Â·¾¶£ºÂ·¾¶ÉÏµÄ¶¥µã²»ÖØ¸´
+//ä¾‹8.4 å‡è®¾å›¾ G é‡‡ç”¨é‚»æ¥è¡¨å­˜å‚¨ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•åˆ¤æ–­å›¾ G ä¸­ä»é¡¶ç‚¹ u åˆ° v æ˜¯å¦å­˜åœ¨ç®€å•è·¯å¾„ã€‚
+//ç®€å•è·¯å¾„ï¼šè·¯å¾„ä¸Šçš„é¡¶ç‚¹ä¸é‡å¤
 
-void ExistPath(AdjGraph *G, int u, int v, bool & has) {
-	//has ±íÊ¾ u µ½ v ÊÇ·ñÓĞÂ·¾¶£¬³õÖµÎª false
+void ExistPath(AdjGraph *G, int u, int v, bool &has)
+{
+	// has è¡¨ç¤º u åˆ° v æ˜¯å¦æœ‰è·¯å¾„ï¼Œåˆå€¼ä¸º false
 	int w;
 	ArcNode *p;
-	visited[u] = 1;							//ÖÃÒÑ·ÃÎÊ±ê¼Ç
-	if (u == v) {								//ÕÒµ½Ò»ÌõÂ·¾¶
-		has = true;							//ÖÃ has Îª true²¢·µ»Ø
+	visited[u] = 1; //ç½®å·²è®¿é—®æ ‡è®°
+	if (u == v)
+	{				//æ‰¾åˆ°ä¸€æ¡è·¯å¾„
+		has = true; //ç½® has ä¸º trueå¹¶è¿”å›
 		return;
 	}
-	p = G->adjlist[u].firstarc;			//p Ö¸Ïò¶¥µã u µÄµÚÒ»¸öÁÚ½Óµã
-	while (p != NULL) {
-		w = p->adjvex;					//w Îª¶¥µã u µÄÁÚ½Óµã
+	p = G->adjlist[u].firstarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+	while (p != NULL)
+	{
+		w = p->adjvex; // w ä¸ºé¡¶ç‚¹ u çš„é‚»æ¥ç‚¹
 		if (visited[w] == 0)
 			ExistPath(G, w, v, has);
-		p = p->nextarc;					//p Ö¸Ïò¶¥µã u µÄÏÂÒ»¸öÁÚ½Óµã
+		p = p->nextarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 	}
 }
-//´ËËã·¨ÖĞÈôÃ»ÓĞ¼òµ¥Â·¾¶£¬Ôò³ÌĞòÔËĞĞÖÁ½áÊøÊ± has ÈÔÎª false
+//æ­¤ç®—æ³•ä¸­è‹¥æ²¡æœ‰ç®€å•è·¯å¾„ï¼Œåˆ™ç¨‹åºè¿è¡Œè‡³ç»“æŸæ—¶ has ä»ä¸º false
 
-//Àı 8.5 ¼ÙÉèÍ¼ G ²ÉÓÃÁÚ½Ó±í´æ´¢£¬Éè¼ÆÒ»¸öËã·¨Êä³öÍ¼ GÖĞ´Ó¶¥µã u µ½ v µÄÒ»Ìõ¼òµ¥Â·¾¶
-//¼ÙÉè¼òµ¥Â·¾¶´æÔÚ
-void FindaPath(AdjGraph *G, int u, int v, int path[], int d) {
-	//d ±íÊ¾ path ÖĞµÄÂ·¾¶³¤¶È£¬³õÊ¼Îª -1
+//ä¾‹ 8.5 å‡è®¾å›¾ G é‡‡ç”¨é‚»æ¥è¡¨å­˜å‚¨ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•è¾“å‡ºå›¾ Gä¸­ä»é¡¶ç‚¹ u åˆ° v çš„ä¸€æ¡ç®€å•è·¯å¾„
+//å‡è®¾ç®€å•è·¯å¾„å­˜åœ¨
+void FindaPath(AdjGraph *G, int u, int v, int path[], int d)
+{
+	// d è¡¨ç¤º path ä¸­çš„è·¯å¾„é•¿åº¦ï¼Œåˆå§‹ä¸º -1
 	int w, i;
 	ArcNode *p;
 	visited[u] = 1;
-	d++; path[d] = u;					//Â·¾¶³¤¶È d Ôö 1£¬¶¥µã u ¼ÓÈëµ½Â·¾¶ÖĞ
-	if (u == v) {								//ÕÒµ½Ò»ÌõÂ·¾¶ºóÊä³ö²¢·µ»Ø
+	d++;
+	path[d] = u; //è·¯å¾„é•¿åº¦ d å¢ 1ï¼Œé¡¶ç‚¹ u åŠ å…¥åˆ°è·¯å¾„ä¸­
+	if (u == v)
+	{ //æ‰¾åˆ°ä¸€æ¡è·¯å¾„åè¾“å‡ºå¹¶è¿”å›
 		for (i = 0; i <= d; i++)
 			printf("%d", path[i]);
 		printf("\n");
 		return;
 	}
-	p = G->adjlist[u].firstarc;			//p Ö¸Ïò¶¥µã u µÄµÚÒ»¸öÁÚ½Óµã
-	while (p != NULL) {
-		w = p->adjvex;					//ÁÚ½ÓµãµÄ±àºÅÎª w
+	p = G->adjlist[u].firstarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+	while (p != NULL)
+	{
+		w = p->adjvex; //é‚»æ¥ç‚¹çš„ç¼–å·ä¸º w
 		if (visited[w] == 0)
 			FindaPath(G, w, v, path, d);
-		p = p->nextarc;					//p Ö¸Ïò¶¥µã u µÄÏÂÒ»¸öÁÚ½Óµã
+		p = p->nextarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 	}
 }
 
-//Àı 8.6 ¼ÙÉèÍ¼²ÉÓÃÁÚ½Ó±í G ´æ´¢£¬Éè¼ÆÒ»¸öËã·¨Êä³öÍ¼ G ÖĞ´Ó¶¥µã u µ½ v µÄËùÓĞ¼òµ¥Â·¾¶
-//¼ÙÉèÍ¼ G ÖĞ´Ó¶¥µã u µ½ v ÖÁÉÙ´æÔÚÒ»Ìõ¼òµ¥Â·¾¶
-void FindAllPath(AdjGraph * G, int u, int v, int path[], int d) {
-	// d ±íÊ¾ path ÖĞµÄÂ·¾¶³¤¶È£¬³õÊ¼Îª -1
+//ä¾‹ 8.6 å‡è®¾å›¾é‡‡ç”¨é‚»æ¥è¡¨ G å­˜å‚¨ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•è¾“å‡ºå›¾ G ä¸­ä»é¡¶ç‚¹ u åˆ° v çš„æ‰€æœ‰ç®€å•è·¯å¾„
+//å‡è®¾å›¾ G ä¸­ä»é¡¶ç‚¹ u åˆ° v è‡³å°‘å­˜åœ¨ä¸€æ¡ç®€å•è·¯å¾„
+void FindAllPath(AdjGraph *G, int u, int v, int path[], int d)
+{
+	// d è¡¨ç¤º path ä¸­çš„è·¯å¾„é•¿åº¦ï¼Œåˆå§‹ä¸º -1
 	int w, i;
 	ArcNode *p;
-	d++;											//Â·¾¶³¤¶È d Ôö 1
-	path[d] = u;								//¶¥µã u ¼ÓÈëµ½Â·¾¶ÖĞ
+	d++;		 //è·¯å¾„é•¿åº¦ d å¢ 1
+	path[d] = u; //é¡¶ç‚¹ u åŠ å…¥åˆ°è·¯å¾„ä¸­
 	visited[u] = 1;
-	if (u == v && d >= 0) {			//ÈôÕÒµ½Ò»ÌõÂ·¾¶ÔòÊä³ö
+	if (u == v && d >= 0)
+	{ //è‹¥æ‰¾åˆ°ä¸€æ¡è·¯å¾„åˆ™è¾“å‡º
 		for (i = 0; i <= d; i++)
 			printf("%2d", path[i]);
 		printf("\n");
 	}
-	p = G->adjlist[u].firstarc;			//p Ö¸Ïò¶¥µã u µÄµÚÒ»¸öÁÚ½Óµã
-	while (p != NULL) {
-		w = p->adjvex;					//w Îª¶¥µã u µÄÁÚ½Óµã
-		if (visited[w] == 0)				//Èô w ¶¥µãÎ´±»·ÃÎÊ£¬µİ¹é·ÃÎÊËü
+	p = G->adjlist[u].firstarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+	while (p != NULL)
+	{
+		w = p->adjvex;		 // w ä¸ºé¡¶ç‚¹ u çš„é‚»æ¥ç‚¹
+		if (visited[w] == 0) //è‹¥ w é¡¶ç‚¹æœªè¢«è®¿é—®ï¼Œé€’å½’è®¿é—®å®ƒ
 			FindAllPath(G, w, v, path, d);
-		p = p->nextarc;					//p Ö¸Ïò¶¥µã u µÄÏÂÒ»¸öÁÚ½Óµã
+		p = p->nextarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 	}
-	visited[u] = 0;							//»Ö¸´»·¾³£¬Ê¹¸Ã¶¥µã¿ÉÖØĞÂÊ¹ÓÃ
+	visited[u] = 0; //æ¢å¤ç¯å¢ƒï¼Œä½¿è¯¥é¡¶ç‚¹å¯é‡æ–°ä½¿ç”¨
 }
 
-//Àı 8.7 ¼ÙÉèÍ¼ G ²ÉÓÃÁÚ½Ó±í´æ´¢£¬Éè¼ÆÒ»¸öËã·¨£¬Êä³öÍ¼ G ÖĞ´Ó¶¥µãu µ½ v µÄ³¤¶ÈÎª l µÄËùÓĞ¼òµ¥Â·¾¶
-void PathlenAll(AdjGraph *G, int u, int v, int l, int path[], int d) {
-	// d ±íÊ¾ path ÖĞµÄÂ·¾¶³¤¶È£¬³õÊ¼Îª -1
+//ä¾‹ 8.7 å‡è®¾å›¾ G é‡‡ç”¨é‚»æ¥è¡¨å­˜å‚¨ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•ï¼Œè¾“å‡ºå›¾ G ä¸­ä»é¡¶ç‚¹u åˆ° v çš„é•¿åº¦ä¸º l çš„æ‰€æœ‰ç®€å•è·¯å¾„
+void PathlenAll(AdjGraph *G, int u, int v, int l, int path[], int d)
+{
+	// d è¡¨ç¤º path ä¸­çš„è·¯å¾„é•¿åº¦ï¼Œåˆå§‹ä¸º -1
 	int w, i;
 	ArcNode *p;
-	d++;											//Â·¾¶³¤¶È d Ôö 1
-	path[d] = u;								//¶¥µã u ¼ÓÈëµ½Â·¾¶ÖĞ
+	d++;		 //è·¯å¾„é•¿åº¦ d å¢ 1
+	path[d] = u; //é¡¶ç‚¹ u åŠ å…¥åˆ°è·¯å¾„ä¸­
 	visited[u] = 1;
-	if (u == v && d == l) {			//ÈôÕÒµ½Ò»ÌõÂ·¾¶ÔòÊä³ö
+	if (u == v && d == l)
+	{ //è‹¥æ‰¾åˆ°ä¸€æ¡è·¯å¾„åˆ™è¾“å‡º
 		for (i = 0; i <= d; i++)
 			printf(" %d", path[i]);
 		printf("\n");
 	}
-	p = G->adjlist[u].firstarc;			//p Ö¸Ïò¶¥µã u µÄµÚÒ»¸öÁÚ½Óµã
-	while (p != NULL) {
-		w = p->adjvex;					//w Îª¶¥µã u µÄÁÚ½Óµã
-		if (visited[w] == 0)				//Èô w ¶¥µãÎ´±»·ÃÎÊ£¬µİ¹é·ÃÎÊËü
+	p = G->adjlist[u].firstarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹
+	while (p != NULL)
+	{
+		w = p->adjvex;		 // w ä¸ºé¡¶ç‚¹ u çš„é‚»æ¥ç‚¹
+		if (visited[w] == 0) //è‹¥ w é¡¶ç‚¹æœªè¢«è®¿é—®ï¼Œé€’å½’è®¿é—®å®ƒ
 			PathlenAll(G, w, v, l, path, d);
-		p = p->nextarc;					//p Ö¸Ïò¶¥µã u µÄÏÂÒ»¸öÁÚ½Óµã
+		p = p->nextarc; // p æŒ‡å‘é¡¶ç‚¹ u çš„ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
 	}
-	visited[u] = 0;							//»Ö¸´»·¾³£¬Ê¹¸Ã¶¥µã¿ÉÖØĞÂÊ¹ÓÃ
+	visited[u] = 0; //æ¢å¤ç¯å¢ƒï¼Œä½¿è¯¥é¡¶ç‚¹å¯é‡æ–°ä½¿ç”¨
 }

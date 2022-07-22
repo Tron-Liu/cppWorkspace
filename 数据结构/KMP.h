@@ -1,42 +1,55 @@
 #pragma once
-#include "Ë³Ğò´®.h"
-//ÇóÄ£Ê½´®µÄnextÊı×é
-void GetNext(SqString t, int next[]) {			//ÓÉÄ£Ê½´®tÇó³önextÊı×é
+#include "é¡ºåºä¸².h"
+//æ±‚æ¨¡å¼ä¸²çš„nextæ•°ç»„
+void GetNext(SqString t, int next[])
+{ //ç”±æ¨¡å¼ä¸²tæ±‚å‡ºnextæ•°ç»„
 	int j, k;
-	j = 0, k = -1;							//jÉ¨Ãèt£¬k¼ÇÂ¼t[j]Ö®Ç°Óët¿ªÍ·ÏàÍ¬µÄ×Ö·û¸öÊı
-	next[0] = -1;							//ÉèÖÃnext[0]µÄÖµ
-	while (j < t.length - 1) {		//ÇótËùÓĞÎ»ÖÃµÄnextÖµ
-		if (k == -1 || t.data[j] == t.data[k]) {		//kÎª-1»ò±È½ÏµÄ×Ö·ûÏàµÈÊ±
-			j++; k++;						//j£¬kÒÀ´ÎÒÆµ½ÏÂÒ»¸ö×Ö·û
-			next[j] = k;					//ÉèÖÃnext[j]Îªk
+	j = 0, k = -1; // jæ‰«ætï¼Œkè®°å½•t[j]ä¹‹å‰ä¸tå¼€å¤´ç›¸åŒçš„å­—ç¬¦ä¸ªæ•°
+	next[0] = -1;  //è®¾ç½®next[0]çš„å€¼
+	while (j < t.length - 1)
+	{ //æ±‚tæ‰€æœ‰ä½ç½®çš„nextå€¼
+		if (k == -1 || t.data[j] == t.data[k])
+		{ // kä¸º-1æˆ–æ¯”è¾ƒçš„å­—ç¬¦ç›¸ç­‰æ—¶
+			j++;
+			k++;		 // jï¼Œkä¾æ¬¡ç§»åˆ°ä¸‹ä¸€ä¸ªå­—ç¬¦
+			next[j] = k; //è®¾ç½®next[j]ä¸ºk
 		}
-		else k = next[k];				//k»ØÍË
+		else
+			k = next[k]; // kå›é€€
 	}
 }
 
-int KMPIndex(SqString s, SqString t) {
+int KMPIndex(SqString s, SqString t)
+{
 	int next[MaxSize], i = 0, j = 0;
 	GetNext(t, next);
-	while (i < s.length &&j < t.length) {
-		if (j == -1 || s.data[i] == t.data[j]) {
+	while (i < s.length && j < t.length)
+	{
+		if (j == -1 || s.data[i] == t.data[j])
+		{
 			i++;
 			j++;
 		}
-		else j = next[j];				//i²»±ä£¬jºóÍË
+		else
+			j = next[j]; // iä¸å˜ï¼Œjåé€€
 	}
-	if (j >= t.length)				//Æ¥Åä³É¹¦
-		return (i - t.length);		//·µ»Ø×Ó´®Î»ÖÃ
-	else									//Æ¥Åä²»³É¹¦
-		return -1;						//·µ»Ø-1
+	if (j >= t.length)		   //åŒ¹é…æˆåŠŸ
+		return (i - t.length); //è¿”å›å­ä¸²ä½ç½®
+	else					   //åŒ¹é…ä¸æˆåŠŸ
+		return -1;			   //è¿”å›-1
 }
 
-//¸Ä½øºóµÄÇóÄ£Ê½´®µÄnextÊı×é
-void GetNextval(SqString t, int nextval[]) {
+//æ”¹è¿›åçš„æ±‚æ¨¡å¼ä¸²çš„nextæ•°ç»„
+void GetNextval(SqString t, int nextval[])
+{
 	int j = 0, k = -1;
 	nextval[0] = -1;
-	while (j < t.length) {
-		if (k == -1 || t.data[j] == t.data[k]) {
-			j++; k++;
+	while (j < t.length)
+	{
+		if (k == -1 || t.data[j] == t.data[k])
+		{
+			j++;
+			k++;
 			if (t.data[j] != t.data[k])
 				nextval[j] = k;
 			else
@@ -47,11 +60,14 @@ void GetNextval(SqString t, int nextval[]) {
 	}
 }
 
-int KMPIndex1(SqString s, SqString t) {
+int KMPIndex1(SqString s, SqString t)
+{
 	int nextval[MaxSize], i = 0, j = 0;
 	GetNextval(t, nextval);
-	while (i < s.length && j < t.length) {
-		if (j == -1 || s.data[i] == t.data[j]) {
+	while (i < s.length && j < t.length)
+	{
+		if (j == -1 || s.data[i] == t.data[j])
+		{
 			i++;
 			j++;
 		}
@@ -59,7 +75,7 @@ int KMPIndex1(SqString s, SqString t) {
 			j = nextval[j];
 	}
 	if (j >= t.length)
-		return(i - t.length);
+		return (i - t.length);
 	else
 		return -1;
 }

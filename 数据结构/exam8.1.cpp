@@ -1,19 +1,21 @@
 #include "Search.h"
 #include "Adj.h"
-int main() {
+int main()
+{
 	int path[MAXV];
 	int u = 1, v = 4, l = 3;
 	int n = 5, e = 8;
-	int A[MAXV][MAXV] = { {0,1,0,1,1},{1,0,1,1,0},{0,1,0,1,1},{1,1,1,0,1},{1,0,1,1,0} };
+	int A[MAXV][MAXV] = {{0, 1, 0, 1, 1}, {1, 0, 1, 1, 0}, {0, 1, 0, 1, 1}, {1, 1, 1, 0, 1}, {1, 0, 1, 1, 0}};
 	AdjGraph *G;
 	CreateAdj(G, A, n, e);
-	for (int i = 0; i < n; i++)						//visited Êý×éÖÃ³õÖµ
+	for (int i = 0; i < n; i++) // visited æ•°ç»„ç½®åˆå€¼
 		visited[i] = 0;
-	printf("Í¼ G:\n"); DispAdj(G);				//Êä³öÁÚ½Ó±í
-	printf("´Ó%dµ½%dµÄËùÓÐ³¤¶ÈÎª%dµÄÂ·¾¶£º\n", u, v, l);
+	printf("å›¾ G:\n");
+	DispAdj(G); //è¾“å‡ºé‚»æŽ¥è¡¨
+	printf("ä»Ž%dåˆ°%dçš„æ‰€æœ‰é•¿åº¦ä¸º%dçš„è·¯å¾„: \n", u, v, l);
 	PathlenAll(G, u, v, l, path, -1);
 	printf("\n");
-	DestroyAdj(G);										//Ïú»ÙÁÚ½Ó±í
+	DestroyAdj(G); //é”€æ¯é‚»æŽ¥è¡¨
 	system("pause");
 	return 1;
 }

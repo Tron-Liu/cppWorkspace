@@ -1,49 +1,57 @@
 #pragma once
 #include <iostream>
 #define MAXD 10
-#define MAXR 10			//MAXR Îª×î´ó»ùÊı
+#define MAXR 10 // MAXR ä¸ºæœ€å¤§åŸºæ•°
 
 typedef struct node
 {
-	char data[MAXD];		//MAXD Îª×î´ó¹Ø¼ü×ÖÎ»Êı
-	struct node *next;		//Ö¸ÏòÏÂÒ»½áµã
-}NodeType;						//»ùÊıÅÅĞòÊı¾İµÄ½áµãÀàĞÍ
+	char data[MAXD];   // MAXD ä¸ºæœ€å¤§å…³é”®å­—ä½æ•°
+	struct node *next; //æŒ‡å‘ä¸‹ä¸€ç»“ç‚¹
+} NodeType;			   //åŸºæ•°æ’åºæ•°æ®çš„ç»“ç‚¹ç±»å‹
 
 /*
-	param1£º´æ´¢µÄ´ıÅÅĞòĞòÁĞµÄµ¥Á´±íµÄÖ¸Õë
-	param2£º»ùÊı
-	param3£º¹Ø¼ü×ÖÎ»Êı
+	param1ï¼šå­˜å‚¨çš„å¾…æ’åºåºåˆ—çš„å•é“¾è¡¨çš„æŒ‡é’ˆ
+	param2ï¼šåŸºæ•°
+	param3ï¼šå…³é”®å­—ä½æ•°
 */
-void RadixSort(NodeType *&p, int r, int d) {		//LSD£¨×îµÍÎ»ÓÅÏÈÅÅĞò£©»ùÊıÅÅĞòËã·¨
-	NodeType *head[MAXR], *tail[MAXR], *t;		//¶¨Òå¸÷Á´¶ÓµÄÊ×Î²Ö¸Õë
+void RadixSort(NodeType *&p, int r, int d)
+{										   // LSDï¼ˆæœ€ä½ä½ä¼˜å…ˆæ’åºï¼‰åŸºæ•°æ’åºç®—æ³•
+	NodeType *head[MAXR], *tail[MAXR], *t; //å®šä¹‰å„é“¾é˜Ÿçš„é¦–å°¾æŒ‡é’ˆ
 	int i, j, k;
-	for (i = 0; i <= d - 1; i++) {				//´ÓµÍÎ»µ½¸ßÎ»Ñ­»·
-		for (j = 0; j < r; j++)						//³õÊ¼»¯¸÷Á´¶ÓµÄÊ×¡¢Î²½áµã
+	for (i = 0; i <= d - 1; i++)
+	{							//ä»ä½ä½åˆ°é«˜ä½å¾ªç¯
+		for (j = 0; j < r; j++) //åˆå§‹åŒ–å„é“¾é˜Ÿçš„é¦–ã€å°¾ç»“ç‚¹
 			head[j] = tail[j] = NULL;
-		while (p != NULL) {						//·ÖÅä£º¶ÔÓÚÔ­Á´±íÖĞµÄÃ¿¸ö½áµãÑ­»·
-			k = p->data[i] - '0';					//ÕÒµÚ k ¸öÁ´¶Ó
-			if (head[k] == NULL) {				//µÚ k ¸öÁ´¶Ó¿ÕÊ±£¬¶ÓÍ·¡¢¶ÓÎ²¾ùÖ¸Ïò½áµãp
+		while (p != NULL)
+		{						  //åˆ†é…ï¼šå¯¹äºåŸé“¾è¡¨ä¸­çš„æ¯ä¸ªç»“ç‚¹å¾ªç¯
+			k = p->data[i] - '0'; //æ‰¾ç¬¬ k ä¸ªé“¾é˜Ÿ
+			if (head[k] == NULL)
+			{ //ç¬¬ k ä¸ªé“¾é˜Ÿç©ºæ—¶ï¼Œé˜Ÿå¤´ã€é˜Ÿå°¾å‡æŒ‡å‘ç»“ç‚¹p
 				head[k] = p;
 				tail[k] = p;
 			}
-			else {										//µÚ k ¸öÁ´¶Ó·Ç¿ÕÊ±½áµãp½ø¶Ó
+			else
+			{ //ç¬¬ k ä¸ªé“¾é˜Ÿéç©ºæ—¶ç»“ç‚¹pè¿›é˜Ÿ
 				tail[k]->next = p;
 				tail[k] = p;
 			}
-			p = p->next;							//È¡ÏÂÒ»¸ö´ıÅÅĞòµÄÔªËØ
+			p = p->next; //å–ä¸‹ä¸€ä¸ªå¾…æ’åºçš„å…ƒç´ 
 		}
-		p = NULL;									//ÖØĞÂÓÃpÀ´ÊÕ¼¯ËùÓĞ½áµã
-		for(j = 0; j < r; j++)						//ÊÕ¼¯£º¶ÔÓÚÃ¿Ò»¸öÁ´¶ÓÑ­»·
-			if (head[j] != NULL) {				//ÈôµÚ j ¸ö½áµãÊÇµÚÒ»¸ö·Ç¿ÕÁ´¶Ó
-				if (p == NULL) {
+		p = NULL;				//é‡æ–°ç”¨pæ¥æ”¶é›†æ‰€æœ‰ç»“ç‚¹
+		for (j = 0; j < r; j++) //æ”¶é›†ï¼šå¯¹äºæ¯ä¸€ä¸ªé“¾é˜Ÿå¾ªç¯
+			if (head[j] != NULL)
+			{ //è‹¥ç¬¬ j ä¸ªç»“ç‚¹æ˜¯ç¬¬ä¸€ä¸ªéç©ºé“¾é˜Ÿ
+				if (p == NULL)
+				{
 					p = head[j];
 					t = tail[j];
 				}
-				else {									//Èô p ·Ç¿Õ
+				else
+				{ //è‹¥ p éç©º
 					t->next = head[j];
 					t = tail[j];
 				}
 			}
-		t->next = NULL;							//×îºóÒ»¸ö½áµãµÄ next ÓòÖÃNULL
+		t->next = NULL; //æœ€åä¸€ä¸ªç»“ç‚¹çš„ next åŸŸç½®NULL
 	}
 }

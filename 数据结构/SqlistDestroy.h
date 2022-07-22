@@ -1,7 +1,8 @@
 #pragma once
 #include "Sqlist.h"
 
-//Ïú»ÙÏßĞÔ±í
-void DestroyList(Sqlist *&L) {
-	free(L);										//ÊÍ·Å L ËùÖ¸µÄË³Ğò±í¿Õ¼ä
+//é”€æ¯çº¿æ€§è¡¨
+void DestroyList(Sqlist *&L)
+{
+	free(L); //é‡Šæ”¾ L æ‰€æŒ‡çš„é¡ºåºè¡¨ç©ºé—´
 }

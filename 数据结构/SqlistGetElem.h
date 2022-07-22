@@ -1,11 +1,13 @@
 #pragma once
 #include "Sqlist.h"
 
-//ÇóÏßĞÔ±íÖĞµÄÄ³¸öÊı¾İÔªËØÖµ
-bool GetElem(Sqlist *L, int i, ElemType &e) {
-	if (i<1 || i>L->length) {			//²ÎÊı i ´íÎóÊ¹·µ»Øfalse
+//æ±‚çº¿æ€§è¡¨ä¸­çš„æŸä¸ªæ•°æ®å…ƒç´ å€¼
+bool GetElem(Sqlist *L, int i, ElemType &e)
+{
+	if (i < 1 || i > L->length)
+	{ //å‚æ•° i é”™è¯¯ä½¿è¿”å›false
 		return false;
 	}
-	e = L->data[i - 1];				//È¡ÔªËØÖµ
-	return true;							//³É¹¦ÕÒµ½ÔªËØÊ±·µ»Øtrue
+	e = L->data[i - 1]; //å–å…ƒç´ å€¼
+	return true;		//æˆåŠŸæ‰¾åˆ°å…ƒç´ æ—¶è¿”å›true
 }

@@ -2,30 +2,36 @@
 #include "BTree.h"
 #include "tree_SqStack.h"
 
-void InOrder(BTNode *b) {			//ÖĞĞò±éÀúµİ¹éËã·¨
-	if (b != NULL) {
-		InOrder(b->lchild);				//ÖĞĞò±éÀú×ó×ÓÊ÷
-		printf("%c", b->data);			//·ÃÎÊ¸ù½áµã
-		InOrder(b->rchild);				//ÖĞĞò±éÀúÓÒ×ÓÊ÷
+void InOrder(BTNode *b)
+{ //ä¸­åºéå†é€’å½’ç®—æ³•
+	if (b != NULL)
+	{
+		InOrder(b->lchild);	   //ä¸­åºéå†å·¦å­æ ‘
+		printf("%c", b->data); //è®¿é—®æ ¹ç»“ç‚¹
+		InOrder(b->rchild);	   //ä¸­åºéå†å³å­æ ‘
 	}
 }
 
-void InOrder1(BTNode *b) {		//ÖĞĞò±éÀú·Çµİ¹éËã·¨
+void InOrder1(BTNode *b)
+{ //ä¸­åºéå†éé€’å½’ç®—æ³•
 	BTNode *p;
-	SqStack * st;								//¶¨ÒåÒ»¸öË³ĞòÕ»Ö¸Õë st
-	InitStack(st);								//³õÊ¼»¯Õ» st
+	SqStack *st;   //å®šä¹‰ä¸€ä¸ªé¡ºåºæ ˆæŒ‡é’ˆ st
+	InitStack(st); //åˆå§‹åŒ–æ ˆ st
 	p = b;
-	while (!StackEmpty(st) || p != NULL) {
-		while (p != NULL) {				//É¨Ãè½áµã p µÄËùÓĞ×óÏÂ½áµã²¢½øÕ»
-			Push(st, p);						//½áµã p ½øÕ»
-			p = p->lchild;					//ÒÆ¶¯µ½×óº¢×Ó
+	while (!StackEmpty(st) || p != NULL)
+	{
+		while (p != NULL)
+		{				   //æ‰«æç»“ç‚¹ p çš„æ‰€æœ‰å·¦ä¸‹ç»“ç‚¹å¹¶è¿›æ ˆ
+			Push(st, p);   //ç»“ç‚¹ p è¿›æ ˆ
+			p = p->lchild; //ç§»åŠ¨åˆ°å·¦å­©å­
 		}
-		if (!StackEmpty(st)) {			//ÈôÕ»²»¿Õ
-			Pop(st, p);						//³öÕ»½áµã p
-			printf("%c", p->data);		//·ÃÎÊ½áµã p
-			p = p->rchild;					//×ªÏò´¦ÀíÆäÓÒ×ÓÊ÷
+		if (!StackEmpty(st))
+		{						   //è‹¥æ ˆä¸ç©º
+			Pop(st, p);			   //å‡ºæ ˆç»“ç‚¹ p
+			printf("%c", p->data); //è®¿é—®ç»“ç‚¹ p
+			p = p->rchild;		   //è½¬å‘å¤„ç†å…¶å³å­æ ‘
 		}
 	}
 	printf("\n");
-	DestroyStack(st);						//Ïú»ÙÕ»
+	DestroyStack(st); //é”€æ¯æ ˆ
 }

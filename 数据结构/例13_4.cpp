@@ -5,6 +5,7 @@ class Array
 {
 	int size;
 	T *data;
+
 public:
 	Array(int);
 	~Array();
@@ -21,20 +22,21 @@ Array<T>::Array(int n)
 template <typename T>
 Array<T>::~Array()
 {
-	delete [] data;
+	delete[] data;
 }
 
-template<typename T>
+template <typename T>
 void Array<T>::setvalue()
 {
-	cout << "(ÊäÈë" << size << "¸öÊý¾Ý)" << endl;
-	for (int i = 0; i < size; i++) {
-		cout << "  µÚ" << i + 1 << "¸öÊý¾Ý:";
+	cout << "(è¾“å…¥" << size << "ä¸ªæ•°æ®)" << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cout << "  ç¬¬" << i + 1 << "ä¸ªæ•°æ®:";
 		cin >> data[i];
 	}
 }
 
-template<typename T>
+template <typename T>
 void Array<T>::dispvalue()
 {
 	for (int i = 0; i < size; i++)
@@ -44,15 +46,15 @@ void Array<T>::dispvalue()
 
 int main()
 {
-	Array <char> ac(2);
-	cout << "½¨Á¢Ò»¸ö×Ö·ûÊý×é";
+	Array<char> ac(2);
+	cout << "å»ºç«‹ä¸€ä¸ªå­—ç¬¦æ•°ç»„";
 	ac.setvalue();
-	cout << "  Êý×éµÄÄÚÈÝÊÇ:";
+	cout << "  æ•°ç»„çš„å†…å®¹æ˜¯:";
 	ac.dispvalue();
-	Array<int>ad(3);
-	cout << "½¨Á¢Ò»¸öÕûÊýÊý×é";
+	Array<int> ad(3);
+	cout << "å»ºç«‹ä¸€ä¸ªæ•´æ•°æ•°ç»„";
 	ad.setvalue();
-	cout << "  Êý×éµÄÄÚÈÝÊÇ:";
+	cout << "  æ•°ç»„çš„å†…å®¹æ˜¯:";
 	ad.dispvalue();
 	system("pause");
 	return 1;

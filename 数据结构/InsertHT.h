@@ -2,39 +2,45 @@
 #include "HashType.h"
 
 /*
-	param1:¹şÏ£±í
-	param2:¹şÏ£±íÒÑ´æÈëµÄÔªËØ
-	param3:¹şÏ£±íµØÖ·¿Õ¼ä´óĞ¡
-	param4:³ıÁôÓàÊı·¨ÖĞµÄ³ıÊı
-	patam5:´ı²åÈë¹Ø¼ü×Ö
+	param1:å“ˆå¸Œè¡¨
+	param2:å“ˆå¸Œè¡¨å·²å­˜å…¥çš„å…ƒç´ 
+	param3:å“ˆå¸Œè¡¨åœ°å€ç©ºé—´å¤§å°
+	param4:é™¤ç•™ä½™æ•°æ³•ä¸­çš„é™¤æ•°
+	patam5:å¾…æ’å…¥å…³é”®å­—
 */
-void InsertHT(HashTable ha[], int &n, int m, int p, KeyType k) {		//½«¹Ø¼ü×Ö k ²åÈëµ½¹şÏ£±íÖĞ
+void InsertHT(HashTable ha[], int &n, int m, int p, KeyType k)
+{ //å°†å…³é”®å­— k æ’å…¥åˆ°å“ˆå¸Œè¡¨ä¸­
 	int i, adr;
-	adr = k % p;														//¼ÆËã¹şÏ£º¯ÊıÖµ
-	if (ha[adr].key == NULLKEY || ha[adr].key == DELKEY) {
-		ha[adr].key = k;											//k ¿ÉÒÔÖ±½Ó·ÅÔÚ¹şÏ£±íÖĞ
+	adr = k % p; //è®¡ç®—å“ˆå¸Œå‡½æ•°å€¼
+	if (ha[adr].key == NULLKEY || ha[adr].key == DELKEY)
+	{
+		ha[adr].key = k; // k å¯ä»¥ç›´æ¥æ”¾åœ¨å“ˆå¸Œè¡¨ä¸­
 		ha[adr].count = 1;
 	}
-	else {																//·¢Éú³åÍ»Ê±²ÉÓÃÏßĞÔÌ½²â·¨½â¾ö³åÍ»
-		i = 1;															// i ¼ÇÂ¼ k ·¢Éú³åÍ»µÄ´ÎÊı
-		do {
-			adr = (adr + 1) % m;								//ÏßĞÔÌ½²â
+	else
+	{		   //å‘ç”Ÿå†²çªæ—¶é‡‡ç”¨çº¿æ€§æ¢æµ‹æ³•è§£å†³å†²çª
+		i = 1; // i è®°å½• k å‘ç”Ÿå†²çªçš„æ¬¡æ•°
+		do
+		{
+			adr = (adr + 1) % m; //çº¿æ€§æ¢æµ‹
 			i++;
 		} while (ha[adr].key != NULLKEY && ha[adr].key != DELKEY);
-		ha[adr].key = k;											//ÔÚ adr ´¦·ÅÖÃ k
-		ha[adr].count = i;											//ÉèÖÃÌ½²â´ÎÊı
+		ha[adr].key = k;   //åœ¨ adr å¤„æ”¾ç½® k
+		ha[adr].count = i; //è®¾ç½®æ¢æµ‹æ¬¡æ•°
 	}
-	n++;																	//¹şÏ£±íÖĞ×ÜÔªËØ¸öÊı¼ÓÒ»
+	n++; //å“ˆå¸Œè¡¨ä¸­æ€»å…ƒç´ ä¸ªæ•°åŠ ä¸€
 }
 
-//ÓÉ¹Ø¼ü×ÖĞòÁĞ keys[0..n1-1]´´½¨¹şÏ£±í
-void CreateHT(HashTable ha[], int &n, int m, int p, KeyType keys[], int n1) {
+//ç”±å…³é”®å­—åºåˆ— keys[0..n1-1]åˆ›å»ºå“ˆå¸Œè¡¨
+void CreateHT(HashTable ha[], int &n, int m, int p, KeyType keys[], int n1)
+{
 	int i;
-	for (i = 0; i < m; i++) {						//¹şÏ£±íÖÃ¿ÕµÄ³õÖµ
+	for (i = 0; i < m; i++)
+	{ //å“ˆå¸Œè¡¨ç½®ç©ºçš„åˆå€¼
 		ha[i].key = NULLKEY;
 		ha[i].count = 0;
 	}
-	n = 0;												//¹şÏ£±íÖĞ×ÜÔªËØ¸öÊı´Ó 0 ¿ªÊ¼µİÔö
+	n = 0; //å“ˆå¸Œè¡¨ä¸­æ€»å…ƒç´ ä¸ªæ•°ä» 0 å¼€å§‹é€’å¢
 	for (i = 0; i < n1; i++)
-		InsertHT(ha, n, m, p, keys[i]);		//²åÈë n ¸ö¹Ø¼ü×Ö
+		InsertHT(ha, n, m, p, keys[i]); //æ’å…¥ n ä¸ªå…³é”®å­—
 }

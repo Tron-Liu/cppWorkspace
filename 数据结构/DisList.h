@@ -1,11 +1,12 @@
 #pragma once
 #include "LinkNode.h"
 
-/*Êä³öÏßÐÔ±í*/
+/*è¾“å‡ºçº¿æ€§è¡¨*/
 void DisList(LinkNode *L)
 {
-	LinkNode *p = L->next;		//pÖ¸ÏòÊ×½áµã 
-	while (p != NULL) {				//p²»Îª NULL 
+	LinkNode *p = L->next; // pæŒ‡å‘é¦–ç»“ç‚¹
+	while (p != NULL)
+	{ // pä¸ä¸º NULL
 		printf("%d", p->data);
 		p = p->next;
 	}

@@ -1,24 +1,26 @@
 #pragma once
 #include "SearchType.h"
-int SeqSearch(RecType R[], int n, KeyType k) {
+int SeqSearch(RecType R[], int n, KeyType k)
+{
 	int i = 0;
-	while (i < n&&R[i].key != k)		//´Ó±íÍ·ÍùºóÕÒ
+	while (i < n && R[i].key != k) //ä»è¡¨å¤´å¾€åæ‰¾
 		i++;
-	if (i >= n)									//Î´ÕÒµ½·µ»Ø0
+	if (i >= n) //æœªæ‰¾åˆ°è¿”å›0
 		return 0;
-	else											//ÕÒµ½·µ»ØÂß¼­ĞòºÅ i+1
+	else //æ‰¾åˆ°è¿”å›é€»è¾‘åºå· i+1
 		return i + 1;
 }
 
-//ÔÚ R µÄÄ©Î²Ôö¼ÓÒ»¸ö¹Ø¼ü×ÖÎª kµÄ¼ÇÂ¼£¬³ÆÖ®ÎªÉÚ±ø
-//ÕâÑù²éÕÒ¹ı³Ì²»ÔÙĞèÒªÅĞ¶Ï i ÊÇ·ñ³¬½ç£¬´Ó¶øÌá¸ß²éÕÒËÙ¶È
-int SeqSearch1(RecType R[], int n, KeyType k) {
+//åœ¨ R çš„æœ«å°¾å¢åŠ ä¸€ä¸ªå…³é”®å­—ä¸º kçš„è®°å½•ï¼Œç§°ä¹‹ä¸ºå“¨å…µ
+//è¿™æ ·æŸ¥æ‰¾è¿‡ç¨‹ä¸å†éœ€è¦åˆ¤æ–­ i æ˜¯å¦è¶…ç•Œï¼Œä»è€Œæé«˜æŸ¥æ‰¾é€Ÿåº¦
+int SeqSearch1(RecType R[], int n, KeyType k)
+{
 	int i = 0;
 	R[n].key = k;
-	while (R[i].key != k)		//´Ó±íÍ·ÍùºóÕÒ
+	while (R[i].key != k) //ä»è¡¨å¤´å¾€åæ‰¾
 		i++;
-	if (i == n)						//Î´ÕÒµ½·µ»Ø0
+	if (i == n) //æœªæ‰¾åˆ°è¿”å›0
 		return 0;
-	else								//ÕÒµ½·µ»ØÂß¼­ĞòºÅ i+1
+	else //æ‰¾åˆ°è¿”å›é€»è¾‘åºå· i+1
 		return i + 1;
 }

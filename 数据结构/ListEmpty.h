@@ -1,8 +1,8 @@
 #pragma once
 #include "LinkNode.h"
 
-/*ÅÐ¶ÏÏßÐÔ±íÊÇ·ñÎª¿Õ±í*/
+/*åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©ºè¡¨*/
 bool ListEmpty(LinkNode *L)
 {
-	return(L->next == NULL);
+	return (L->next == NULL);
 }

@@ -1,21 +1,24 @@
 #pragma once
 #include <iostream>
 
-typedef int KeyType;				//¶¨Òå¹Ø¼ü×ÖÀàĞÍÎª int
-typedef char InfoType;			//InfoType ÀàĞÍÔİ¶¨ÒåÎª char
-typedef struct {
-	KeyType key;						//¹Ø¼ü×ÖÏî
-	InfoType data;						//ÆäËûÊı¾İÏî£¬ÀàĞÍÎª InfoType
-}RecType;									//²éÕÒÔªËØµÄÀàĞÍ
+typedef int KeyType;   //å®šä¹‰å…³é”®å­—ç±»å‹ä¸º int
+typedef char InfoType; // InfoType ç±»å‹æš‚å®šä¹‰ä¸º char
+typedef struct
+{
+	KeyType key;   //å…³é”®å­—é¡¹
+	InfoType data; //å…¶ä»–æ•°æ®é¡¹ï¼Œç±»å‹ä¸º InfoType
+} RecType;		   //æŸ¥æ‰¾å…ƒç´ çš„ç±»å‹
 
-#define MAXI 20			//Ë÷Òı±íµÄ×î´ó³¤¶È
-typedef struct {
-	KeyType key;			//KeyTypeÎª¹Ø¼ü×ÖµÄÀàĞÍ
-	int link;						//Ö¸Ïò¶ÔÓ¦¿éµÄÆğÊ¼ÏÂ±ê
-}IdxType;						//Ë÷Òı±íÔªËØµÄÀàĞÍ
+#define MAXI 20 //ç´¢å¼•è¡¨çš„æœ€å¤§é•¿åº¦
+typedef struct
+{
+	KeyType key; // KeyTypeä¸ºå…³é”®å­—çš„ç±»å‹
+	int link;	 //æŒ‡å‘å¯¹åº”å—çš„èµ·å§‹ä¸‹æ ‡
+} IdxType;		 //ç´¢å¼•è¡¨å…ƒç´ çš„ç±»å‹
 
-typedef struct node{					//ÔªËØÀàĞÍ
-	KeyType key;							//¹Ø¼ü×ÖÏî
-	InfoType data;							//ÆäËûÊı¾İÓò
-	struct node *lchild, *rchild;		//×ó¡¢ÓÒº¢×ÓÖ¸Õë
-}BSTNode;
+typedef struct node
+{								  //å…ƒç´ ç±»å‹
+	KeyType key;				  //å…³é”®å­—é¡¹
+	InfoType data;				  //å…¶ä»–æ•°æ®åŸŸ
+	struct node *lchild, *rchild; //å·¦ã€å³å­©å­æŒ‡é’ˆ
+} BSTNode;

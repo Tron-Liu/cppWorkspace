@@ -1,16 +1,18 @@
 #pragma once
 #include "SearchType.h"
 
-int BinSearch(RecType R[], int n, KeyType k) {		//ÕÛ°ë²éÕÒËã·¨
+int BinSearch(RecType R[], int n, KeyType k)
+{ //æŠ˜åŠæŸ¥æ‰¾ç®—æ³•
 	int low = 0, high = n - 1, mid;
-	while (low <= high) {					//µ±Ç°Çø¼ä´æÔÚÔªËØÊ±Ñ­»·
+	while (low <= high)
+	{ //å½“å‰åŒºé—´å­˜åœ¨å…ƒç´ æ—¶å¾ªç¯
 		mid = (low + high) / 2;
-		if (k == R[mid].key)					//²éÕÒ³É¹¦·µ»ØÆäÂß¼­ĞòºÅ mid+1
+		if (k == R[mid].key) //æŸ¥æ‰¾æˆåŠŸè¿”å›å…¶é€»è¾‘åºå· mid+1
 			return mid + 1;
-		if (k < R[mid].key)					//¼ÌĞøÔÚ R[low..mid-1] ÖĞ²éÕÒ
+		if (k < R[mid].key) //ç»§ç»­åœ¨ R[low..mid-1] ä¸­æŸ¥æ‰¾
 			high = mid - 1;
-		else											// k>R[mid].key
-			low = mid + 1;						//¼ÌĞøÔÚ R[mid+1..high] ÖĞ²éÕÒ
+		else			   // k>R[mid].key
+			low = mid + 1; //ç»§ç»­åœ¨ R[mid+1..high] ä¸­æŸ¥æ‰¾
 	}
-	return 0;										//Î´ÕÒµ½Ê±·µ»Ø0£¨²éÕÒÊ§°Ü£©
+	return 0; //æœªæ‰¾åˆ°æ—¶è¿”å›0ï¼ˆæŸ¥æ‰¾å¤±è´¥ï¼‰
 }

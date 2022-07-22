@@ -4,8 +4,9 @@
 #include <malloc.h>
 
 typedef int ElemType;
-typedef struct DNode {
-	ElemType data;				//´æ·ÅÔªËØÖµ
-	struct DNode *prior;		//Ö¸ÏòÇ°Çı½áµã
-	struct DNode *next;			//Ö¸Ïòºó¼Ì½áµã
-}DLinkNode;							//Ë«Á´±íµÄ½áµãÀàĞÍ
+typedef struct DNode
+{
+	ElemType data;		 //å­˜æ”¾å…ƒç´ å€¼
+	struct DNode *prior; //æŒ‡å‘å‰é©±ç»“ç‚¹
+	struct DNode *next;	 //æŒ‡å‘åç»§ç»“ç‚¹
+} DLinkNode;			 //åŒé“¾è¡¨çš„ç»“ç‚¹ç±»å‹

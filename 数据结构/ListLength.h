@@ -1,14 +1,15 @@
 #pragma once
 #include "LinkNode.h"
 
-/*ÇóÏßĞÔ±íµÄ³¤¶È*/
+/*æ±‚çº¿æ€§è¡¨çš„é•¿åº¦*/
 int ListLength(LinkNode *L)
 {
-	LinkNode *p = L;						//pÖ¸ÏòÍ·½áµã£¬nÖÃ0£¨¼´Í·½áµãµÄĞòºÅÎª 0£© 
+	LinkNode *p = L; // pæŒ‡å‘å¤´ç»“ç‚¹ï¼Œnç½®0ï¼ˆå³å¤´ç»“ç‚¹çš„åºå·ä¸º 0ï¼‰
 	int length = 0;
-	while (p->next != NULL) {
+	while (p->next != NULL)
+	{
 		length++;
 		p = p->next;
 	}
-	return length;							//Ñ­»·½áÊø£¬pÖ¸ÏòÎ²½Úµã£¬ÆäĞòºÅ nÎª½áµã¸öÊı 
+	return length; //å¾ªç¯ç»“æŸï¼ŒpæŒ‡å‘å°¾èŠ‚ç‚¹ï¼Œå…¶åºå· nä¸ºç»“ç‚¹ä¸ªæ•°
 }

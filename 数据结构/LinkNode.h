@@ -3,7 +3,8 @@
 #include <malloc.h>
 
 typedef int ElemType;
-typedef struct LNode {
-	ElemType data;				//´æ·ÅÔªËØÖµ
-	struct LNode *next;			//Ö¸Ïòºó¼Ì½áµã
-}LinkNode;							//µ¥Á´±í½áµãÀàĞÍ
+typedef struct LNode
+{
+	ElemType data;		//å­˜æ”¾å…ƒç´ å€¼
+	struct LNode *next; //æŒ‡å‘åç»§ç»“ç‚¹
+} LinkNode;				//å•é“¾è¡¨ç»“ç‚¹ç±»å‹

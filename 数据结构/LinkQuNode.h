@@ -5,65 +5,73 @@
 typedef int Elemtype;
 typedef struct qnode
 {
-	Elemtype data;				//´æ·ÅÔªËØ
-	struct qnode* next;		//ÏÂÒ»¸ö½áµãÖ¸Õë
-}DataNode;						//Á´¶ÓÊı¾İ½áµãµÄÀàĞÍ
+	Elemtype data;		//å­˜æ”¾å…ƒç´ 
+	struct qnode *next; //ä¸‹ä¸€ä¸ªç»“ç‚¹æŒ‡é’ˆ
+} DataNode;				//é“¾é˜Ÿæ•°æ®ç»“ç‚¹çš„ç±»å‹
 
 typedef struct
 {
-	DataNode *front;		//Ö¸Ïò¶ÓÊ×½áµã
-	DataNode *rear;		//Ö¸Ïò¶ÓÎ²½áµã
-}LinkQuNode;				//Á´¶Ó½áµãµÄÀàĞÍ
+	DataNode *front; //æŒ‡å‘é˜Ÿé¦–ç»“ç‚¹
+	DataNode *rear;	 //æŒ‡å‘é˜Ÿå°¾ç»“ç‚¹
+} LinkQuNode;		 //é“¾é˜Ÿç»“ç‚¹çš„ç±»å‹
 
-//³õÊ¼»¯¶ÓÁĞ
-void InitQueue(LinkQuNode *&q) {
+//åˆå§‹åŒ–é˜Ÿåˆ—
+void InitQueue(LinkQuNode *&q)
+{
 	q = (LinkQuNode *)malloc(sizeof(LinkQuNode));
 	q->front = q->rear = NULL;
 }
 
-//Ïú»Ù¶ÓÁĞ
-void DestroyQueue(LinkQuNode *&q) {
-	DataNode *pre = q->front, *p;				//preÖ¸Ïò¶ÓÊ×½áµã
-	if (pre != NULL) {
-		p = pre->next;										//pÖ¸Ïò½áµãpreµÄºó¼Ì½áµã
-		while (p != NULL) {								//p²»¿ÕÑ­»·
-			free(pre);											//ÊÍ·Åpre½áµã
-			pre = p;											//pre¡¢pÍ¬²½ºóÒÆ
+//é”€æ¯é˜Ÿåˆ—
+void DestroyQueue(LinkQuNode *&q)
+{
+	DataNode *pre = q->front, *p; // preæŒ‡å‘é˜Ÿé¦–ç»“ç‚¹
+	if (pre != NULL)
+	{
+		p = pre->next; // pæŒ‡å‘ç»“ç‚¹preçš„åç»§ç»“ç‚¹
+		while (p != NULL)
+		{			   // pä¸ç©ºå¾ªç¯
+			free(pre); //é‡Šæ”¾preç»“ç‚¹
+			pre = p;   // preã€påŒæ­¥åç§»
 			p = p->next;
 		}
-		free(pre);												//ÊÍ·Å×îºóÒ»¸öÊı¾İ½áµã
+		free(pre); //é‡Šæ”¾æœ€åä¸€ä¸ªæ•°æ®ç»“ç‚¹
 	}
-	free(q);														//ÊÍ·ÅÁ´¶Ó½áµã
+	free(q); //é‡Šæ”¾é“¾é˜Ÿç»“ç‚¹
 }
 
-//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
-bool QueueEmpty(LinkQuNode *q) {
-	return(q->front == NULL);
+//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
+bool QueueEmpty(LinkQuNode *q)
+{
+	return (q->front == NULL);
 }
 
-//½ø¶ÓÁĞ
-void enQueue(LinkQuNode *&q, Elemtype e) {
+//è¿›é˜Ÿåˆ—
+void enQueue(LinkQuNode *&q, Elemtype e)
+{
 	DataNode *p;
-	p = (DataNode *)malloc(sizeof(DataNode));		//´´½¨ĞÂ½áµã
+	p = (DataNode *)malloc(sizeof(DataNode)); //åˆ›å»ºæ–°ç»“ç‚¹
 	p->data = e;
 	p->next = NULL;
-	if (q->rear == NULL)											//ÈôÁ´¶ÓÎª¿Õ£¬ÔòĞÂ½áµã¼ÈÊÇ¶ÓÊ×½áµãÓÖÊÇ¶ÓÎ²½áµã
+	if (q->rear == NULL) //è‹¥é“¾é˜Ÿä¸ºç©ºï¼Œåˆ™æ–°ç»“ç‚¹æ—¢æ˜¯é˜Ÿé¦–ç»“ç‚¹åˆæ˜¯é˜Ÿå°¾ç»“ç‚¹
 		q->front = q->rear = p;
-	else {																	//ÈôÁ´¶Ó²»¿Õ
-		q->rear->next = p;											//½«½áµãpÁ´µ½¶ÓÎ²£¬²¢½«rearÖ¸ÏòËü
+	else
+	{					   //è‹¥é“¾é˜Ÿä¸ç©º
+		q->rear->next = p; //å°†ç»“ç‚¹pé“¾åˆ°é˜Ÿå°¾ï¼Œå¹¶å°†rearæŒ‡å‘å®ƒ
 		q->rear = p;
 	}
 }
 
-//³ö¶ÓÁĞ
-bool deQueue(LinkQuNode *&q, Elemtype &e) {
+//å‡ºé˜Ÿåˆ—
+bool deQueue(LinkQuNode *&q, Elemtype &e)
+{
 	DataNode *t;
-	if (q->rear == NULL)						//Ô­À´¶ÓÁĞÎª¿Õ
+	if (q->rear == NULL) //åŸæ¥é˜Ÿåˆ—ä¸ºç©º
 		return false;
-	t = q->front;									//tÖ¸ÏòÊ×½áµã
-	if (q->front == q->rear)					//Ô­À´¶ÓÁĞÖĞÖ»ÓĞÒ»¸öÊı¾İ½áµãÊ±
+	t = q->front;			 // tæŒ‡å‘é¦–ç»“ç‚¹
+	if (q->front == q->rear) //åŸæ¥é˜Ÿåˆ—ä¸­åªæœ‰ä¸€ä¸ªæ•°æ®ç»“ç‚¹æ—¶
 		q->front = q->rear = NULL;
-	else													//Ô­À´¶ÓÁĞÖĞÓĞÁ½¸ö»òÁ½¸öÒÔÉÏ½áµãÊ±
+	else //åŸæ¥é˜Ÿåˆ—ä¸­æœ‰ä¸¤ä¸ªæˆ–ä¸¤ä¸ªä»¥ä¸Šç»“ç‚¹æ—¶
 		q->front = q->front->next;
 	e = t->data;
 	free(t);

@@ -7,23 +7,25 @@ typedef struct MyStruct
 {
 	ElemType data[MaxSize];
 	int front, rear;
-}SqQueue;
+} SqQueue;
 
-//ÆÕÍ¨Ñ­»·¶ÓÁÐÊÇ£º¶ÓÎ²²åÈë£¬¶ÓÍ·É¾³ý
-//´Ó¶ÓÎ²É¾³ý
-bool deQueue1(SqQueue *&q, ElemType &e) {
-	if (q->front == q->rear)											//¶Ó¿ÕÊ±·µ»Ø¼Ù
+//æ™®é€šå¾ªçŽ¯é˜Ÿåˆ—æ˜¯ï¼šé˜Ÿå°¾æ’å…¥ï¼Œé˜Ÿå¤´åˆ é™¤
+//ä»Žé˜Ÿå°¾åˆ é™¤
+bool deQueue1(SqQueue *&q, ElemType &e)
+{
+	if (q->front == q->rear) //é˜Ÿç©ºæ—¶è¿”å›žå‡
 		return false;
-	e = q->data[q->rear];												//ÌáÈ¡¶ÓÎ²ÔªËØ
-	q->rear = (q->rear - 1 + MaxSize) % MaxSize;		//ÐÞ¸Ä¶ÓÎ²Ö¸Õë
+	e = q->data[q->rear];						 //æå–é˜Ÿå°¾å…ƒç´ 
+	q->rear = (q->rear - 1 + MaxSize) % MaxSize; //ä¿®æ”¹é˜Ÿå°¾æŒ‡é’ˆ
 	return true;
 }
 
-//´Ó¶ÓÍ·²åÈë
-bool enQueue1(SqQueue *&q, ElemType e) {
-	if ((q->rear + 1) % MaxSize == q->front)				//¶ÓÂú·µ»Ø¼Ù
+//ä»Žé˜Ÿå¤´æ’å…¥
+bool enQueue1(SqQueue *&q, ElemType e)
+{
+	if ((q->rear + 1) % MaxSize == q->front) //é˜Ÿæ»¡è¿”å›žå‡
 		return false;
-	q->data[q->front] = e;											//ÔªËØe½ø¶Ó
-	q->front = (q->front - 1 + MaxSize) % MaxSize;	//ÐÞ¸Ä¶ÓÍ·Ö¸Õë
+	q->data[q->front] = e;						   //å…ƒç´ eè¿›é˜Ÿ
+	q->front = (q->front - 1 + MaxSize) % MaxSize; //ä¿®æ”¹é˜Ÿå¤´æŒ‡é’ˆ
 	return true;
 }

@@ -1,30 +1,48 @@
 #pragma once
-#include "BTree.h"												//°üº¬¶ş²æÊ÷µÄ´æ´¢½á¹¹ÉùÃ÷
+#include "BTree.h" //åŒ…å«äºŒå‰æ ‘çš„å­˜å‚¨ç»“æ„å£°æ˜
 
-void CreateBTree(BTNode *&b, const char *str) {
-	BTNode *St[MaxSize], *p;								//StÊı×é×÷ÎªË³ĞòÕ»
-	int top = -1, k, j = 0;										//top×÷ÎªÕ»¶¥Ö¸Õë
+void CreateBTree(BTNode *&b, const char *str)
+{
+	BTNode *St[MaxSize], *p; // Stæ•°ç»„ä½œä¸ºé¡ºåºæ ˆ
+	int top = -1, k, j = 0;	 // topä½œä¸ºæ ˆé¡¶æŒ‡é’ˆ
 	char ch;
-	b = NULL;														//³õÊ¼Ê±¶ş²æÁ´Îª¿Õ
+	b = NULL; //åˆå§‹æ—¶äºŒå‰é“¾ä¸ºç©º
 	ch = str[j];
-	while (ch != '\0') {											//Ñ­»·É¨Ãè str ÖĞµÄÃ¿¸ö×Ö·û
-		switch (ch) {
-		case '(':top++; St[top] = p; k = 1; break;		//¿ªÊ¼´¦Àí×óº¢×Ó½áµã
-		case ')':top--; break;										//Õ»¶¥½áµãµÄ×ÓÊ÷´¦ÀíÍê±Ï
-		case ',':k = 2; break;										//¿ªÊ¼´¦ÀíÓÒº¢×Ó½Úµã
-		default: p = (BTNode *)malloc(sizeof(BTNode));			//´´½¨Ò»¸ö½áµã£¬ÓÉ p Ö¸ÏòËü
-			p->data = ch;											//´æ·Å½áµãÖµ
-			p->lchild = p->rchild = NULL;				//×óÓÒÖ¸Õë¶¼ÉèÖÃÎª¿Õ
-			if (b == NULL)											//ÈôÉĞÎ´½¨Á¢¸ù½Úµã
-				b = p;													//pËùÖ¸½áµã¾Í×÷Îª¸ù½Úµã
-			else {														//ÒÑ½¨Á¢¶ş²æÊ÷¸ù½Úµã
-				switch (k) {
-				case 1: St[top]->lchild = p; break;		//ĞÂ½¨½áµã×÷ÎªÕ»¶¥½áµãµÄ×óº¢×Ó
-				case 2:St[top]->rchild = p; break;		//ĞÂ½¨½áµã×÷ÎªÕ»¶¥½áµãµÄÓÒº¢×Ó
+	while (ch != '\0')
+	{ //å¾ªç¯æ‰«æ str ä¸­çš„æ¯ä¸ªå­—ç¬¦
+		switch (ch)
+		{
+		case '(':
+			top++;
+			St[top] = p;
+			k = 1;
+			break; //å¼€å§‹å¤„ç†å·¦å­©å­ç»“ç‚¹
+		case ')':
+			top--;
+			break; //æ ˆé¡¶ç»“ç‚¹çš„å­æ ‘å¤„ç†å®Œæ¯•
+		case ',':
+			k = 2;
+			break; //å¼€å§‹å¤„ç†å³å­©å­èŠ‚ç‚¹
+		default:
+			p = (BTNode *)malloc(sizeof(BTNode)); //åˆ›å»ºä¸€ä¸ªç»“ç‚¹ï¼Œç”± p æŒ‡å‘å®ƒ
+			p->data = ch;						  //å­˜æ”¾ç»“ç‚¹å€¼
+			p->lchild = p->rchild = NULL;		  //å·¦å³æŒ‡é’ˆéƒ½è®¾ç½®ä¸ºç©º
+			if (b == NULL)						  //è‹¥å°šæœªå»ºç«‹æ ¹èŠ‚ç‚¹
+				b = p;							  // pæ‰€æŒ‡ç»“ç‚¹å°±ä½œä¸ºæ ¹èŠ‚ç‚¹
+			else
+			{ //å·²å»ºç«‹äºŒå‰æ ‘æ ¹èŠ‚ç‚¹
+				switch (k)
+				{
+				case 1:
+					St[top]->lchild = p;
+					break; //æ–°å»ºç»“ç‚¹ä½œä¸ºæ ˆé¡¶ç»“ç‚¹çš„å·¦å­©å­
+				case 2:
+					St[top]->rchild = p;
+					break; //æ–°å»ºç»“ç‚¹ä½œä¸ºæ ˆé¡¶ç»“ç‚¹çš„å³å­©å­
 				}
 			}
 		}
-		j++;																//¼ÌĞøÉ¨Ãè str
+		j++; //ç»§ç»­æ‰«æ str
 		ch = str[j];
 	}
 }

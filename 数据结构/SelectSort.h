@@ -2,14 +2,16 @@
 #include "RecType.h"
 #include "swap.h"
 
-void SelectSort(RecType R[], int n) {
+void SelectSort(RecType R[], int n)
+{
 	int i, j, k;
-	for (i = 0; i < n - 1; i++) {			//×öµÚ i ÌËÅÅÐò
+	for (i = 0; i < n - 1; i++)
+	{ //åšç¬¬ i è¶ŸæŽ’åº
 		k = i;
-		for (j = i + 1; j < n; j++)		//ÔÚµ±Ç°ÎÞÐòÇøR[i..n-1]ÖÐÑ¡ key ×îÐ¡µÄ R[k]
+		for (j = i + 1; j < n; j++) //åœ¨å½“å‰æ— åºåŒºR[i..n-1]ä¸­é€‰ key æœ€å°çš„ R[k]
 			if (R[j].key < R[k].key)
-				k = j;							//k¼ÇÏÂÄ¿Ç°ÕÒµ½µÄ×îÐ¡¹Ø¼ü×ÖËùÔÚµÄÎ»ÖÃ
-		if (k != i)								//R[i] ºÍ R[k] Á½¸öÔªËØ½»»»
+				k = j; // kè®°ä¸‹ç›®å‰æ‰¾åˆ°çš„æœ€å°å…³é”®å­—æ‰€åœ¨çš„ä½ç½®
+		if (k != i)	   // R[i] å’Œ R[k] ä¸¤ä¸ªå…ƒç´ äº¤æ¢
 			Swap(R[i], R[k]);
 	}
 }

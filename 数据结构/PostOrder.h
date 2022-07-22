@@ -2,40 +2,48 @@
 #include "BTree.h"
 #include "tree_SqStack.h"
 
-void PostOrder(BTNode *b) {		//ºóĞò±éÀúµİ¹éËã·¨
-	if (b != NULL) {
-		PostOrder(b->lchild);			//ºóĞò±éÀú×ó×ÓÊ÷
-		PostOrder(b->rchild);			//ºóĞò±éÀúÓÒ×ÓÊ÷
-		printf("%c", b->data);			//·ÃÎÊ¸ù½Úµã
+void PostOrder(BTNode *b)
+{ //ååºéå†é€’å½’ç®—æ³•
+	if (b != NULL)
+	{
+		PostOrder(b->lchild);  //ååºéå†å·¦å­æ ‘
+		PostOrder(b->rchild);  //ååºéå†å³å­æ ‘
+		printf("%c", b->data); //è®¿é—®æ ¹èŠ‚ç‚¹
 	}
 }
 
-void PostOrder1(BTNode * b) {		//ºóĞò±éÀú·Çµİ¹éËã·¨
+void PostOrder1(BTNode *b)
+{ //ååºéå†éé€’å½’ç®—æ³•
 	BTNode *p, *r;
 	bool flag;
-	SqStack * st;									//¶¨ÒåÒ»¸öË³ĞòÕ»Ö¸Õë st
-	InitStack(st);									//³õÊ¼»¯ st
+	SqStack *st;   //å®šä¹‰ä¸€ä¸ªé¡ºåºæ ˆæŒ‡é’ˆ st
+	InitStack(st); //åˆå§‹åŒ– st
 	p = b;
-	do {
-		while (p != NULL) {					//É¨Ãè½áµã p µÄËùÓĞ×óÏÂ½áµã²¢½øÕ»
-			Push(st, p);							//½áµã p ½øÕ»
-			p = p->lchild;						//ÒÆ¶¯µ½×óº¢×Ó
+	do
+	{
+		while (p != NULL)
+		{				   //æ‰«æç»“ç‚¹ p çš„æ‰€æœ‰å·¦ä¸‹ç»“ç‚¹å¹¶è¿›æ ˆ
+			Push(st, p);   //ç»“ç‚¹ p è¿›æ ˆ
+			p = p->lchild; //ç§»åŠ¨åˆ°å·¦å­©å­
 		}
-		r = NULL;									//r Ö¸Ïò¸Õ·ÃÎÊµÄ½áµã£¬³õÊ¼Ê±Îª¿Õ
-		flag = true;								//flag ÎªÕæÊ±±íÊ¾ÕıÔÚ´¦ÀíÕ»¶¥½áµã 
-		while (!StackEmpty(st) && flag) {
-			GetTop(st, p);						//È¡³öµ±Ç°µÄÕ»¶¥½áµã p
-			if (p->rchild == r) {				//Èô½áµã p µÄÓÒº¢×ÓÎª¿Õ»òÕßÎª¸Õ¸Õ·ÃÎÊ¹ıµÄ½áµã
-				printf("%c", p->data);		//·ÃÎÊ½áµã p
+		r = NULL;	 // r æŒ‡å‘åˆšè®¿é—®çš„ç»“ç‚¹ï¼Œåˆå§‹æ—¶ä¸ºç©º
+		flag = true; // flag ä¸ºçœŸæ—¶è¡¨ç¤ºæ­£åœ¨å¤„ç†æ ˆé¡¶ç»“ç‚¹
+		while (!StackEmpty(st) && flag)
+		{
+			GetTop(st, p); //å–å‡ºå½“å‰çš„æ ˆé¡¶ç»“ç‚¹ p
+			if (p->rchild == r)
+			{						   //è‹¥ç»“ç‚¹ p çš„å³å­©å­ä¸ºç©ºæˆ–è€…ä¸ºåˆšåˆšè®¿é—®è¿‡çš„ç»“ç‚¹
+				printf("%c", p->data); //è®¿é—®ç»“ç‚¹ p
 				Pop(st, p);
-				r = p;								// r Ö¸Ïò¸Õ·ÃÎÊ¹ıµÄ½áµã
+				r = p; // r æŒ‡å‘åˆšè®¿é—®è¿‡çš„ç»“ç‚¹
 			}
-			else {
-				p = p->rchild;					//×ªÏò´¦ÀíÆäÓÒ×ÓÊ÷
-				flag = false;						//±íÊ¾µ±Ç°²»ÊÇ´¦ÀíÕ»¶¥½áµã
+			else
+			{
+				p = p->rchild; //è½¬å‘å¤„ç†å…¶å³å­æ ‘
+				flag = false;  //è¡¨ç¤ºå½“å‰ä¸æ˜¯å¤„ç†æ ˆé¡¶ç»“ç‚¹
 			}
 		}
-	} while (!StackEmpty(st));				//Õ»²»¿ÕÑ­»·
+	} while (!StackEmpty(st)); //æ ˆä¸ç©ºå¾ªç¯
 	printf("\n");
-	DestroyStack(st);							//Ïú»ÙÕ»
+	DestroyStack(st); //é”€æ¯æ ˆ
 }

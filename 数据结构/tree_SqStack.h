@@ -4,114 +4,121 @@
 #include <typeinfo>
 #include "BTree.h"
 #define MaxSize 50
-typedef BTNode * ElemType;
+typedef BTNode *ElemType;
 
 typedef struct
 {
 	ElemType data[MaxSize];
 	int top;
-}SqStack;
+} SqStack;
 
-//³õÊ¼»¯Õ»
+//åˆå§‹åŒ–æ ˆ
 void InitStack(SqStack *&s)
 {
-	s = (SqStack *)malloc(sizeof(SqStack));  //·ÖÅäÒ»¸öË³ĞòÕ»¿Õ¼ä£¬Ê×µØÖ·´æ·ÅÔÚsÖĞ
-	s->top = -1;												//Õ»¶¥Ö¸ÕëÖÃÎª-1
+	s = (SqStack *)malloc(sizeof(SqStack)); //åˆ†é…ä¸€ä¸ªé¡ºåºæ ˆç©ºé—´ï¼Œé¦–åœ°å€å­˜æ”¾åœ¨sä¸­
+	s->top = -1;							//æ ˆé¡¶æŒ‡é’ˆç½®ä¸º-1
 }
 
-//Ïú»ÙÕ»
+//é”€æ¯æ ˆ
 void DestroyStack(SqStack *&s)
 {
 	free(s);
 }
 
-//ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
+//åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
 bool StackEmpty(SqStack *s)
 {
 	return (s->top == -1);
 }
 
-//½øÕ»
+//è¿›æ ˆ
 bool Push(SqStack *&s, ElemType e)
 {
-	if (s->top == MaxSize - 1)				//Õ»ÂúµÄÇé¿ö£¬¼´ÉÏÕ»ÉÏÒç
+	if (s->top == MaxSize - 1) //æ ˆæ»¡çš„æƒ…å†µï¼Œå³ä¸Šæ ˆä¸Šæº¢
 		return false;
-	s->top++;										//Õ»¶¥Ö¸ÕëÔö1
-	s->data[s->top] = e;						//ÔªËØe·ÅÔÚÕ»¶¥Ö¸Õë´¦
+	s->top++;			 //æ ˆé¡¶æŒ‡é’ˆå¢1
+	s->data[s->top] = e; //å…ƒç´ eæ”¾åœ¨æ ˆé¡¶æŒ‡é’ˆå¤„
 	return true;
 }
 
-//³öÕ»
+//å‡ºæ ˆ
 bool Pop(SqStack *&s, ElemType &e)
 {
-	if (s->top == -1)									//Õ»Îª¿ÕµÄÇé¿ö£¬¼´Õ»ÏÂÒç³ö
+	if (s->top == -1) //æ ˆä¸ºç©ºçš„æƒ…å†µï¼Œå³æ ˆä¸‹æº¢å‡º
 		return false;
-	e = s->data[s->top];							//È¡Õ»¶¥ÔªËØ
-	s->top--;												//Õ»¶¥Ö¸Õë¼õ1
+	e = s->data[s->top]; //å–æ ˆé¡¶å…ƒç´ 
+	s->top--;			 //æ ˆé¡¶æŒ‡é’ˆå‡1
 	return true;
 }
 
-//È¡Õ»¶¥ÔªËØ
+//å–æ ˆé¡¶å…ƒç´ 
 bool GetTop(SqStack *s, ElemType &e)
 {
-	if (s->top == -1)									//Õ»Îª¿ÕµÄÇé¿ö£¬¼´Õ»ÏÂÒç³ö
+	if (s->top == -1) //æ ˆä¸ºç©ºçš„æƒ…å†µï¼Œå³æ ˆä¸‹æº¢å‡º
 		return false;
-	e = s->data[s->top];							//È¡Õ»¶¥ÔªËØ
+	e = s->data[s->top]; //å–æ ˆé¡¶å…ƒç´ 
 	return true;
 }
 
-//Àı3.4  p82
-bool symmetry(ElemType str[])		//ÅĞ¶ÏstrÊÇ·ñÎª¶Ô³Æ´®
+//ä¾‹3.4  p82
+bool symmetry(ElemType str[]) //åˆ¤æ–­stræ˜¯å¦ä¸ºå¯¹ç§°ä¸²
 {
 	int i;
 	ElemType e;
-	SqStack *st;									//¶¨ÒåË³ĞòÕ»Ö¸Õë
-	InitStack(st);									//³õÊ¼»¯
-	for (i = 0; str[i] != '\0'; i++)			//½«strµÄËùÓĞÔªËØ½øÕ»
+	SqStack *st;					 //å®šä¹‰é¡ºåºæ ˆæŒ‡é’ˆ
+	InitStack(st);					 //åˆå§‹åŒ–
+	for (i = 0; str[i] != '\0'; i++) //å°†strçš„æ‰€æœ‰å…ƒç´ è¿›æ ˆ
 		Push(st, str[i]);
-	for (i = 0; str[i] != '\0'; i++)			//´¦ÀístrµÄËùÓĞ×Ö·û
+	for (i = 0; str[i] != '\0'; i++) //å¤„ç†strçš„æ‰€æœ‰å­—ç¬¦
 	{
-		Pop(st, e);									//ÍËÕ»ÔªËØe
-		if (str[i] != e)								//ÈôeÓëµ±Ç°´®×Ö·û²»Í¬±íÊ¾²»ÊÇ¶Ô³Æ´®
+		Pop(st, e);		 //é€€æ ˆå…ƒç´ e
+		if (str[i] != e) //è‹¥eä¸å½“å‰ä¸²å­—ç¬¦ä¸åŒè¡¨ç¤ºä¸æ˜¯å¯¹ç§°ä¸²
 		{
-			DestroyStack(st);					//Ïú»ÙÕ»
-			return false;							//·µ»Ø¼Ù
+			DestroyStack(st); //é”€æ¯æ ˆ
+			return false;	  //è¿”å›å‡
 		}
 	}
-	DestroyStack(st);							//Ïú»ÙÕ»
-	return true;									//·µ»ØÕæ
+	DestroyStack(st); //é”€æ¯æ ˆ
+	return true;	  //è¿”å›çœŸ
 }
 
-//Àı7.17 ¼ÙÉè¶ş²æÊ÷²ÉÓÃ¶ş²æÁ´´æ´¢½á¹¹£¬Éè¼ÆÒ»¸öËã·¨Êä³ö´Ó¸ù½áµãµ½Ã¿¸öÒ¶×Ó½áµãµÄÂ·¾¶
-//				ÄæĞòÁĞ£¬ÒªÇó²ÉÓÃºóĞò±éÀú·Çµİ¹éËã·¨ÊµÏÖ
-void AllPath1(BTNode * b) {
+//ä¾‹7.17 å‡è®¾äºŒå‰æ ‘é‡‡ç”¨äºŒå‰é“¾å­˜å‚¨ç»“æ„ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•è¾“å‡ºä»æ ¹ç»“ç‚¹åˆ°æ¯ä¸ªå¶å­ç»“ç‚¹çš„è·¯å¾„
+//				é€†åºåˆ—ï¼Œè¦æ±‚é‡‡ç”¨ååºéå†éé€’å½’ç®—æ³•å®ç°
+void AllPath1(BTNode *b)
+{
 	BTNode *p, *r;
 	bool flag;
-	SqStack *st;													//¶¨ÒåÒ»¸öË³ĞòÕ»Ö¸Õë
-	InitStack(st);													//³õÊ¼»¯Õ» st
+	SqStack *st;   //å®šä¹‰ä¸€ä¸ªé¡ºåºæ ˆæŒ‡é’ˆ
+	InitStack(st); //åˆå§‹åŒ–æ ˆ st
 	p = b;
-	do {
-		while (p != NULL) {									//É¨Ãè p µÄËùÓĞ×óÏÂ½áµã²¢½øÕ»
-			Push(st, p);											//½áµã p ½øÕ»
-			p = p->lchild;										//p ÒÆ¶¯µ½×óº¢×Ó
+	do
+	{
+		while (p != NULL)
+		{				   //æ‰«æ p çš„æ‰€æœ‰å·¦ä¸‹ç»“ç‚¹å¹¶è¿›æ ˆ
+			Push(st, p);   //ç»“ç‚¹ p è¿›æ ˆ
+			p = p->lchild; // p ç§»åŠ¨åˆ°å·¦å­©å­
 		}
-		r = NULL;													//r Ö¸Ïò¸Õ·ÃÎÊµÄ½áµã£¬³õÊ¼Ê±Îª¿Õ
-		flag = true;												//flag ÎªÕæ±íÊ¾ÕıÔÚ´¦ÀíÕ»¶¥½áµã
-		while (!StackEmpty(st) && flag) {
-			GetTop(st, p);										//È¡³öµ±Ç°µÄÕ»¶¥½áµã p
-			if (p->rchild == r) {								//Èô½áµã p µÄ×óº¢×ÓÎª¿Õ»òÕßÎª¸Õ·ÃÎÊµÄ½áµã
-				if (p->lchild == NULL && p->rchild == NULL) {			//ÈôÎªÒ¶×Ó½áµã
-					for (int i = st->top; i > 0; i--)		//Êä³öÕ»ÖĞµÄËùÓĞ½áµãÖµ
+		r = NULL;	 // r æŒ‡å‘åˆšè®¿é—®çš„ç»“ç‚¹ï¼Œåˆå§‹æ—¶ä¸ºç©º
+		flag = true; // flag ä¸ºçœŸè¡¨ç¤ºæ­£åœ¨å¤„ç†æ ˆé¡¶ç»“ç‚¹
+		while (!StackEmpty(st) && flag)
+		{
+			GetTop(st, p); //å–å‡ºå½“å‰çš„æ ˆé¡¶ç»“ç‚¹ p
+			if (p->rchild == r)
+			{ //è‹¥ç»“ç‚¹ p çš„å·¦å­©å­ä¸ºç©ºæˆ–è€…ä¸ºåˆšè®¿é—®çš„ç»“ç‚¹
+				if (p->lchild == NULL && p->rchild == NULL)
+				{									  //è‹¥ä¸ºå¶å­ç»“ç‚¹
+					for (int i = st->top; i > 0; i--) //è¾“å‡ºæ ˆä¸­çš„æ‰€æœ‰ç»“ç‚¹å€¼
 						printf("%c->", st->data[i]->data);
 					printf("%c\n", st->data[0]->data);
 				}
 				Pop(st, p);
-				r = p;												//r Ö¸Ïò¸Õ·ÃÎÊ¹ıµÄ½áµã
+				r = p; // r æŒ‡å‘åˆšè®¿é—®è¿‡çš„ç»“ç‚¹
 			}
-			else {
-				p = p->rchild;									//×ªÏò´¦ÀíÆäËû½áµã
-				flag = false;										//±íÊ¾µ±Ç°²»ÊÇ´¦ÀíÕ»¶¥½áµã
+			else
+			{
+				p = p->rchild; //è½¬å‘å¤„ç†å…¶ä»–ç»“ç‚¹
+				flag = false;  //è¡¨ç¤ºå½“å‰ä¸æ˜¯å¤„ç†æ ˆé¡¶ç»“ç‚¹
 			}
 		}
-	} while (!StackEmpty(st));								//Õ»²»¿ÕÑ­»·
+	} while (!StackEmpty(st)); //æ ˆä¸ç©ºå¾ªç¯
 }

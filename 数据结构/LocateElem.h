@@ -1,17 +1,18 @@
 #pragma once
 #include "LinkNode.h"
 
-/*°´ÔªËØÖµ²éÕÒ*/
+/*æŒ‰å…ƒç´ å€¼æŸ¥æ‰¾*/
 int LocateElem(LinkNode *L, ElemType e)
 {
-	LinkNode *p = L->next;							//pÖ¸ÏòÊ×½áµã£¬iÖÃ 1£¨¼´Ê×½áµãµÄĞòºÅÎª 1£©
+	LinkNode *p = L->next; // pæŒ‡å‘é¦–ç»“ç‚¹ï¼Œiç½® 1ï¼ˆå³é¦–ç»“ç‚¹çš„åºå·ä¸º 1ï¼‰
 	int i = 1;
-	while (p->data != e && p != NULL) {		//²éÕÒdataÖµÎª eµÄ½áµã£¬ÆäĞòºÅÎª i 
+	while (p->data != e && p != NULL)
+	{ //æŸ¥æ‰¾dataå€¼ä¸º eçš„ç»“ç‚¹ï¼Œå…¶åºå·ä¸º i
 		p = p->next;
 		i++;
 	}
-	if (p == NULL)											//²»´æÔÚÖµÎª eµÄ½áµã£¬·µ»Ø 0 
+	if (p == NULL) //ä¸å­˜åœ¨å€¼ä¸º eçš„ç»“ç‚¹ï¼Œè¿”å› 0
 		return 0;
 	else
-		return i;												//´æÔÚÖµÎª eµÄ½áµã£¬·µ»ØÆäÂß¼­ĞòºÅ i 
+		return i; //å­˜åœ¨å€¼ä¸º eçš„ç»“ç‚¹ï¼Œè¿”å›å…¶é€»è¾‘åºå· i
 }

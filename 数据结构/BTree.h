@@ -3,12 +3,13 @@
 #define MaxSize 100
 typedef char ElemType;
 
-//¶ş²æÊ÷µÄË³Ğò´æ´¢½á¹¹
+//äºŒå‰æ ‘çš„é¡ºåºå­˜å‚¨ç»“æ„
 typedef ElemType SqBinTree[MaxSize];
 
-//¶ş²æÊ÷µÄÁ´Ê½´æ´¢½á¹¹
-typedef struct node {
-	ElemType data;			//Êı¾İÔªËØ
-	struct node *lchild;		//Ö¸Ïò×óº¢×Ó½áµã
-	struct node *rchild;		//Ö¸ÏòÓÒº¢×Ó½áµã
-}BTNode;
+//äºŒå‰æ ‘çš„é“¾å¼å­˜å‚¨ç»“æ„
+typedef struct node
+{
+	ElemType data;		 //æ•°æ®å…ƒç´ 
+	struct node *lchild; //æŒ‡å‘å·¦å­©å­ç»“ç‚¹
+	struct node *rchild; //æŒ‡å‘å³å­©å­ç»“ç‚¹
+} BTNode;

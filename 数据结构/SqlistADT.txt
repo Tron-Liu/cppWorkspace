@@ -1,22 +1,22 @@
 #pragma once
 ADT List
 		{
-				���ݶ���
-						D= {a[i] | 1<= i <=n, n>=0, a[i]ΪElemType����}   //ElemType���Զ������ͱ�ʶ��
-				���ݹ�ϵ��
-						R= {<a[i], a[i+1]> | a[i], a[i+1]����D, i=1 , .... , n-1}
-				�������㣺
-						InitList(&L):  ��ʼ�����Ա�������һ���յ����Ա�L��
-						DestroyList(&L): �������Ա����ͷ����Ա�Lռ�õ��ڴ�ռ�
-						ListEmpty(L): �ж����Ա��Ƿ�Ϊ�ձ�����LΪ�ձ����򷵻�Ϊ�棬���򷵻ؼ١�
-						ListLength(L): �����Ա��ĳ��ȣ�����L��Ԫ�صĸ���
-						DispList(L):������Ա��������Ա�L��Ϊ��ʱ˳����ʾL�и�����ֵ��
-						GetElem(L, i, &e): �����Ա���ĳ������Ԫ��ֵ����e����L�е�i(1<=i<=n)
-													��Ԫ�ص�ֵ��
-						LocateElem(L, e):��Ԫ��ֵ���ң�����L�е�һ��ֵ����e��ȵ�Ԫ�ص���ţ�
-													��������Ԫ�ز����ڣ��򷵻�ֵ0��
-						ListInsert(&L, i, e): ��������Ԫ�أ���L�ĵ�i(1<=i<=n+1)��λ�ò���һ��
-													�µ�Ԫ��e��L�ĳ�����1.
-						ListDelete(&L, i, &e): ɾ������Ԫ�أ�ɾ��L�ĵ�i(1<=i<=n)��Ԫ�أ�����
-															e������ֵ��L�ĳ��ȼ�1.
+				数据对象：
+						D= {a[i] | 1<= i <=n, n>=0, a[i]为ElemType类型}   //ElemType是自定义类型标识符
+				数据关系：
+						R= {<a[i], a[i+1]> | a[i], a[i+1]属于D, i=1 , .... , n-1}
+				基本运算：
+						InitList(&L):  初始化线性表，构造一个空的线性表L。
+						DestroyList(&L): 销毁线性表，释放线性表L占用的内存空间
+						ListEmpty(L): 判断线性表是否为空表，若L为空表，则返回为真，否则返回假。
+						ListLength(L): 求线性表的长度，返回L中元素的个数
+						DispList(L):输出线性表，当线性表L不为空时顺序显示L中各结点的值域。
+						GetElem(L, i, &e): 求线性表中某个数据元素值，用e返回L中第i(1<=i<=n)
+													个元素的值。
+						LocateElem(L, e):按元素值查找，返回L中第一个值域与e相等的元素的序号，
+													若这样的元素不存在，则返回值0。
+						ListInsert(&L, i, e): 插入数据元素，在L的第i(1<=i<=n+1)个位置插入一个
+													新的元素e，L的长度增1.
+						ListDelete(&L, i, &e): 删除数据元素，删除L的第i(1<=i<=n)个元素，并用
+															e返回其值，L的长度减1.
 		}

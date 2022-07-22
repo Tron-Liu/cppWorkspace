@@ -3,45 +3,45 @@
 #include <malloc.h>
 
 typedef int ElemType;
-#define MaxCol 10					//×î´óÁĞÊı
+#define MaxCol 10 //æœ€å¤§åˆ—æ•°
 
-typedef struct Node1				//¶¨ÒåÊı¾İ½áµãÀàĞÍ
+typedef struct Node1 //å®šä¹‰æ•°æ®ç»“ç‚¹ç±»å‹
 {
-	ElemType data[MaxCol];		//´æ·ÅÒ»ĞĞµÄÊı¾İ
-	struct Node1 *next;				//Ö¸Ïòºó¼ÌÊı¾İ½áµã
-}DList;										//ĞĞ½áµãÀàĞÍ
+	ElemType data[MaxCol]; //å­˜æ”¾ä¸€è¡Œçš„æ•°æ®
+	struct Node1 *next;	   //æŒ‡å‘åç»§æ•°æ®ç»“ç‚¹
+} DList;				   //è¡Œç»“ç‚¹ç±»å‹
 
 typedef struct Node2
 {
-	int Row, Col;						//ĞĞÊıºÍÁĞÊı
-	DList *next;							//Ö¸ÏòµÚÒ»¸öÊı¾İ½áµã
-}HList;										//Í·½áµãÀàĞÍ
+	int Row, Col; //è¡Œæ•°å’Œåˆ—æ•°
+	DList *next;  //æŒ‡å‘ç¬¬ä¸€ä¸ªæ•°æ®ç»“ç‚¹
+} HList;		  //å¤´ç»“ç‚¹ç±»å‹
 
-//²ÉÓÃ½»»¥·½Ê½½¨Á¢µ¥Á´±íµÄËã·¨
+//é‡‡ç”¨äº¤äº’æ–¹å¼å»ºç«‹å•é“¾è¡¨çš„ç®—æ³•
 void CreateTable(HList *&h)
 {
 	int i, j;
 	DList *r, *s;
-	h = (HList *)malloc(sizeof(HList));			//´´½¨Í·½Úµã
+	h = (HList *)malloc(sizeof(HList)); //åˆ›å»ºå¤´èŠ‚ç‚¹
 	h->next = NULL;
-	printf("±íµÄĞĞÊı£¬ÁĞÊı£º");
-	scanf("%d%d", &h->Row, &h->Col);		//ÊäÈë±íµÄÁĞÊıºÍĞĞÊı
-	for (i = 0; i < h->Row; i++)						//ÊäÈëËùÓĞĞĞµÄÊı¾İ
+	printf("è¡¨çš„è¡Œæ•°ï¼Œåˆ—æ•°ï¼š");
+	scanf("%d%d", &h->Row, &h->Col); //è¾“å…¥è¡¨çš„åˆ—æ•°å’Œè¡Œæ•°
+	for (i = 0; i < h->Row; i++)	 //è¾“å…¥æ‰€æœ‰è¡Œçš„æ•°æ®
 	{
-		printf("µÚ%dĞĞ£º", i+1);
-		s = (DList *)malloc(sizeof(DList));			//´´½¨Êı¾İ½áµãs
-		for (j = 0; j < h->Col; j++)					//ÊäÈëÒ»ĞĞµÄÊı¾İ
+		printf("ç¬¬%dè¡Œï¼š", i + 1);
+		s = (DList *)malloc(sizeof(DList)); //åˆ›å»ºæ•°æ®ç»“ç‚¹s
+		for (j = 0; j < h->Col; j++)		//è¾“å…¥ä¸€è¡Œçš„æ•°æ®
 			scanf("%d", &s->data[j]);
-		if (h->next == NULL)							//²åÈëµÚÒ»¸öÊı¾İ½áµãµÄÇé¿ö
+		if (h->next == NULL) //æ’å…¥ç¬¬ä¸€ä¸ªæ•°æ®ç»“ç‚¹çš„æƒ…å†µ
 			h->next = s;
-		else														//²åÈëÆäËûÊı¾İ½áµãµÄÇé¿ö
-			r->next = s;										//½«s½áµã²åÈëµ½r½áµãÖ®ºó
-		r = s;													//rÊ¼ÖÕÖ¸ÏòÎ²½áµã
+		else			 //æ’å…¥å…¶ä»–æ•°æ®ç»“ç‚¹çš„æƒ…å†µ
+			r->next = s; //å°†sç»“ç‚¹æ’å…¥åˆ°rç»“ç‚¹ä¹‹å
+		r = s;			 // rå§‹ç»ˆæŒ‡å‘å°¾ç»“ç‚¹
 	}
-	r->next = NULL;										//Î²½áµãµÄnextÓòÖÃ¿Õ
+	r->next = NULL; //å°¾ç»“ç‚¹çš„nextåŸŸç½®ç©º
 }
 
-//Ïú»Ùµ¥Á´±íµÄËã·¨
+//é”€æ¯å•é“¾è¡¨çš„ç®—æ³•
 void DestroyTable(HList *&h)
 {
 	DList *pre = h->next, *p = pre->next;
@@ -55,66 +55,66 @@ void DestroyTable(HList *&h)
 	free(h);
 }
 
-//Êä³öµ¥Á´±íµÄËã·¨
+//è¾“å‡ºå•é“¾è¡¨çš„ç®—æ³•
 void DispTable(HList *h)
 {
 	int j;
-	DList *p = h->next;						//pÖ¸Ïò¿ªÊ¼ĞĞ½áµã
-	while (p != NULL)						//É¨ÃèËùÓĞĞĞ
+	DList *p = h->next; // pæŒ‡å‘å¼€å§‹è¡Œç»“ç‚¹
+	while (p != NULL)	//æ‰«ææ‰€æœ‰è¡Œ
 	{
-		for (j = 0; j < h->Col; j++)		//Êä³öÒ»ĞĞµÄÊı¾İ
+		for (j = 0; j < h->Col; j++) //è¾“å‡ºä¸€è¡Œçš„æ•°æ®
 			printf("%4d", p->data[j]);
 		printf("\n");
-		p = p->next;							//pÖ¸ÏòÏÂÒ»¸öĞĞ½áµã
+		p = p->next; // pæŒ‡å‘ä¸‹ä¸€ä¸ªè¡Œç»“ç‚¹
 	}
 }
 
-//±íÁ¬½ÓÔËËãËã·¨
+//è¡¨è¿æ¥è¿ç®—ç®—æ³•
 void LinkTable(HList *h1, HList *h2, HList *&h)
 {
 	int i, j, k;
 	DList *p = h1->next, *q, *s, *r;
-	printf("Á¬½Ó×Ö¶ÎÊÇ£ºµÚ1¸ö±íĞòºÅ£¬µÚ2¸ö±íĞòºÅ£º");
+	printf("è¿æ¥å­—æ®µæ˜¯ï¼šç¬¬1ä¸ªè¡¨åºå·ï¼Œç¬¬2ä¸ªè¡¨åºå·ï¼š");
 	scanf("%d%d", &i, &j);
-	h = (HList *)malloc(sizeof(HList));								//´´½¨½á¹û±íÍ·½áµã
-	h->Row = 0;																//ÖÃĞĞÊıÎª0
-	h->Col = h1->Col + h2->Col;										//ÖÃÁĞÊıÎª±í1ºÍ±í2µÄÁĞÊıºÍ
-	h->next = NULL;															//ÖÃnextÓòÎªNULL£»
-	while (p != NULL)														//É¨Ãè±í1
+	h = (HList *)malloc(sizeof(HList)); //åˆ›å»ºç»“æœè¡¨å¤´ç»“ç‚¹
+	h->Row = 0;							//ç½®è¡Œæ•°ä¸º0
+	h->Col = h1->Col + h2->Col;			//ç½®åˆ—æ•°ä¸ºè¡¨1å’Œè¡¨2çš„åˆ—æ•°å’Œ
+	h->next = NULL;						//ç½®nextåŸŸä¸ºNULLï¼›
+	while (p != NULL)					//æ‰«æè¡¨1
 	{
-		q = h2->next;															//qÖ¸Ïò±í2µÄÊ×½áµã
-		while (q != NULL)													//É¨Ãè±í2
+		q = h2->next;	  // qæŒ‡å‘è¡¨2çš„é¦–ç»“ç‚¹
+		while (q != NULL) //æ‰«æè¡¨2
 		{
-			if (p->data[i - 1] == q->data[j - 1])						//¶ÔÓ¦×Ö¶ÎÖµÏàµÈ
+			if (p->data[i - 1] == q->data[j - 1]) //å¯¹åº”å­—æ®µå€¼ç›¸ç­‰
 			{
-				s = (DList *)malloc(sizeof(DList));						//´´½¨Ò»¸öÊı¾İ½áµãs
-				for (k = 0; k < h1->Col; k++)							//¸´ÖÆ±í1µÄµ±Ç°ĞĞ
+				s = (DList *)malloc(sizeof(DList)); //åˆ›å»ºä¸€ä¸ªæ•°æ®ç»“ç‚¹s
+				for (k = 0; k < h1->Col; k++)		//å¤åˆ¶è¡¨1çš„å½“å‰è¡Œ
 					s->data[k] = p->data[k];
-				for (k = 0; k < h2->Col; k++)							//¸´ÖÆ±í2µÄµ±Ç°ĞĞ
+				for (k = 0; k < h2->Col; k++) //å¤åˆ¶è¡¨2çš„å½“å‰è¡Œ
 					s->data[h1->Col + k] = q->data[k];
-				if (h->next == NULL)										//Èô²åÈëµÄÊÇµÚÒ»¸öÊı¾İ½áµã
-					h->next = s;													//½«s½áµã²åÈëµ½Í·½áµãÖ®ºó
-				else																	//Èô²åÈëÆäËûÊı¾İ½áµã
-					r->next = s;													//½«s½áµã²åÈëµ½½áµãrÖ®ºó
-				r = s;																//rÊ¼ÖÕÖ¸ÏòÎ²½áµã
-				h->Row++;														//±íĞĞÊıÔö1
+				if (h->next == NULL) //è‹¥æ’å…¥çš„æ˜¯ç¬¬ä¸€ä¸ªæ•°æ®ç»“ç‚¹
+					h->next = s;	 //å°†sç»“ç‚¹æ’å…¥åˆ°å¤´ç»“ç‚¹ä¹‹å
+				else				 //è‹¥æ’å…¥å…¶ä»–æ•°æ®ç»“ç‚¹
+					r->next = s;	 //å°†sç»“ç‚¹æ’å…¥åˆ°ç»“ç‚¹rä¹‹å
+				r = s;				 // rå§‹ç»ˆæŒ‡å‘å°¾ç»“ç‚¹
+				h->Row++;			 //è¡¨è¡Œæ•°å¢1
 			}
-			q = q->next;														//±í2ºóÒÆÒ»¸ö½áµã
+			q = q->next; //è¡¨2åç§»ä¸€ä¸ªç»“ç‚¹
 		}
-		p = p->next;															//±í1ºóÒÆÒ»¸ö½áµã
+		p = p->next; //è¡¨1åç§»ä¸€ä¸ªç»“ç‚¹
 	}
-	r->next = NULL;															//±íÎ²½áµãµÄnextÓòÖÃ¿Õ
- }
+	r->next = NULL; //è¡¨å°¾ç»“ç‚¹çš„nextåŸŸç½®ç©º
+}
 
 int main()
 {
 	HList *h1, *h2, *h;
-	printf("±í1£º\n");
+	printf("è¡¨1ï¼š\n");
 	CreateTable(h1);
-	printf("±í2£º\n");
+	printf("è¡¨2ï¼š\n");
 	CreateTable(h2);
 	LinkTable(h1, h2, h);
-	printf("Á¬½Ó½á¹û±í£º\n");
+	printf("è¿æ¥ç»“æœè¡¨ï¼š\n");
 	DispTable(h);
 	DestroyTable(h1);
 	DestroyTable(h2);

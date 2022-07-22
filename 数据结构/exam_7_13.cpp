@@ -1,16 +1,21 @@
-/*¼ÙÉè¶ş²æÊ÷²ÉÓÃ¶ş²æÁ´´æ´¢½á¹¹£¬Éè¼ÆÒ»¸öËã·¨Çó¶ş²æÊ÷ b ÖĞ½áµãÖµÎª x µÄ½áµãµÄ²ã´Î*/
+/*å‡è®¾äºŒå‰æ ‘é‡‡ç”¨äºŒå‰é“¾å­˜å‚¨ç»“æ„ï¼Œè®¾è®¡ä¸€ä¸ªç®—æ³•æ±‚äºŒå‰æ ‘ b ä¸­ç»“ç‚¹å€¼ä¸º x çš„ç»“ç‚¹çš„å±‚æ¬¡*/
 
 #include "BTree.h"
 #include "CreateBTree.h"
 #include "DispBTree.h"
 #include "DestroyBTree.h"
-int Level(BTNode *b, ElemType x, int h) {
+int Level(BTNode *b, ElemType x, int h)
+{
 	int l;
-	if (b == NULL) return 0;
-	else if (b->data == x) return h;
-	else {
+	if (b == NULL)
+		return 0;
+	else if (b->data == x)
+		return h;
+	else
+	{
 		l = Level(b->lchild, x, h + 1);
-		if (l != 0) return l;
+		if (l != 0)
+			return l;
 		else
 			return (Level(b->rchild, x, h + 1));
 	}
@@ -22,12 +27,16 @@ int main()
 	int h;
 	ElemType x;
 	CreateBTree(b, "A(B(D(,G)),C(E,F))");
-	printf("b: "); DispBTree(b); printf("\n");
-	printf("½áµãÖµ: ");
+	printf("b: ");
+	DispBTree(b);
+	printf("\n");
+	printf("ç»“ç‚¹å€¼: ");
 	scanf("%c", &x);
 	h = Level(b, x, 1);
-	if (h == 0)  printf("bÖĞ²»´æÔÚ%c½áµã\n", x);
-	else printf("ÔÚbÖĞ%c½áµãµÄ²ã´ÎÎª%d\n", x, h);
+	if (h == 0)
+		printf("bä¸­ä¸å­˜åœ¨%cç»“ç‚¹\n", x);
+	else
+		printf("åœ¨bä¸­%cç»“ç‚¹çš„å±‚æ¬¡ä¸º%d\n", x, h);
 	DestroyBTree(b);
 	system("pause");
 	return 1;

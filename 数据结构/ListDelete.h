@@ -1,23 +1,28 @@
 #pragma once
 #include "LinkNode.h"
 
-/*É¾³ıÊı¾İÔªËØ*/
+/*åˆ é™¤æ•°æ®å…ƒç´ */
 bool ListDelete(LinkNode *&L, int i, ElemType &e)
 {
 	int j = 0;
 	LinkNode *p = L, *s;
-	if (i <= 0) return false;
-	while (j < i - 1 && p != NULL) {
+	if (i <= 0)
+		return false;
+	while (j < i - 1 && p != NULL)
+	{
 		j++;
 		p = p->next;
 	}
-	if (p == NULL) return false;
-	else {
-		s = p->next;								//sÖ¸ÏòµÚ i¸ö½áµã 
-		if (s == NULL) return false;		//Èô²»´æÔÚµÚ i¸ö½áµã£¬·µ»Ø false 
+	if (p == NULL)
+		return false;
+	else
+	{
+		s = p->next; // sæŒ‡å‘ç¬¬ iä¸ªç»“ç‚¹
+		if (s == NULL)
+			return false; //è‹¥ä¸å­˜åœ¨ç¬¬ iä¸ªç»“ç‚¹ï¼Œè¿”å› false
 		e = s->data;
 		p->next = s->next;
-		free(s);										//ÊÍ·Å s ½áµã 
-		return true;								//·µ»Ø true ±íÊ¾³É¹¦É¾³ıµÚ i ¸ö½áµã 
+		free(s);	 //é‡Šæ”¾ s ç»“ç‚¹
+		return true; //è¿”å› true è¡¨ç¤ºæˆåŠŸåˆ é™¤ç¬¬ i ä¸ªç»“ç‚¹
 	}
 }

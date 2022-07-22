@@ -5,14 +5,15 @@
 #define MaxSize 50
 typedef char ElemType;
 
-//void swap(ElemType &x, ElemType &y) {
+// void swap(ElemType &x, ElemType &y) {
 //	ElemType temp;
 //	temp = x;
 //	x = y;
 //	y = temp;
-//}
+// }
 
-typedef struct {
-	ElemType data[MaxSize];			//´æ·ÅÏßĞÔ±íÖĞµÄÔªËØ
-	int length;								//´æ·ÅÏßĞÔ±íµÄ³¤¶È
-}Sqlist;											//Ë³Ğò±íÀàĞÍ
+typedef struct
+{
+	ElemType data[MaxSize]; //å­˜æ”¾çº¿æ€§è¡¨ä¸­çš„å…ƒç´ 
+	int length;				//å­˜æ”¾çº¿æ€§è¡¨çš„é•¿åº¦
+} Sqlist;					//é¡ºåºè¡¨ç±»å‹

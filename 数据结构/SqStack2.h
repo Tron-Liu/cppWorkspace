@@ -5,63 +5,63 @@
 
 typedef struct
 {
-	int i;					//µ±Ç°·½¿éµÄĞĞºÅ
-	int j;					//µ±Ç°·½¿éµÄÁĞºÅ
-	int di;				//diÊÇÏÂÒ»ÏàÁÚ¿É×ß·½Î»µÄ·½Î»ºÅ
-}Box;						//·½¿éÀàĞÍ
+	int i;	//å½“å‰æ–¹å—çš„è¡Œå·
+	int j;	//å½“å‰æ–¹å—çš„åˆ—å·
+	int di; // diæ˜¯ä¸‹ä¸€ç›¸é‚»å¯èµ°æ–¹ä½çš„æ–¹ä½å·
+} Box;		//æ–¹å—ç±»å‹
 
 typedef struct
 {
 	Box data[MaxSize];
-	int top;							//Õ»¶¥Ö¸Õë
-}StType;							//Ë³ĞòÕ»ÀàĞÍ
+	int top; //æ ˆé¡¶æŒ‡é’ˆ
+} StType;	 //é¡ºåºæ ˆç±»å‹
 
 typedef Box ElemType2;
 
-//³õÊ¼»¯Õ»
+//åˆå§‹åŒ–æ ˆ
 void InitStack(StType *&s)
 {
-	s = (StType *)malloc(sizeof(StType));  //·ÖÅäÒ»¸öË³ĞòÕ»¿Õ¼ä£¬Ê×µØÖ·´æ·ÅÔÚsÖĞ
-	s->top = -1;												//Õ»¶¥Ö¸ÕëÖÃÎª-1
+	s = (StType *)malloc(sizeof(StType)); //åˆ†é…ä¸€ä¸ªé¡ºåºæ ˆç©ºé—´ï¼Œé¦–åœ°å€å­˜æ”¾åœ¨sä¸­
+	s->top = -1;						  //æ ˆé¡¶æŒ‡é’ˆç½®ä¸º-1
 }
 
-//Ïú»ÙÕ»
+//é”€æ¯æ ˆ
 void DestroyStack(StType *&s)
 {
 	free(s);
 }
 
-//ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
+//åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
 bool StackEmpty(StType *s)
 {
 	return (s->top == -1);
 }
 
-//½øÕ»
+//è¿›æ ˆ
 bool Push(StType *&s, ElemType2 e)
 {
-	if (s->top == MaxSize - 1)				//Õ»ÂúµÄÇé¿ö£¬¼´ÉÏÕ»ÉÏÒç
+	if (s->top == MaxSize - 1) //æ ˆæ»¡çš„æƒ…å†µï¼Œå³ä¸Šæ ˆä¸Šæº¢
 		return false;
-	s->top++;										//Õ»¶¥Ö¸ÕëÔö1
-	s->data[s->top] = e;						//ÔªËØe·ÅÔÚÕ»¶¥Ö¸Õë´¦
+	s->top++;			 //æ ˆé¡¶æŒ‡é’ˆå¢1
+	s->data[s->top] = e; //å…ƒç´ eæ”¾åœ¨æ ˆé¡¶æŒ‡é’ˆå¤„
 	return true;
 }
 
-//³öÕ»
+//å‡ºæ ˆ
 bool Pop(StType *&s, ElemType2 &e)
 {
-	if (s->top == -1)									//Õ»Îª¿ÕµÄÇé¿ö£¬¼´Õ»ÏÂÒç³ö
+	if (s->top == -1) //æ ˆä¸ºç©ºçš„æƒ…å†µï¼Œå³æ ˆä¸‹æº¢å‡º
 		return false;
-	e = s->data[s->top];							//È¡Õ»¶¥ÔªËØ
-	s->top--;												//Õ»¶¥Ö¸Õë¼õ1
+	e = s->data[s->top]; //å–æ ˆé¡¶å…ƒç´ 
+	s->top--;			 //æ ˆé¡¶æŒ‡é’ˆå‡1
 	return true;
 }
 
-//È¡Õ»¶¥ÔªËØ
+//å–æ ˆé¡¶å…ƒç´ 
 bool GetTop(StType *s, ElemType2 &e)
 {
-	if (s->top == -1)									//Õ»Îª¿ÕµÄÇé¿ö£¬¼´Õ»ÏÂÒç³ö
+	if (s->top == -1) //æ ˆä¸ºç©ºçš„æƒ…å†µï¼Œå³æ ˆä¸‹æº¢å‡º
 		return false;
-	e = s->data[s->top];							//È¡Õ»¶¥ÔªËØ
+	e = s->data[s->top]; //å–æ ˆé¡¶å…ƒç´ 
 	return true;
 }

@@ -16,7 +16,7 @@ int main()
 		sum += arr[i];
 	}
 		
-	double Avg = sum / N;			//ÇóÆ½¾ùÖµ
+	double Avg = sum / N;			//æ±‚å¹³å‡å€¼
 	double temp, result = 0;
 	for(i = 0; i < N; i++)  {
 		temp = arr[i] - Avg;

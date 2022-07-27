@@ -4,7 +4,7 @@ int main()
 {
 	char c[1002];
 	int i = 0;
-	int j = 0;		//±ê¼Ç 6 ³öÏÖµÄ´ÎÊı 
+	int j = 0;		//æ ‡è®° 6 å‡ºç°çš„æ¬¡æ•° 
 	char a;
 	
 	while((a = getchar()) != '\n')

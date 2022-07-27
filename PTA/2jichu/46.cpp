@@ -9,14 +9,14 @@ int main()
 	
 	int a[12] = {0};
 	int i, j;
-	for(i = 0; i < n; i++)		//ÊäÈë 
+	for(i = 0; i < n; i++)		//è¾“å…¥ 
 		scanf("%d", a[i]);
-	for(i = 0; i < n; i++) {	//ÅÅĞò
+	for(i = 0; i < n; i++) {	//æ’åº
 		int max = a[i];
 		for(j = i + 1; j < n; j++) {
 			if(max < a[j]) max = a[j];
 		}
-		change(&max, &a[i]);	//½»»» 
+		change(&max, &a[i]);	//äº¤æ¢ 
 	}
 	
 	int flag = 1;

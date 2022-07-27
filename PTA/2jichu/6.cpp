@@ -12,7 +12,7 @@ int main()
 	int n;
 	scanf("%d", &n);
 	
-	int m = n, i = 1;		//¼ÇÂ¼²îÖµ
+	int m = n, i = 1;		//è®°å½•å·®å€¼
 	do{
 		int max = get_max_num(m);
 		int min = get_min_num(m);
@@ -58,7 +58,7 @@ int get_min_num(int n) {
 	return min;
 }
 
-int sort(int *a, int *b, int *c) {		//a ×îÐ¡£¬b Æä´Î£¬c ×î´ó 
+int sort(int *a, int *b, int *c) {		//a æœ€å°ï¼Œb å…¶æ¬¡ï¼Œc æœ€å¤§ 
 	if(*a > *b) change(a, b);
 	if(*a > *c) change(a, c);
 	if(*b > *c) change(b, c);

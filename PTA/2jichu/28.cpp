@@ -8,14 +8,14 @@ int main()
 	char c;
 	cin >> n >> c; 
 
-	getchar();					//Çå³ıµÚÒ»ĞĞ»»ĞĞ·û 
+	getchar();					//æ¸…é™¤ç¬¬ä¸€è¡Œæ¢è¡Œç¬¦ 
 	
 	string s;
 	getline(cin, s);
 	
-	int len = s.length();		//ÊäÈë×Ö·û´®µÄ³¤¶È 
+	int len = s.length();		//è¾“å…¥å­—ç¬¦ä¸²çš„é•¿åº¦ 
 	
-	if(len <= n) {				//Ìî³ä×Ö·û
+	if(len <= n) {				//å¡«å……å­—ç¬¦
 		int d = n - len;
 		while(d) {
 			printf("%c", c);
@@ -23,7 +23,7 @@ int main()
 		}
 		cout << s;
 	}
-	else {						//¼ôÇĞ×Ö·û´® 
+	else {						//å‰ªåˆ‡å­—ç¬¦ä¸² 
 		int d = len - n;
 		for(; d < len; d++) {
 			cout << s[d];

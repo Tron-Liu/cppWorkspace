@@ -23,8 +23,8 @@ int main()
 	double ave = (double)sum / N / 2;
 	//printf("%lf\n", ave);
 	
-	double min = 200.0;					//¼ÇÂ¼×îĞ¡µÄ²îÖµ 
-	int j = 0;						//¼ÇÂ¼×îĞ¡µÄ 
+	double min = 200.0;					//è®°å½•æœ€å°çš„å·®å€¼ 
+	int j = 0;						//è®°å½•æœ€å°çš„ 
 	for(int i = 0; i < N; i++) {
 		//printf("%d\n", abs((p+i)->num - ave));
 		if(min > fabs((p+i)->num - ave)) {

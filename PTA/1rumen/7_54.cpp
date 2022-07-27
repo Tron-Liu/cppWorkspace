@@ -98,7 +98,7 @@ int main()
 int judge(char *num) {
 	int i;
 	
-	if(strlen(num) > 4) return 0;	//³¬³ö·¶Î§ 
+	if(strlen(num) > 4) return 0;	//è¶…å‡ºèŒƒå›´ 
 	for(i = 0; i < strlen(num); i++) {
 		if(!isdigit(num[i])) return 0; 
 	} 

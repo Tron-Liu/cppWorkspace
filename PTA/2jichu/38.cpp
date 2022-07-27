@@ -15,16 +15,16 @@ int main()
 {
 	int n;
 	cin >> n;
-	getchar();			//Çå³ıµÚÒ»ĞĞÄ©Î²µÄ»»ĞĞ·û 
+	getchar();			//æ¸…é™¤ç¬¬ä¸€è¡Œæœ«å°¾çš„æ¢è¡Œç¬¦ 
 	
 	Book b;
 	vector<Book> v;
 	
 	for(int i = 0; i < n; i++) {
 		getline(cin, b.name);
-		//getchar();		//Çå³ı¶ÔÓ¦ĞĞÄ©Î²µÄ»»ĞĞ·û 
+		//getchar();		//æ¸…é™¤å¯¹åº”è¡Œæœ«å°¾çš„æ¢è¡Œç¬¦ 
 		cin >> b.price;
-		getchar(); 		//Çå³ı¶ÔÓ¦ĞĞÄ©Î²µÄ»»ĞĞ·û 
+		getchar(); 		//æ¸…é™¤å¯¹åº”è¡Œæœ«å°¾çš„æ¢è¡Œç¬¦ 
 		v.push_back(b);
 	}
 	
@@ -32,18 +32,18 @@ int main()
 	
 	vector<Book>::iterator it;
 	
-	it = v.begin();		//Ö¸ÏòµÚÒ»¸öÔªËØ 
+	it = v.begin();		//æŒ‡å‘ç¬¬ä¸€ä¸ªå…ƒç´  
 	cout << fixed << setprecision(2) << setfill('0') << it->price 
 		 << ", " << it->name << endl;
 	
 	it = v.end();
-	it--;				//Ö¸Ïò×îºóÒ»¸öÔªËØ 
+	it--;				//æŒ‡å‘æœ€åä¸€ä¸ªå…ƒç´  
 	cout << setprecision(2) << setfill('0') << it->price 
 		 << ", " << it->name << endl;
 	
 	return 0;
 }
 
-bool comparison(Book a, Book b) {			//¶¨Òå±È½Ï¹æÔò 
+bool comparison(Book a, Book b) {			//å®šä¹‰æ¯”è¾ƒè§„åˆ™ 
 	return a.price > b.price;
 }

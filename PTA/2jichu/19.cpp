@@ -3,15 +3,15 @@
 #include <cstring>
 using namespace std;
 
-//¼ÆËãÊ±³¤ 
+//è®¡ç®—æ—¶é•¿ 
 int calcu_time(int h1, int m1, int h2, int m2);
 
-struct Record		//½èÊéÓë»¹Êé¼ÇÂ¼ 
+struct Record		//å€Ÿä¹¦ä¸è¿˜ä¹¦è®°å½• 
 {
-	int book_id;	//ÊéºÅ 
-	char key[2];	//¼üÖµ 
-	int h;			//Ğ¡Ê± 
-	int m;			//·ÖÖÓ 
+	int book_id;	//ä¹¦å· 
+	char key[2];	//é”®å€¼ 
+	int h;			//å°æ—¶ 
+	int m;			//åˆ†é’Ÿ 
 };
 
 int main()
@@ -20,8 +20,8 @@ int main()
 	cin >> n;
 	
 	int days = 0;		
-	int time[11] = {0};		//Ê±³¤ 
-	int count[11] = {0};	//½èÊé´ÎÊı 
+	int time[11] = {0};		//æ—¶é•¿ 
+	int count[11] = {0};	//å€Ÿä¹¦æ¬¡æ•° 
 	Record b;
 	vector<Record> v;
 	
@@ -29,7 +29,7 @@ int main()
 		scanf("%d %s %d:%d", &b.book_id, &b.key, &b.h, &b.m);
 		if(b.book_id)
 		{
-			if(!strcmp(b.key, "S"))		//½èÊé 
+			if(!strcmp(b.key, "S"))		//å€Ÿä¹¦ 
 			{
 				vector<Record>::iterator it;
 				it = v.begin();
@@ -37,12 +37,12 @@ int main()
 				{
 					if(it->book_id == b.book_id)
 					{
-						it->book_id = 1001;			//ÖØÖÃ 
+						it->book_id = 1001;			//é‡ç½® 
 					}
 				}
 				v.push_back(b);
 			}
-			else						//»¹Êé 
+			else						//è¿˜ä¹¦ 
 			{
 				vector<Record>::iterator it;
 				it = v.begin();
@@ -52,12 +52,12 @@ int main()
 					{
 						time[days] += calcu_time(it->h, it->m, b.h, b.m);
 						count[days]++;
-						it->book_id = 1001;			//±íÊ¾ÒÑ¾­¼ÆËã 
+						it->book_id = 1001;			//è¡¨ç¤ºå·²ç»è®¡ç®— 
 					}
 				}
 			}
 		}
-		else				//Ò»Ìì½áÊø 
+		else				//ä¸€å¤©ç»“æŸ 
 		{
 			v.clear();
 			days++; 

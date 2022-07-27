@@ -7,13 +7,13 @@ int main()
 {
 	string s;
 	stack<string> st;
-	while(cin >> s) {		//输入单词 
-		st.push(s);			//单词进栈 
+	while(cin >> s) {		//杈撳叆鍗曡瘝 
+		st.push(s);			//鍗曡瘝杩涙爤 
 	}
-	while(!st.empty()) {	//当栈不为空时 
-		cout << st.top(); 	//获取栈顶元素 
-		st.pop();			//栈顶元素出栈 
-		if(st.size())		//最后一个元素不输出空格 
+	while(!st.empty()) {	//褰撴爤涓嶄负绌烘椂 
+		cout << st.top(); 	//鑾峰彇鏍堥《鍏冪礌 
+		st.pop();			//鏍堥《鍏冪礌鍑烘爤 
+		if(st.size())		//鏈�鍚庝竴涓厓绱犱笉杈撳嚭绌烘牸 
 			cout << " ";
 	}
 	

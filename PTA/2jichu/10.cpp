@@ -8,10 +8,10 @@ int main()
 	int n;
 	scanf("%d", &n);
 	
-	int count = 0;			//¼ÇÂ¼¸öÊý
+	int count = 0;			//è®°å½•ä¸ªæ•°
 	while(count < 10) {
 		n--;
-		if(is_prime(n)) {	//ÊÇËØÊý 
+		if(is_prime(n)) {	//æ˜¯ç´ æ•° 
 			printf("%6d", n);
 			count++; 
 		}
@@ -21,10 +21,10 @@ int main()
 	return 0; 
 }
 
-int is_prime(int m) {		//ÅÐ¶ÏÒ»¸öÊýÊÇ·ñÊÇËØÊý 
+int is_prime(int m) {		//åˆ¤æ–­ä¸€ä¸ªæ•°æ˜¯å¦æ˜¯ç´ æ•° 
 	int a = sqrt(m);
-	if(!(m % 2)) {			//µ¥¶ÀÅÐ¶Ï 2 
-		return 0;			//·µ»Ø 0 ±íÊ¾²»ÊÇËØÊý	
+	if(!(m % 2)) {			//å•ç‹¬åˆ¤æ–­ 2 
+		return 0;			//è¿”å›ž 0 è¡¨ç¤ºä¸æ˜¯ç´ æ•°	
 	}
 	
 	for(int i = 3; i <= a; i+=2) {

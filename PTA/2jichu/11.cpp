@@ -10,7 +10,7 @@ int main()
 	cin >> n;
 	
 	int a = 2;
-	int count = 0;		//Í³¼Æ 
+	int count = 0;		//ç»Ÿè®¡ 
 	for(int i = 3; i <= n; i += 2)
 	{
 		if(isprime(i))
@@ -28,7 +28,7 @@ bool isprime(int a)
 	int b = sqrt(a);
 	for(int i = 2; i <= b; i++)
 	{
-		if(a % i == 0)				//·ÇËØÊý
+		if(a % i == 0)				//éžç´ æ•°
 			return false; 
 	}
 	return true;

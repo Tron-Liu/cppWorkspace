@@ -10,16 +10,16 @@ int main()
 	int a[102] = {0};
 	int i, j, p;
 	
-	for(i = 0; i < n; i++) 		//ÊäÈë 
+	for(i = 0; i < n; i++) 		//è¾“å…¥ 
 		scanf("%d", a + i);
 		 
-	for(j = 0; j < k; j++) {	//ÅÅÐò
+	for(j = 0; j < k; j++) {	//æŽ’åº
 		for(p = 1; p < n; p++) {
 			if(a[p-1] > a[p]) change(a+p-1, a+p);
 		}
 	}
 	
-	int flag = 1;				//Êä³ö 
+	int flag = 1;				//è¾“å‡º 
 	for (i = 0; i < n; i++) {
 		if (flag) {
 			printf("%d", a[i]);

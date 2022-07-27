@@ -4,8 +4,8 @@ int main()
 {
 	int sum = 0;
 	int numOfTwo = 0;
-	int flag = 0;			//±ê¼ÇÊÇ·ñÊÇ¸ºÊı
-	char before;			//¼ÇÂ¼NÖ®Ç°µÄÒ»Î»Êı 
+	int flag = 0;			//æ ‡è®°æ˜¯å¦æ˜¯è´Ÿæ•°
+	char before;			//è®°å½•Nä¹‹å‰çš„ä¸€ä½æ•° 
 	char N;
 	scanf("%c", &N);
 	while(N != '\n') {

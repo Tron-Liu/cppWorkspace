@@ -8,11 +8,11 @@ int num[30002];
 int find(int x)
 {
 	int p = x;
-	while(x != pre[x]) {		//Ñ°ÕÒ¸ù½áµã 
+	while(x != pre[x]) {		//å¯»æ‰¾æ ¹ç»“ç‚¹ 
 		x = pre[x];
 	}
 	int tmp;
-	while(p != x) {				//Â·¾¶Ñ¹Ëõ 
+	while(p != x) {				//è·¯å¾„åŽ‹ç¼© 
 		tmp = pre[p];
 		pre[p] = x;
 		p = tmp;
@@ -33,7 +33,7 @@ int main()
 	int n, m;
 	cin >> n >> m;
 	
-	for(int i = 1; i <= n; i++)		//³õÊ¼»¯Îª×Ô¼º 
+	for(int i = 1; i <= n; i++)		//åˆå§‹åŒ–ä¸ºè‡ªå·± 
 		pre[i] = i;
 	
 	int k;

@@ -6,7 +6,7 @@ typedef struct node {
 	struct node * next;
 }Node;
 
-//¸ù¾İa£¬´´½¨Á´±í 
+//æ ¹æ®aï¼Œåˆ›å»ºé“¾è¡¨ 
 void create(int *a, Node *head)
 {
 	int i = 0;

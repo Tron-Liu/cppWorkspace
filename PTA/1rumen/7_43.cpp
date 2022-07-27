@@ -18,8 +18,8 @@ int main()
 	while(N--) {
 		cin >> temp.gender >> temp.s;
 		stu.push_back(temp);
-		if(temp.gender) male.push_back(temp);		//男生进队 
-		else female.push_back(temp);				//女生进队 
+		if(temp.gender) male.push_back(temp);		//鐢风敓杩涢槦 
+		else female.push_back(temp);				//濂崇敓杩涢槦 
 	}
 	
 	

@@ -7,12 +7,12 @@ int main()
 	
 	int a[8][8] = {0};
 	int i, j;
-	for(i = 0; i < n; i++) 			//ÊäÈë 
+	for(i = 0; i < n; i++) 			//è¾“å…¥ 
 		for(j = 0; j < n; j++)
 			scanf("%d", &a[i][j]);
 			
 	m %= n;
-	if(!m) {			//È¡ÓàÎªÁã£¬²»ÓÃÒÆ¶¯ 
+	if(!m) {			//å–ä½™ä¸ºé›¶ï¼Œä¸ç”¨ç§»åŠ¨ 
 		for(i = 0; i < n; i++) {
 			for(j = 0; j < n; j++) {
 				printf("%d ", a[i][j]);
@@ -22,7 +22,7 @@ int main()
 		return 0;
 	} 
 	
-	for(int i = 0; i < n; i++) {		//Êä³ö 
+	for(int i = 0; i < n; i++) {		//è¾“å‡º 
 		int k = n - m;
 		for(int j = 0; j < n; j++) {
 			int p = (k + j) % n;

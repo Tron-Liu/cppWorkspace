@@ -11,7 +11,7 @@ int main()
 	
 	int j = 0, temp;
 	for(i = 0; i < N; i++) {
-		if(arr[j] > arr[i])		//¼ÇÂ¼×îĞ¡Öµ 
+		if(arr[j] > arr[i])		//è®°å½•æœ€å°å€¼ 
 			j = i;
 	}
 	temp = arr[0];
@@ -19,7 +19,7 @@ int main()
 	arr[j] = temp;
 	
 	for(i = 0; i < N; i++) {
-		if(arr[j] < arr[i])		//¼ÇÂ¼×î´óÖµ 
+		if(arr[j] < arr[i])		//è®°å½•æœ€å¤§å€¼ 
 			j = i;
 	}
 	temp = arr[N-1];

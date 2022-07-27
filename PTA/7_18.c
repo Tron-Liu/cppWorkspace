@@ -1,17 +1,17 @@
 #include <stdio.h>
-#define threshold 0.01 		 //ãÐÖµ
+#define threshold 0.01 		 //é˜ˆå€¼
 
 double fun(double a3, double a2, double a1, double a0, double x);
 
 int main()
 {
-	double a3, a2, a1, a0;	//ÏµÊý
+	double a3, a2, a1, a0;	//ç³»æ•°
 	scanf("%lf %lf %lf %lf", &a3, &a2, &a1, &a0);
 
-	double a, b;		//Çø¼ä¶Ëµã
+	double a, b;		//åŒºé—´ç«¯ç‚¹
 	scanf("%lf %lf", &a, &b);
 
-	double len = b - a; 	//Çø¼ä³¤¶È
+	double len = b - a; 	//åŒºé—´é•¿åº¦
 
 	double fa, fb, fc, c;
 	while(len >= threshold) {

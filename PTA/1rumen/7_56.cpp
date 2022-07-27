@@ -2,8 +2,8 @@
 #include <vector>
 using namespace std;
 
-bool issame(vector<char> vc);		//判断倒过来的数组与原数组是否相同 
-void print(char s, vector<char> vc, int N);		//输出目标结果 
+bool issame(vector<char> vc);		//鍒ゆ柇鍊掕繃鏉ョ殑鏁扮粍涓庡師鏁扮粍鏄惁鐩稿悓 
+void print(char s, vector<char> vc, int N);		//杈撳嚭鐩爣缁撴灉 
 
 int main()
 {

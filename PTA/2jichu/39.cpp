@@ -24,12 +24,12 @@ int main()
 		p.push_back(t);
 	}
 	
-	sort(p.begin(), p.end(), comparison);		//对结构体进行排序 
+	sort(p.begin(), p.end(), comparison);		//瀵圭粨鏋勪綋杩涜鎺掑簭 
 	
 	vector<People>::iterator it;
 	it = p.begin();
 	
-	for(it; it != p.end(); it++) {				//输出排序结果 
+	for(it; it != p.end(); it++) {				//杈撳嚭鎺掑簭缁撴灉 
 		cout << it->name << " " << it->birthday << " "
 			 << it->tel << endl;
 	}
@@ -37,6 +37,6 @@ int main()
 	return 0;
 }
 
-bool comparison(People a, People b) {			//定义比较规则 
+bool comparison(People a, People b) {			//瀹氫箟姣旇緝瑙勫垯 
 	return a.birthday < b.birthday;
 }

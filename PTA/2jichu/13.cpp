@@ -8,20 +8,20 @@ int main()
 	int a, n;
 	vector<int> v1, v2;
 
-	cin >> n;		//µÚÒ»ĞĞµÄµÚÒ»¸öÊı×Ö 
-	for(int i = 0; i < n; i++) {	//µÚÒ»ĞĞÊı¾İ´æÈë v1
+	cin >> n;		//ç¬¬ä¸€è¡Œçš„ç¬¬ä¸€ä¸ªæ•°å­— 
+	for(int i = 0; i < n; i++) {	//ç¬¬ä¸€è¡Œæ•°æ®å­˜å…¥ v1
 		cin >> a;
 		if(find(v1.begin(), v1.end(), a) == v1.end())
 			v1.push_back(a);
 	}
-	cin >> n;		//µÚ¶şĞĞµÄµÚÒ»¸öÊı×Ö
-	for(int i = 0; i < n; i++) {	//µÚ¶şĞĞÊı¾İ´æÈë v1 
+	cin >> n;		//ç¬¬äºŒè¡Œçš„ç¬¬ä¸€ä¸ªæ•°å­—
+	for(int i = 0; i < n; i++) {	//ç¬¬äºŒè¡Œæ•°æ®å­˜å…¥ v1 
 		cin >> a;
 		if(find(v2.begin(), v2.end(), a) == v2.end())
 			v2.push_back(a);
 	}
 	
-	int flag = 0;					//±ê¼ÇµÚÒ»ĞĞÊı¾İÊÇ·ñÓĞÊä³ö 
+	int flag = 0;					//æ ‡è®°ç¬¬ä¸€è¡Œæ•°æ®æ˜¯å¦æœ‰è¾“å‡º 
 	vector<int>::iterator it1;
 	for(it1 = v1.begin(); it1 != v1.end(); it1++) {
 		if(find(v2.begin(), v2.end(), *it1) == v2.end()) {

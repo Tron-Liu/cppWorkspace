@@ -4,10 +4,10 @@ int main()
 {
 	int A[22][22] = {0};
 	int M, N, i, j;
-	int flag = 0;						//±ê¼Ç¾Ö²¿¼«´óÖµ 
+	int flag = 0;						//æ ‡è®°å±€éƒ¨æå¤§å€¼ 
 	scanf("%d %d", &M, &N); 
 	
-	for(i = 0; i < M; i++) {			//ÊäÈë¾ØÕó 
+	for(i = 0; i < M; i++) {			//è¾“å…¥çŸ©é˜µ 
 		for(j = 0; j < N; j++) {
 			scanf("%d", &A[i][j]);
 		}
@@ -15,7 +15,7 @@ int main()
 	
 	for(i = 1; i < M-1; i++) {
 		for(j = 1; j < N-1; j++) {
-			//ÉÏ¡¢ÏÂ¡¢×ó¡¢ÓÒ 
+			//ä¸Šã€ä¸‹ã€å·¦ã€å³ 
 			if(A[i][j] > A[i][j-1] && A[i][j] > A[i][j+1] && A[i][j] > A[i-1][j] && A[i][j] > A[i+1][j]) {
 				printf("%d %d %d\n", A[i][j], i+1, j+1);
 				flag = 1;

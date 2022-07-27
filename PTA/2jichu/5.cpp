@@ -3,9 +3,9 @@ using namespace std;
 
 int main()
 {
-	int unhappy = 0;		//²»¸ßĞËÆÚ 
-	int sad = 0;			//ÉËĞÄÆÚ 
-	int happy = 0;			//ĞË·ÜÆÚ 
+	int unhappy = 0;		//ä¸é«˜å…´æœŸ 
+	int sad = 0;			//ä¼¤å¿ƒæœŸ 
+	int happy = 0;			//å…´å¥‹æœŸ 
 	int money = 0;
 	
 	string s;
@@ -27,20 +27,20 @@ int main()
 			continue;
 		}
 		
-		if(s[i] == 'X')			//Ê²Ã´¶¼Ã»ÓĞ 
+		if(s[i] == 'X')			//ä»€ä¹ˆéƒ½æ²¡æœ‰ 
 		{
 			unhappy = 1;
 			cout << 'U';
 			if(happy) happy--;
 		}
-		else if(s[i] == 'T')	//ÓĞ²¶Êó¼Ğ 
+		else if(s[i] == 'T')	//æœ‰æ•é¼ å¤¹ 
 		{
 			sad = 2;
 			money += 7;
 			cout << 'D';
 			if(happy) happy--;
 		}
-		else					//ÓĞÄÌÀÒ 
+		else					//æœ‰å¥¶é…ª 
 		{
 			happy = 2;
 			money -= 3;

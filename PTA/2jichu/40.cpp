@@ -14,32 +14,32 @@ int main()
 	vector<int>::iterator f;
 	for(int i = 0; i < s.length(); i++) {
 		n = s[i] - '0';
-		f = find(vi.begin(), vi.end(), n);			//²éÕÒ n
+		f = find(vi.begin(), vi.end(), n);			//æŸ¥æ‰¾ n
 		 
-		// f == vi.end() ±íÊ¾Ã»ÓÐÕÒµ½ n ´ú±íµÄÊý×Ö  
-		if(f == vi.end())  vi.push_back(n);			//½« n ´ú±íµÄÊý×ÖÍÆÈë vector 
+		// f == vi.end() è¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ° n ä»£è¡¨çš„æ•°å­—  
+		if(f == vi.end())  vi.push_back(n);			//å°† n ä»£è¡¨çš„æ•°å­—æŽ¨å…¥ vector 
 	}
 	
-	//½« vector ÖÐµÄÔªËØ´Ó´óµ½Ð¡ÅÅÐò
+	//å°† vector ä¸­çš„å…ƒç´ ä»Žå¤§åˆ°å°æŽ’åº
 	sort(vi.begin(), vi.end(), greater<int>());		
 	
-	//Êä³ö½á¹ûµÚÒ»ÐÐ
+	//è¾“å‡ºç»“æžœç¬¬ä¸€è¡Œ
 	vector<int>::iterator it;
 	cout << "int[] arr = new int[]{"; 
 	it = vi.begin();
 	for(it; it != vi.end(); it++) {
-		if(it == vi.begin()) cout << *it;		//µÚÒ»¸ö²»Êä³ö¶ººÅ 
+		if(it == vi.begin()) cout << *it;		//ç¬¬ä¸€ä¸ªä¸è¾“å‡ºé€—å· 
 		else cout  <<"," << *it;
 	}
 	cout << "};" << endl;
 	
-	//Êä³ö½á¹ûµÚ¶þÐÐ 
+	//è¾“å‡ºç»“æžœç¬¬äºŒè¡Œ 
 	cout << "int[] index = new int[]{"; 
 	for(int i = 0; i < s.length(); i++) {
 		n = s[i] - '0';
-		f = find(vi.begin(), vi.end(), n);			//²éÕÒ n
+		f = find(vi.begin(), vi.end(), n);			//æŸ¥æ‰¾ n
 		
-		if(!i)	{									//µÚÒ»¸ö²»Êä³ö¶ººÅ 
+		if(!i)	{									//ç¬¬ä¸€ä¸ªä¸è¾“å‡ºé€—å· 
 			printf("%d", f - vi.begin());
 		}
 		else {

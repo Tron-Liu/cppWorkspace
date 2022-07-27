@@ -7,25 +7,25 @@ int main()
 	int n;
 	cin >> n;
 	
-	int i, j;						//输入盘面 
+	int i, j;						//杈撳叆鐩橀潰 
 	for(i = 0; i < 2 * n; i++)
 		for(j = 0; j < 2 * n; j++)
 			cin >> arr[i][j];
 	
-	int k;							//玩家输入 
+	int k;							//鐜╁杈撳叆 
 	cin >> k;
 	
 	int x1, y1, x2, y2;
-	int false_count = 0;					//错误次数 
+	int false_count = 0;					//閿欒娆℃暟 
 	int true_count = 0;
 	while(k--) {
-		if(false_count == 3) {			//出错达到三次 
+		if(false_count == 3) {			//鍑洪敊杈惧埌涓夋 
 			cout << "Game Over";
 			return 0;
 		}
 		
 		cin >> x1 >> y1 >> x2 >> y2;
-		if(arr[x1-1][y1-1] == arr[x2-1][y2-1] && arr[x1-1][y1-1] != '*') {	//正确 
+		if(arr[x1-1][y1-1] == arr[x2-1][y2-1] && arr[x1-1][y1-1] != '*') {	//姝ｇ‘ 
 			arr[x1-1][y1-1] = '*';
 			arr[x2-1][y2-1] = '*';
 			

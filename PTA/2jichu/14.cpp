@@ -10,8 +10,8 @@ int main()
 	int i;
 	
 	getchar();
-	while((c = getchar()) != '\n') {	//Í³¼Æ 
-		if(c == ' ') continue;			//¶ªÆú¿Õ¸ñ×Ö·û 
+	while((c = getchar()) != '\n') {	//ç»Ÿè®¡ 
+		if(c == ' ') continue;			//ä¸¢å¼ƒç©ºæ ¼å­—ç¬¦ 
 		else {
 			i = (c - '0');
 			count[i]++;
@@ -19,10 +19,10 @@ int main()
 	}
 	
 	int max = 0;
-	for(i = 0; i < 10; i++)				//ÕÒµ½×î´ó´ÎÊý 
+	for(i = 0; i < 10; i++)				//æ‰¾åˆ°æœ€å¤§æ¬¡æ•° 
 		if(count[i] > max) max = count[i];
 	
-	printf("%d:", max);				//Êä³ö 
+	printf("%d:", max);				//è¾“å‡º 
 	for(i = 0; i < 10; i++) {
 		if(count[i] == max) printf(" %d", i);
 	} 

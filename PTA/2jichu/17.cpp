@@ -25,7 +25,7 @@ int main()
 	multiset<int>::iterator it; 
 	for(it = mt.begin(); it != mt.end(); it++) {
 		c = mt.count(*it);
-		if(c >= max_count) {		//set会从小到大排序，所以加等号 
+		if(c >= max_count) {		//set浼氫粠灏忓埌澶ф帓搴忥紝鎵�浠ュ姞绛夊彿 
 			max_count = c;
 			max = *it;
 		}

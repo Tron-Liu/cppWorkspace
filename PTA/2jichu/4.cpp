@@ -5,26 +5,26 @@ using namespace std;
 
 int main()
 {
-	string a = "abcdefghij";	//´æ´¢Êı×Ö 
-	string b = "SBQWSBQY";		//´æ´¢µ¥Î» 
+	string a = "abcdefghij";	//å­˜å‚¨æ•°å­— 
+	string b = "SBQWSBQY";		//å­˜å‚¨å•ä½ 
 	
-	string s;					//ÊäÈëÊı×Ö 
+	string s;					//è¾“å…¥æ•°å­— 
 	cin >> s;
 	
-	if(s[0] == '0')				//Ö»ÓĞÒ»Î»Áã 
+	if(s[0] == '0')				//åªæœ‰ä¸€ä½é›¶ 
 	{
 		cout << 'a';
 		return 0;
 	}
 	
 	int l = s.length();
-	int flag = 0;					//±£´æÁã 
+	int flag = 0;					//ä¿å­˜é›¶ 
 	
 	for(int i = 0; i < l; i++)
 	{
-		if(s[i] == '0')				//´¦ÀíÁã 
+		if(s[i] == '0')				//å¤„ç†é›¶ 
 		{
-			flag = 1;				//±íÊ¾³öÏÖÁã 
+			flag = 1;				//è¡¨ç¤ºå‡ºç°é›¶ 
 			
 			if((l-i-2) == 7)
 				cout << b[7];
@@ -35,13 +35,13 @@ int main()
 		}
 		else
 		{
-			if(flag)				//Êä³öÁã 
+			if(flag)				//è¾“å‡ºé›¶ 
 				cout << a[0];
 				 
-			cout << a[s[i]-'0'];	//Êä³ö·ÇÁãÊı×Ö 
-			if((l-i-2) >= 0)		//·ÀÖ¹Êı×é b Òç³ö 
+			cout << a[s[i]-'0'];	//è¾“å‡ºéé›¶æ•°å­— 
+			if((l-i-2) >= 0)		//é˜²æ­¢æ•°ç»„ b æº¢å‡º 
 				cout << b[l-i-2];
-			flag = 0;				//ÖØÖÃ 
+			flag = 0;				//é‡ç½® 
 		}
 	}
 	return 0;

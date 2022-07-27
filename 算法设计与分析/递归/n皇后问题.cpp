@@ -8,7 +8,7 @@ void dispasolution(int n)
 {
     static int count = 0;
     int i;
-    printf("µÚ %d ¸ö½â: ", ++count);
+    printf("ç¬¬ %d ä¸ªè§£: ", ++count);
     for (i = 1; i <= n; i++)
     {
         printf(" ( %d, %d ) ", i, q[i]);
@@ -28,7 +28,7 @@ int place(int k, int j)
     return 1;
 }
 
-//µİ¹é
+//é€’å½’
 void queen(int k, int n)
 {
     int j;
@@ -47,12 +47,12 @@ void queen(int k, int n)
 int main()
 {
     int n;
-    printf(" »ÊºóÎÊÌâ ( n < 20 ) n = ");
+    printf(" çš‡åé—®é¢˜ ( n < 20 ) n = ");
     scanf(" %d", &n);
     if(n > 20)
-        printf("nÖµÌ«´ó£¬²»ÄÜÇó½â\n");
+        printf("nå€¼å¤ªå¤§ï¼Œä¸èƒ½æ±‚è§£\n");
     else {
-        printf(" %d »ÊºóÎÊÌâÇó½âÈçÏÂ: \n", n);
+        printf(" %d çš‡åé—®é¢˜æ±‚è§£å¦‚ä¸‹: \n", n);
         queen(1, n);
         printf("\n");
     }

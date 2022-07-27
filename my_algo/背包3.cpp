@@ -4,13 +4,13 @@ using namespace std;
 
 int w[1002];
 struct Goods {
-	int weight;		//ÎïÆ·ÖØÁ¿ 
-	int pos;				//ÎïÆ·ÔÚÄÄ¸öÏä×Ó 
+	int weight;		//ç‰©å“é‡é‡ 
+	int pos;				//ç‰©å“åœ¨å“ªä¸ªç®±å­ 
 };
 
 int main()
 {
-	for(int i = 0; i < 1002; i++)		//³õÊ¼»¯È«¾ÖÊı×é 
+	for(int i = 0; i < 1002; i++)		//åˆå§‹åŒ–å…¨å±€æ•°ç»„ 
 		w[i] = 100;
 		
 	int n;
@@ -21,11 +21,11 @@ int main()
 		cin >> goods[i].weight;
 	
 	int i, j;
-	for(i = 0; i < n; i++) {		//Ñ­»·ÎïÆ· 
-		for(j = 0; j < n; j++) {	//Ñ­»·Ïä×Ó 
+	for(i = 0; i < n; i++) {		//å¾ªç¯ç‰©å“ 
+		for(j = 0; j < n; j++) {	//å¾ªç¯ç®±å­ 
 			if(w[j] >= goods[i].weight) {
-				goods[i].pos = j;					//ÎïÆ·¶¨Î» 
-				w[j] = w[j] - goods[i].weight;	//Ïä×Ó¼õÈ¥ÖØÁ¿ 
+				goods[i].pos = j;					//ç‰©å“å®šä½ 
+				w[j] = w[j] - goods[i].weight;	//ç®±å­å‡å»é‡é‡ 
 				break;
 			}
 		}

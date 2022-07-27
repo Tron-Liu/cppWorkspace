@@ -12,47 +12,47 @@ int map[52][52];
 int main()
 {
 	stack<Node> st;
-	int m, n;			//mÐÐ£¬ n ÁÐ 
+	int m, n;			//mè¡Œï¼Œ n åˆ— 
 	cin >> m >> n;
 
-	int p, q;			//´ýÑ°ÕÒÎïÆ·µÄÎ»ÖÃ 
+	int p, q;			//å¾…å¯»æ‰¾ç‰©å“çš„ä½ç½® 
 	cin >> p >> q;
 
-	for (int i = 0; i < m; i++)		//ÊäÈëÃÔ¹¬ 
+	for (int i = 0; i < m; i++)		//è¾“å…¥è¿·å®« 
 		for (int j = 0; j < n; j++)
 			cin >> map[i][j];
 
-	Node root;			//³õÊ¼»¯³ö·¢µã 
+	Node root;			//åˆå§‹åŒ–å‡ºå‘ç‚¹ 
 	root.x = 0;
 	root.y = 0;
-	map[0][0] = 1;		//½«³ö·¢µãÖÃÎªÒÑ·ÃÎÊ 
+	map[0][0] = 1;		//å°†å‡ºå‘ç‚¹ç½®ä¸ºå·²è®¿é—® 
 
-	st.push(root); 		//½øÕ»
+	st.push(root); 		//è¿›æ ˆ
 	Node tmp, next;
 	while (!st.empty()) {
 		tmp = st.top();
-		if (tmp.x == p && tmp.y == q) break;	//ÒÑÕÒµ½ÎïÆ·
+		if (tmp.x == p && tmp.y == q) break;	//å·²æ‰¾åˆ°ç‰©å“
 
-		//½øÕ» 
-		if (tmp.x - 1 >= 0 && !map[tmp.x - 1][tmp.y]) {		//ÉÏ 
+		//è¿›æ ˆ 
+		if (tmp.x - 1 >= 0 && !map[tmp.x - 1][tmp.y]) {		//ä¸Š 
 			tmp.x--;
 			st.push(tmp);
 			map[tmp.x][tmp.y] = 1;
 			continue;
 		}
-		if (tmp.x + 1 < m && !map[tmp.x + 1][tmp.y]) {	//ÏÂ 
+		if (tmp.x + 1 < m && !map[tmp.x + 1][tmp.y]) {	//ä¸‹ 
 			tmp.x++;
 			st.push(tmp);
 			map[tmp.x][tmp.y] = 1;
 			continue;
 		}
-		if (tmp.y - 1 >= 0 && !map[tmp.x][tmp.y - 1]) {		//×ó 
+		if (tmp.y - 1 >= 0 && !map[tmp.x][tmp.y - 1]) {		//å·¦ 
 			tmp.y--;
 			st.push(tmp);
 			map[tmp.x][tmp.y] = 1;
 			continue;
 		}
-		if (tmp.y + 1 < n && !map[tmp.x][tmp.y + 1]) {		//ÓÒ 
+		if (tmp.y + 1 < n && !map[tmp.x][tmp.y + 1]) {		//å³ 
 			tmp.y++;
 			st.push(tmp);
 			map[tmp.x][tmp.y] = 1;
@@ -60,7 +60,7 @@ int main()
 		}
 
 		//map[tmp.x][tmp.y] = 1;
-		st.pop();	//ÒÔÉÏ½Ô²»Âú×ã£¬Ôò³öÕ» 
+		st.pop();	//ä»¥ä¸Šçš†ä¸æ»¡è¶³ï¼Œåˆ™å‡ºæ ˆ 
 	}
 	while (!st.empty()) {
 		tmp = st.top();

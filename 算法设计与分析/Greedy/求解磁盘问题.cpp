@@ -119,9 +119,9 @@ void CreateInitFile(FInfo fi[], int n) {
 		fi[m].no = m; strcpy(fi[m].fn, fname);
 		m++;
     }
-    printf("(1)Éú³ÉµÄ³õÊ¼¹é²¢¶Î¸öÊı = %d, ¶ÎºÅ´Ó 0 ~ %d\n", m, m-1);
+    printf("(1)ç”Ÿæˆçš„åˆå§‹å½’å¹¶æ®µä¸ªæ•° = %d, æ®µå·ä» 0 ~ %d\n", m, m-1);
     for (i = 0; i < m; i++) {
-        printf("\t¶ÎºÅ: %d, ¼ÇÂ¼¸öÊı: %d\n", fi[i].no, fi[i].num);
+        printf("\tæ®µå·: %d, è®°å½•ä¸ªæ•°: %d\n", fi[i].no, fi[i].num);
     }
     fclose(ifp);
 }
@@ -138,7 +138,7 @@ int Min(int a[], int &minv) {
     return minno;
 }
 
-void Insert(FInfo fi[], char * fname, int length) {         //½«ĞÂ¹é²¢¶ÎĞÅÏ¢ÓĞĞò²åÈëµ½ fi ÖĞ
+void Insert(FInfo fi[], char * fname, int length) {         //å°†æ–°å½’å¹¶æ®µä¿¡æ¯æœ‰åºæ’å…¥åˆ° fi ä¸­
     int i = 0, j;
     while (i < m && fi[i].num < length) {
         i++;

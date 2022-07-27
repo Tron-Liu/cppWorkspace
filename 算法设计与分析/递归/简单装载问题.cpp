@@ -1,42 +1,35 @@
 #include <stdio.h>
 
-bool loading(int W, int w[], int i)
-{
-    int r;
-    r = W -w[i];                                //È¡ w[i] ºóÓàÏÂµÄÖØÁ¿
-    if (r == 0)
+bool loading(int W, int w[], int i) {
+  int r;
+  r = W - w[i];  //å– w[i] åŽä½™ä¸‹çš„é‡é‡
+  if (r == 0)
+    return true;
+  else if (r > 0) {
+    if (i > 0) {
+      if (loading(r, w, i - 1))
         return true;
-    else if(r > 0)
-    {
-        if (i > 0)
-        {
-            if(loading(r, w, i-1))
-                return true;
-            else
-                return loading(W, w, i-1);
-        }
-        else
-            return false;
-    }
+      else
+        return loading(W, w, i - 1);
+    } else
+      return false;
+  } else {
+    if (i > 0)
+      return loading(W, w, i - 1);
     else
-    {
-        if(i > 0)
-            return loading(W, w, i-1);
-        else
-            return false;
-    }
+      return false;
+  }
 }
 
-int main()
-{
-    int w[] = {2, 9, 5, 6, 3};
-    int n = 5, W;
-    W = 4;
-    printf("W = %d Ê± %s\n", W, (loading(W, w, n-1) ? "´æÔÚ½â":"Ã»ÓÐ½â"));
-    W = 10;
-    printf("W = %d Ê± %s\n", W, (loading(W, w, n-1) ? "´æÔÚ½â":"Ã»ÓÐ½â"));
-    W = 12;
-    printf("W = %d Ê± %s\n", W, (loading(W, w, n-1) ? "´æÔÚ½â":"Ã»ÓÐ½â"));
-    W = 21;
-    printf("W = %d Ê± %s\n", W, (loading(W, w, n-1) ? "´æÔÚ½â":"Ã»ÓÐ½â"));
+int main() {
+  int w[] = {2, 9, 5, 6, 3};
+  int n   = 5, W;
+  W       = 4;
+  printf("W = %d æ—¶ %s\n", W, (loading(W, w, n - 1) ? "å­˜åœ¨è§£" : "æ²¡æœ‰è§£"));
+  W = 10;
+  printf("W = %d æ—¶ %s\n", W, (loading(W, w, n - 1) ? "å­˜åœ¨è§£" : "æ²¡æœ‰è§£"));
+  W = 12;
+  printf("W = %d æ—¶ %s\n", W, (loading(W, w, n - 1) ? "å­˜åœ¨è§£" : "æ²¡æœ‰è§£"));
+  W = 21;
+  printf("W = %d æ—¶ %s\n", W, (loading(W, w, n - 1) ? "å­˜åœ¨è§£" : "æ²¡æœ‰è§£"));
 }

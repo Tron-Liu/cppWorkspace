@@ -103,16 +103,16 @@ int main()
     int d = -1, i;
     char a[] = "A(B(D(,G)),C(E,F))";
     CreateBTNode(b, a);
-    printf("¶ş²æÊ÷ b: "); DispBTNode(b); printf("\n");
+    printf("äºŒå‰æ ‘ b: "); DispBTNode(b); printf("\n");
     if(Ancestor(b,x,path,d)) {
-        printf("ÔÚ b ÖĞÕÒµ½ÖµÎª %c µÄ½áµã\n", x);
-        printf("´Ó¸ù½Úµãµ½ %c µÄÂ·¾¶: ", x);
+        printf("åœ¨ b ä¸­æ‰¾åˆ°å€¼ä¸º %c çš„ç»“ç‚¹\n", x);
+        printf("ä»æ ¹èŠ‚ç‚¹åˆ° %c çš„è·¯å¾„: ", x);
         for(i=d; i>=0; i--)
             printf(" %c ", path[i]);
         printf("\n");
     }
-    else printf("ÔÚ b ÖĞÃ»ÓĞÕÒµ½ÖµÎª %c µÄ½áµã\n", x);
-    printf("Ïú»ÙÊ÷ b\n");
+    else printf("åœ¨ b ä¸­æ²¡æœ‰æ‰¾åˆ°å€¼ä¸º %c çš„ç»“ç‚¹\n", x);
+    printf("é”€æ¯æ ‘ b\n");
     DestroyBTNode(b);
     return 0;
 }

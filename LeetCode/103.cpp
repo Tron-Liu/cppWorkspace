@@ -1,6 +1,8 @@
+#include <algorithm>
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <set>
 
 using namespace std;
 
@@ -25,21 +27,40 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
   int sz = 0;
   TreeNode* node = nullptr;
   vector<int> temp;
-  bool tag = false;
+  bool tag = false;  // 记录换行
   while (!qu.empty()) {
     sz = qu.size();
-    node = qu.front();
-    qu.pop();
 
     for (int i = 0; i < sz; i++) {
-        temp.push_back();
-        temp.re
+      node = qu.front();
+      qu.pop();
+      temp.push_back(node->val);
+      if (node->left != nullptr)
+        qu.push(node->left);
+      if (node->right != nullptr)
+        qu.push(node->right);
     }
+    if (tag) {
+      tag = !tag;
+    } else {
+      reverse(temp.begin(), temp.end());
+      tag = !tag;
+    }
+    res.push_back(temp);
     temp.clear();
-
   }
+  return res;
 }
 
 int main() {
+
+  set<int> vals;
+  vals.insert(1);
+  vals.insert(2);
+  vals.insert(3);
+  vals.insert(4);
+
+  INT_MAX
+  cout << vals.size();
   return 0;
 }

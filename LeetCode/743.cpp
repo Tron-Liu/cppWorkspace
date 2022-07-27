@@ -1,3 +1,5 @@
+// 网络延迟时间
+
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -94,7 +96,7 @@ public:
     }
 };
 
-int main1()
+int main()
 {
     int data1[] = {2, 1, 1};
     vector<int> time1(data1, data1 + 3);
@@ -114,9 +116,4 @@ int main1()
     so.networkDelayTime(times, n, k);
     
     return 0;
-}
-
-int main()
-{
-    cout << INT_MAX;
 }

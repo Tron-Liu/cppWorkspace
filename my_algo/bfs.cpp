@@ -1,107 +1,91 @@
 #include <iostream>
-#include <vector>
 #include <queue>
+#include <vector>
 using namespace std;
 
-//class Point() {
-//	private:
-//		int x;
-//		int y;
-//	public:
-//		void Point() {
-//			
-//		}
-//}
-struct Point{
-	int x;
-	int y;
+struct Point {
+  int x;
+  int y;
 };
 
 int bfs(Point& start, Point& target);
 int visited[5][4];
 
-// 0 ¿ÕµØ; 1 ÕÏ°­Îï 
+// 0 ç©ºåœ°; 1 éšœç¢ç‰©
 
-int map[6][5] = { {1, 1, 1, 1, 1},
-				  {1, 0, 0, 1, 0},
-				  {1, 0, 0, 0, 0},
-				  {1, 0, 0, 1, 0},
-				  {1, 0, 1, 0, 0},
-				  {1, 0, 0, 0, 1}
-				};
-int main()
-{
-	
-					
-	Point start;
-	start.x = 1;
-	start.y = 1;
-	
-	Point target;
-	target.x = 4;
-	target.y = 3;
-	
-	// 0 Ã»·ÃÎÊ¹ı; 1 ·ÃÎÊ¹ı 
-	int visited[6][5] = {0};
-	int steps = 0;
-	steps = bfs(start, target);
-	cout << "Steps: " << steps;
-	return 0;
+int map[6][5] = {{1, 1, 1, 1, 1}, {1, 0, 0, 1, 0}, {1, 0, 0, 0, 0},
+                 {1, 0, 0, 1, 0}, {1, 0, 1, 0, 0}, {1, 0, 0, 0, 1}};
+int main() {
+  Point start;
+  start.x = 1;
+  start.y = 1;
+
+  Point target;
+  target.x = 4;
+  target.y = 3;
+
+  // 0 æ²¡è®¿é—®è¿‡; 1 è®¿é—®è¿‡
+  int visited[6][5] = {0};
+  int steps = 0;
+  steps = bfs(start, target);
+  cout << "Steps: " << steps;
+  return 0;
 }
 
 int bfs(Point& start, Point& target) {
-	queue<Point> qu;
-	qu.push(start);
-	visited[1][1] = 1;
-	
-	Point tmp;
-	int steps = 0;
-	while(!qu.empty()) {
-		int sz = qu.size();
-		bool tag = false;
-		for (int i = 0; i < sz; i++) {
-			tmp = qu.front();
-			qu.pop();
-			// µ½´ïÄ¿±êµã 
-			if (tmp.x == target.x && tmp.y == target.y) {
-				tag = true;
-				break;
-			}
-			
-			int a = tmp.x;
-			int b = tmp.y;
-			
-			Point t;
-			// ×ó
-			if (b-1 > 0 && !visited[a][b-1] && !map[a][b-1]) {
-				t.x = a;
-				t.y = b-1;
-				qu.push(t);
-				visited[a][b-1] = 1;
-			}
-			// ÏÂ
-			if (a+1 <= 5 && !visited[a+1][b] && !map[a+1][b]) {
-				t.x = a+1;
-				t.y = b;
-				qu.push(t);
-				visited[a+1][b] = 1;
-			}
-			// ÓÒ 
-			if (b+1 <= 4 && !visited[a][b+1] && !map[a][b+1]) {
-				t.x = a;
-				t.y = b+1;
-				qu.push(t);
-				visited[a][b+1] = 1;
-			}
-			// ÉÏ 
-			if (a-1 > 0 && !visited[a-1][b] && !map[a-1][b]) {
-				t.x = a-1;
-				t.y = b;
-				qu.push(t);
-				visited[a-1][b] = 1;
-			}
-		}
-		if (tag) return steps;
-		steps++;
-	}
-} 
+  queue<Point> qu;
+  qu.push(start);
+  visited[1][1] = 1;
+
+  Point tmp;
+  int steps = 0;
+  while (!qu.empty()) {
+    int sz = qu.size();
+    bool tag = false;
+    for (int i = 0; i < sz; i++) {
+      tmp = qu.front();
+      qu.pop();
+      // åˆ°è¾¾ç›®æ ‡ç‚¹
+      if (tmp.x == target.x && tmp.y == target.y) {
+        tag = true;
+        break;
+      }
+
+      int a = tmp.x;
+      int b = tmp.y;
+
+      Point t;
+      // å·¦
+      if (b - 1 > 0 && !visited[a][b - 1] && !map[a][b - 1]) {
+        t.x = a;
+        t.y = b - 1;
+        qu.push(t);
+        visited[a][b - 1] = 1;
+      }
+      // ä¸‹
+      if (a + 1 <= 5 && !visited[a + 1][b] && !map[a + 1][b]) {
+        t.x = a + 1;
+        t.y = b;
+        qu.push(t);
+        visited[a + 1][b] = 1;
+      }
+      // å³
+      if (b + 1 <= 4 && !visited[a][b + 1] && !map[a][b + 1]) {
+        t.x = a;
+        t.y = b + 1;
+        qu.push(t);
+        visited[a][b + 1] = 1;
+      }
+      // ä¸Š
+      if (a - 1 > 0 && !visited[a - 1][b] && !map[a - 1][b]) {
+        t.x = a - 1;
+        t.y = b;
+        qu.push(t);
+        visited[a - 1][b] = 1;
+      }
+    }
+    if (tag)
+      return steps;
+    steps++;
+  }
+}

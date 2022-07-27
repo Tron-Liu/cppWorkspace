@@ -1,34 +1,31 @@
 #include <algorithm>
 #include <iostream>
+#include <list>
 #include <queue>
+#include <stack>
 #include <vector>
+#include <string>
+#include <algorithm>
+#include <set>
+#include <unordered_set>
 
 using namespace std;
 
-int mem[20][20] = {0};
+int main()
+{
+  unordered_multiset<int> hash;
+  hash.insert(3);
+  hash.insert(3);
+  hash.insert(3);
+  hash.insert(3);
 
-inline int count(int left, int right) {
-  if (left > right) return 1;
+  cout << hash.size() << endl;
+  auto it = hash.find(3);
 
-  if (mem[left][right] != 0) return mem[left][right];
+  hash.erase(it);
 
-  int res = 0;
-  for (int mid = left; mid <= right; mid++) {
-    int left_count = count(left, mid-1);
-    int right_count = count(mid+1, right);
+  cout << hash.size() << endl;
+  for (int num : hash) cout << num << " ";
 
-    res += left_count * right_count;
-  }
-
-  mem[left][right] = res;
-
-  return res;
-}
-
-int main() {
-  int n = 5;
-
-  int res = count(1, n);
-  cout << res << endl;
   return 0;
 }

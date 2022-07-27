@@ -9,10 +9,7 @@ void func(int num)
     {
         std::cout << "hello world" << std::endl;
     }
-    
 }
-
-
 
 int main()
 {

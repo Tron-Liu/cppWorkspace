@@ -42,7 +42,7 @@ void knap(PSetType p, int w[], int v[], int W)
     int i, j;
     int sumw, sumv;
     int maxi, maxsumw = 0, maxsumv = 0;
-    printf(" ĞòºÅ\tÑ¡ÖĞÎïÆ·\t×ÜÖØÁ¿\tÔö¼ÓÖµ\tÄÜ·ñ×°Èë\n");
+    printf(" åºå·\té€‰ä¸­ç‰©å“\tæ€»é‡é‡\tå¢åŠ å€¼\tèƒ½å¦è£…å…¥\n");
     for (i = 0; i < p.n; i++)
     {
         printf(" %d\t", i+1);
@@ -57,7 +57,7 @@ void knap(PSetType p, int w[], int v[], int W)
         printf("}\t\t%d\t%d\t", sumw, sumv);
         if(sumw <= W)
         {
-            printf("ÄÜ\n");
+            printf("èƒ½\n");
             if(sumv > maxsumv)
             {
                 maxsumw = sumw;
@@ -65,15 +65,15 @@ void knap(PSetType p, int w[], int v[], int W)
                 maxi = i;
             }
         }
-        else printf("·ñ\n");
+        else printf("å¦\n");
     }
-    printf("×î¼Ñ·½°¸Îª ");
-    printf("Ñ¡ÖĞÎïÆ·: ");
+    printf("æœ€ä½³æ–¹æ¡ˆä¸º ");
+    printf("é€‰ä¸­ç‰©å“: ");
     printf("{ ");
     for(j=1; j<=p.data[maxi][0]; j++)
         printf("%d ", p.data[maxi][j]);
     printf("},");
-    printf("×ÜÖØÁ¿: %d, ×Ü¼ÛÖµ: %d\n", maxsumw, maxsumv);
+    printf("æ€»é‡é‡: %d, æ€»ä»·å€¼: %d\n", maxsumw, maxsumv);
 }
 
 int main()
@@ -83,7 +83,7 @@ int main()
     int v[] = {4, 4, 3, 1};
     PSetType p;
     pset(n, p);
-    printf("0/1±³°üµÄÇó½â·½°¸\n", n);
+    printf("0/1èƒŒåŒ…çš„æ±‚è§£æ–¹æ¡ˆ\n", n);
     knap(p, w, v, W);
     printf("\n");
 }

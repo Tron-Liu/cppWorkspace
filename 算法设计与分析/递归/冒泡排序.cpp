@@ -8,14 +8,14 @@ void disp(int a[], int n)
     printf("\n");
 }
 
-//µÝ¹é
+//é€’å½’
 void BubbleSort(int a[], int n, int i)
 {
     int j, tmp;
     bool exchange;
-    if(i == n-1) return;                        //Âú×ãµÝ¹é³ö¿ÚÌõ¼þ
+    if(i == n-1) return;                        //æ»¡è¶³é€’å½’å‡ºå£æ¡ä»¶
     else {
-        exchange = false;                       //ÖÃ exchange Îª false
+        exchange = false;                       //ç½® exchange ä¸º false
         for (j = n-1; j > i; j--)   
         {
             if(a[j] < a[j-1]) {
@@ -34,9 +34,9 @@ int main()
 {
     int n = 10;
     int a[] = {1,2,5,5,7,10,6,9,4,3,8};
-    printf("ÅÅÐòÇ°: ");
+    printf("æŽ’åºå‰: ");
     disp(a,n);
-    printf("ÅÅÐòºó: ");
+    printf("æŽ’åºåŽ: ");
     BubbleSort(a, n, 0);
     disp(a,n);
 }

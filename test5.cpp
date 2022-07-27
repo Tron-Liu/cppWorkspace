@@ -1,25 +1,34 @@
-#include <iostream>
 #include <algorithm>
-#include <vector>
 #include <cmath>
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <vector>
+
 using namespace std;
 
-//int cmp(int** a, int** b) {
-//    return (*a)[0] == (*b)[0] ? (*b)[1] - (*a)[1] : (*a)[0] - (*b)[0];
-//}
+int divisorSubstrings(int num, int k)
+{
+    int count = 0;
+    int div = pow(10, k);
+
+    int a = num % div;
+    while (num >= a) {
+        if ( a!= 0 && num % a == 0)
+            count++;
+
+        num /= 10;
+        a = num % div;
+    }
+
+    return count;
+}
 
 int main()
 {
-	// int a[][4] = {{5, 4}, {6, 4}, {6, 7}, {2, 3}};
-	// vector< vector<int> > en(a, a + 4); 
-//	sort(a, a + 4, cmp);
+	int num = 123456;
+	int a = 100;
 
-	int a[4] = {1, 2, 3, 4};
-	vector<int> map(a, a+4);
-
-	reverse(map.begin(), map.end());
-	for (int i : map) {
-		cout << i << " ";
-	}
+	cout << num / 10;
     return 0;
 }

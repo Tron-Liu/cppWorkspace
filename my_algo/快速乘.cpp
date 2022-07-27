@@ -1,20 +1,20 @@
 #include <iostream>
 
 using namespace std;
-typedef long long ll; // ÀÁµÃÐ´ÄÇÃ´¶à long long
+typedef long long ll; // æ‡’å¾—å†™é‚£ä¹ˆå¤š long long
 
-void Exgcd(ll a, ll b, ll &x, ll &y) { // À©Õ¹Å·¼¸ÀïµÃÇóÄæÔª
+void Exgcd(ll a, ll b, ll &x, ll &y) { // æ‰©å±•æ¬§å‡ é‡Œå¾—æ±‚é€†å…ƒ
     if(!b) x = 1, y = 0;
     else Exgcd(b, a % b, y, x), y -= a / b * x;
 }
 
-inline ll mul(ll x, ll y, ll p) { // ¿ìËÙ³Ë£¬·ÀÖ¹±¬ long long
+inline ll mul(ll x, ll y, ll p) { // å¿«é€Ÿä¹˜ï¼Œé˜²æ­¢çˆ† long long
     ll z = (long double)x / p * y;
     ll res = (unsigned long long)x * y - (unsigned long long)z * p;
     return (res + p) % p;
 }
 
-ll fpm(ll x, ll power, ll p) { // ¿ìËÙÃÝ
+ll fpm(ll x, ll power, ll p) { // å¿«é€Ÿå¹‚
     x %= p;
     ll ans = 1;
     for(; power; power >>= 1, x = mul(x, x, p))
@@ -27,7 +27,7 @@ int main()
     ll n = 1001733993063167141, d = 212353, p, q;
     for(ll i = 3; i * i < n; i += 2) {
         /*
-        if(i % 1000000000 == 1) // ½ø¶ÈÌõ£¬Òª²»È»²»ÖªµÀ³ÌÐòÓÐÃ»ÓÐÔÙÅÜ
+        if(i % 1000000000 == 1) // è¿›åº¦æ¡ï¼Œè¦ä¸ç„¶ä¸çŸ¥é“ç¨‹åºæœ‰æ²¡æœ‰å†è·‘
             cout << i << endl;
         */
         if(n % i == 0) { //n % i== 0
@@ -49,7 +49,7 @@ int main()
     
     e = (x % m + m) % m;
     ll C = 20190324;
-    // cout << mul(d, e, m); ÑéÖ¤ d*e mod m = 1
+    // cout << mul(d, e, m); éªŒè¯ d*e mod m = 1
     cout << fpm(C, e, n) << endl;
     return 0;
 }

@@ -2,13 +2,13 @@
 #define Maxn 10
 #define MaxSize 1000
 
-typedef struct                          //¶¨ÒåÃİ¼¯ÀàĞÍ
+typedef struct                          //å®šä¹‰å¹‚é›†ç±»å‹
 {
-    int data[MaxSize][Maxn];            //data[i][0]±íÊ¾¸Ã×Ó¼¯µÄ³¤¶È
-    int n;                              //×Ó¼¯¸öÊı
+    int data[MaxSize][Maxn];            //data[i][0]è¡¨ç¤ºè¯¥å­é›†çš„é•¿åº¦
+    int n;                              //å­é›†ä¸ªæ•°
 }PSetType;
 
-void copy(int a[], int b[], int m)      //½« a[0..m] ¸´ÖÆµ½ b[0..m]
+void copy(int a[], int b[], int m)      //å°† a[0..m] å¤åˆ¶åˆ° b[0..m]
 {
     int i;
     for (i = 0; i <= m; i++)
@@ -17,7 +17,7 @@ void copy(int a[], int b[], int m)      //½« a[0..m] ¸´ÖÆµ½ b[0..m]
     }
 }
 
-//ÔöÁ¿Çî¾Ù·¨
+//å¢é‡ç©·ä¸¾æ³•
 void pset(int n, PSetType &p)
 {
     int i, j, m;
@@ -55,7 +55,7 @@ int main()
     int n = 3;
     PSetType p;
     pset(n, p);
-    printf("1 ~ %d µÄÃİ¼¯ÈçÏÂ: ", n);
+    printf("1 ~ %d çš„å¹‚é›†å¦‚ä¸‹: ", n);
     disp(p);
     printf("\n");
 }

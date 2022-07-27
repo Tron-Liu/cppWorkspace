@@ -70,7 +70,7 @@ int main()
     double w[] = {10, 20, 30, 40, 50};
     double v[] = {20, 30, 66, 40, 60};
     QuickSort(w, v, 0, n-1);
-    printf("°´ v/w µİ¼õÅÅĞò²¢Çó½â£º\n");
+    printf("æŒ‰ v/w é€’å‡æ’åºå¹¶æ±‚è§£ï¼š\n");
     printf("i: ");
     for (i = 0; i < n; i++)
         printf("%d\t", i);
@@ -79,5 +79,5 @@ int main()
     printf("w: "); disp(w, n);
     V = knap(W, w, v, n, x);
     printf("x: "); disp(x, n);
-    printf("×Ü¼ÛÖµ = %g\n", V);
+    printf("æ€»ä»·å€¼ = %g\n", V);
 }

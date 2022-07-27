@@ -74,5 +74,6 @@
         "typeinfo": "cpp",
         "valarray": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.clang_format_style": "file"
 }

@@ -83,7 +83,7 @@ int main()
 	ht[4].data = 'a'; ht[4].weight = 3;
 	CreateHTree(ht, n);
 	CreateHCode(ht, hcd, n);
-	printf("产生的哈夫曼编码如下：\n");
+	printf("浜х敓鐨勫搱澶浖缂栫爜濡備笅锛歕n");
 	dispHCode(ht, hcd, n);
 	return 0;
 }

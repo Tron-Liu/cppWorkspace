@@ -13,7 +13,7 @@ void my_init(const string &s, int &flag, int &start)
 int init_array(const string &s, int *arr, int length, int start)
 {
 	int j = 0;
-	for (int i = start; i < length; i++) {			//È¥³ı¶ººÅ 
+	for (int i = start; i < length; i++) {			//å»é™¤é€—å· 
 		if (s[i] == ',')
 			continue;
 		else
@@ -24,15 +24,15 @@ int init_array(const string &s, int *arr, int length, int start)
 
 int main()
 {
-	string a;				//ÒÔ×Ö·ûĞÎÊ½ÊäÈëµÚÒ»Î»ÕûÊı 
+	string a;				//ä»¥å­—ç¬¦å½¢å¼è¾“å…¥ç¬¬ä¸€ä½æ•´æ•° 
 	cin >> a;
-	int aflag = 1;			//±ê¼ÇÊÇ·ñ¸ºÊı£¬Ä¬ÈÏÕıÊı 
-	int astart = 0;				//±ê¼ÇÆğÊ¼Î»ÖÃ£¬ÆğÈ¥³ı¸ººÅ×÷ÓÃ 
+	int aflag = 1;			//æ ‡è®°æ˜¯å¦è´Ÿæ•°ï¼Œé»˜è®¤æ­£æ•° 
+	int astart = 0;				//æ ‡è®°èµ·å§‹ä½ç½®ï¼Œèµ·å»é™¤è´Ÿå·ä½œç”¨ 
 	my_init(a, aflag, astart);
-	int ia[202] = { 0 };		//ÒÔÕûÊıÊı×éĞÎÊ½´æ´¢µÚÒ»Î»ÕûÊıÖĞµÄÊı×Ö
+	int ia[202] = { 0 };		//ä»¥æ•´æ•°æ•°ç»„å½¢å¼å­˜å‚¨ç¬¬ä¸€ä½æ•´æ•°ä¸­çš„æ•°å­—
 	int aend = init_array(a, ia, a.length(), astart);
 
-	string b;					//ÓëÉÏÍ¬
+	string b;					//ä¸ä¸ŠåŒ
 	cin >> b;
 	int bflag = 1;
 	int bstart = 0;
@@ -40,8 +40,8 @@ int main()
 	int ib[202] = { 0 };
 	int bend = init_array(b, ib, b.length(), bstart);
 
-	int c[402] = { 0 };							//´æ´¢Ïà³Ë½á¹û 
-	int m = 0;									//³Ë²Ù×÷
+	int c[402] = { 0 };							//å­˜å‚¨ç›¸ä¹˜ç»“æœ 
+	int m = 0;									//ä¹˜æ“ä½œ
 	for (int x = aend - 1; x >= 0; x--) {
 		int n = m;
 		for (int y = bend - 1; y >= 0; y--) {
@@ -52,15 +52,15 @@ int main()
 	}
 
 	int i;
-	for (i = 0; i < 402; i++) {				//½«Êı×é c µÄ¸÷Î»½øĞĞ½øÎ»²Ù×÷
+	for (i = 0; i < 402; i++) {				//å°†æ•°ç»„ c çš„å„ä½è¿›è¡Œè¿›ä½æ“ä½œ
 		c[i + 1] += c[i] / 10;
 		c[i] %= 10;
 	}
 
-	for (i = 401; i >= 0; i--)					//ÕÒµ½½á¹ûÕûÊıµÄµÚÒ»Î»
+	for (i = 401; i >= 0; i--)					//æ‰¾åˆ°ç»“æœæ•´æ•°çš„ç¬¬ä¸€ä½
 		if (c[i] != 0) break;
 
-	if ((i + 1) == 0) {								//Êä³ö
+	if ((i + 1) == 0) {								//è¾“å‡º
 		cout << 0;
 		return 0;
 	}

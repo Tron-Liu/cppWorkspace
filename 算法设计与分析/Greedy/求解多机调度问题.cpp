@@ -51,11 +51,11 @@ void disp(int a[], int n)
 void dispschedule(PlanType S[], int m, int n) {
     int i, j;
     for(i = 0; i < m; i++) {
-        printf("机器 %d 分配的作业序列：", i + 1);
+        printf("鏈哄櫒 %d 鍒嗛厤鐨勪綔涓氬簭鍒楋細", i + 1);
         for (j = 0; j < S[i].num; j++) {
             printf("%d ", S[i].seq[j]);
         }
-        printf(",加功总时间为 %d\n",S[i].sumt);
+        printf(",鍔犲姛鎬绘椂闂翠负 %d\n",S[i].sumt);
     }
 }
 
@@ -83,14 +83,14 @@ int main()
     int P[M] = {1, 2, 3, 4, 5, 6, 7};
     int T[M] = {2, 14, 4, 16, 6, 5, 3};
     PlanType S[M];
-    printf("排序前：\n");
+    printf("鎺掑簭鍓嶏細\n");
     printf("T: "); disp(T, n);
     printf("P: "); disp(P, n);
     QuickSort(T, P, 0, n-1);
-    printf("排序后：\n");
+    printf("鎺掑簭鍚庯細\n");
     printf("T: "); disp(T, n);
     printf("P: "); disp(P, n);
-    printf("调度方案如下：\n");
+    printf("璋冨害鏂规濡備笅锛歕n");
     Mscheduling(P, T, S, n, m);
     dispschedule(S, m, n);
 

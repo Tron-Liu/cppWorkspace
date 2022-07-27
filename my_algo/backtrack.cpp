@@ -3,32 +3,31 @@
 using namespace std;
 
 /*
-* res: ¶şÎ¬Êı×é£¬´æ´¢×îÖÕ½á¹û
-* temp: Ò»Î¬Êı×é£¬´æ´¢ÖĞ¼ä½á¹û
-* nums: ¸ø¶¨µÄÊı×é
-* n: Êı×Ö¸öÊı 
+* res: äºŒç»´æ•°ç»„ï¼Œå­˜å‚¨æœ€ç»ˆç»“æœ
+* temp: ä¸€ç»´æ•°ç»„ï¼Œå­˜å‚¨ä¸­é—´ç»“æœ
+* nums: ç»™å®šçš„æ•°ç»„
 */
 
 int selected[4] = {0};
 
 void func(vector< vector<int> >& res, vector<int>& temp, vector<int>& nums) {
-	// ½áÊøÌõ¼ş
+	// ç»“æŸæ¡ä»¶
 	if (temp.size() == nums.size()) {
 		res.push_back(temp);
 		return;
 	}
 	
 	for (int i = 0; i < nums.size(); i++) {
-		// ×ö³öÑ¡Ôñ
+		// åšå‡ºé€‰æ‹©
 		if (selected[i] == 0) {
 			temp.push_back(nums[i]);
 			selected[i] = 1;
 		}
 		else
 			continue;
-		// µİ¹éµ÷ÓÃ
+		// é€’å½’è°ƒç”¨
 		func(res, temp, nums);
-		// ³·ÏúÑ¡Ôñ 
+		// æ’¤é”€é€‰æ‹© 
 		temp.pop_back();
 		selected[i] = 0;
 	}

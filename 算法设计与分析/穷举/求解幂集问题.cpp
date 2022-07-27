@@ -16,12 +16,12 @@ void change(int b[], int n)
     }
 }
 
-//ÔöÁ¿Çî¾Ù·¨
+//å¢é‡ç©·ä¸¾æ³•
 void pset(int a[], int b[], int n)
 {
     int i, k;
     int pw = pow(2, n);
-    printf("¼¯ºÏ a µÄËùÓĞ×Ó¼¯: ");
+    printf("é›†åˆ a çš„æ‰€æœ‰å­é›†: ");
     for ( i = 0; i < pw; i++)
     {
         printf("{ ");

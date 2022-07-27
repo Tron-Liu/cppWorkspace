@@ -9,18 +9,18 @@ struct {
 
 int top = -1;
 
-//éé€’å½’
+//é—ˆç‚ºâ‚¬æ‘ç¶Š
 void Hanoi1(int n, char x, char y, char z)
 {
     int n1, x1, y1, z1;
     if(n <= 0)
     {
-        printf("²ÎÊı´íÎón");
+        printf("å‚æ•°é”™è¯¯n");
         return;
     }
     else if(n == 1)
     {
-        printf("½« %c ÉÏµÄ 1 ¸öÅÌÆ¬Ö±½ÓÒÆ¶¯µ½ %c \n", x, z);
+        printf("å°† %c ä¸Šçš„ 1 ä¸ªç›˜ç‰‡ç›´æ¥ç§»åŠ¨åˆ° %c \n", x, z);
         return;
     }
     top++;
@@ -51,7 +51,7 @@ void Hanoi1(int n, char x, char y, char z)
         }
         else if (St[top].tag == 0)
         {
-            printf("\t½«µÚ %d ¸öÅÌÆ¬´Ó %c ÒÆ¶¯µ½ %c \n", St[top].n, St[top].x, St[top].z);
+            printf("\tå°†ç¬¬ %d ä¸ªç›˜ç‰‡ä» %c ç§»åŠ¨åˆ° %c \n", St[top].n, St[top].x, St[top].z);
             top--;
         }   
     }

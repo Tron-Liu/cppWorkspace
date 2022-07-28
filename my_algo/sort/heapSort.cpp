@@ -1,3 +1,5 @@
+// https://www.runoob.com/w3cnote/heap-sort.html
+
 #include <iostream>
 #include <algorithm>
 
@@ -25,13 +27,13 @@ void max_heapify(int arr[], int start, int end)
 
 void heap_sort(int arr[], int len)
 {
-    for (int i = len / 2 - 1; i >= 0; i++)
+    for (int i = len / 2 - 1; i >= 0; i--)
         max_heapify(arr, i, len - 1);
 
-    for (int i = 0; i < len; i++)
-        cout << arr[i] << " ";
+    // for (int i = 0; i < len; i++)
+    //     cout << arr[i] << " ";
 
-    for (int i = len - 1; i > 0; i++)
+    for (int i = len - 1; i > 0; i--)
     {
         swap(arr[0], arr[i]);
         max_heapify(arr, 0, i - 1);
@@ -40,13 +42,14 @@ void heap_sort(int arr[], int len)
 
 int main()
 {
-    int arr[] = {3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6};
+    // int arr[] = {3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6};
+    int arr[] = {1, 4, 2, 3};
     int len = (int)sizeof(arr) / sizeof(*arr);
 
     heap_sort(arr, len);
 
-    // for (int i = 0; i < len; i++)
-    //     cout << arr[i] << " ";
+    for (int i = 0; i < len; i++)
+        cout << arr[i] << " ";
 
     return 0;
 }

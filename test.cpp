@@ -1,3 +1,14 @@
+/**
+ * @file test.cpp
+ * @author Tron-Liu (Tron-Liu@foxmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-08-07
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include <algorithm>
 #include <iostream>
 #include <list>
@@ -8,24 +19,18 @@
 #include <algorithm>
 #include <set>
 #include <unordered_set>
-
-using namespace std;
+#include <map>
+#include <unordered_map>
 
 int main()
 {
-  unordered_multiset<int> hash;
-  hash.insert(3);
-  hash.insert(3);
-  hash.insert(3);
-  hash.insert(3);
-
-  cout << hash.size() << endl;
-  auto it = hash.find(3);
-
-  hash.erase(it);
-
-  cout << hash.size() << endl;
-  for (int num : hash) cout << num << " ";
+  std::unordered_map<int, int> hash;
+  hash[5] = 10;
+  hash[1] = 3;
+  hash[3] = 4;
+  for (auto it = hash.begin(); it != hash.end(); it++) {
+    std::cout << it->first << " " << it->second << std::endl;
+  }
 
   return 0;
 }

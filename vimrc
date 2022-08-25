@@ -10,6 +10,8 @@ set encoding=utf-8  " 编码格式
 
 set showmatch  " 高亮显示匹配的括号
 
+set mouse=""
+
 set syntax=on  " 语法高亮
 
 set tabstop=2  " Tab键显示的空格数
@@ -28,6 +30,7 @@ set history=1000  " 历史命令条数
 
 " colorscheme murphy
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 键映射
 :imap jj <ESC>
 
@@ -41,23 +44,25 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " 新建文件，自动插入文件头
 autocmd BufNewFile *.c,*.cpp,*.sh,*.py exec ":call SetTitle()"
 function SetTitle()
-	if &filetype == 'sh' || &filetype == 'py'
+	if &filetype == 'sh' || &filetype == 'python'
 		call setline(1, "###")
-		call append(line("."), "# @file ".expand("%"))
-		call append(line(".")+1, "# @author Tron-Liu (Tron-Liu@foxmail.com)")
-		call append(line(".")+2, "# @brief ")
-		call append(line(".")+3, "# @date ".strftime("%Y-%m-%d %H:%M"))
+		call append(line("."), "# @file: ".expand("%"))
+		call append(line(".")+1, "# @author: Tron-Liu (Tron-Liu@foxmail.com)")
+		call append(line(".")+2, "# @brief: ")
+		call append(line(".")+3, "# @date: ".strftime("%Y-%m-%d %H:%M"))
 		call append(line(".")+4, "###")
 		call append(line(".")+5, "")
 	else
 		call setline(1, "/**")
-		call append(line("."), "* @file ".expand("%"))
-		call append(line(".")+1, "* @author Tron-Liu (Tron-Liu@foxmail.com)")
-		call append(line(".")+2, "* @brief ")
-		call append(line(".")+3, "* @date ".strftime("%Y-%m-%d %H:%M"))
+		call append(line("."), "* @file: ".expand("%"))
+		call append(line(".")+1, "* @author: Tron-Liu (Tron-Liu@foxmail.com)")
+		call append(line(".")+2, "* @brief: ")
+		call append(line(".")+3, "* @date: ".strftime("%Y-%m-%d %H:%M"))
 		call append(line(".")+4, "**/")
 		call append(line(".")+5, "")
 	endif
@@ -77,5 +82,22 @@ function SetTitle()
 		call append(line(".")+10, "  return 0;")
 		call append(line(".")+11, "}")
 	endif
-	autocmd BufNewFile * normal G
 endfunction
+
+" press F5 to run program 
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		exec "!g++ % -o %<"
+		exec "! ./%<"
+	elseif &filetype == 'cpp'
+		exec "!g++ % -o %<"
+		exec "! ./%<"
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!java %<"
+	elseif &filetype == 'sh'
+		:!./%
+	endif
+endfunc
